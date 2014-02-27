@@ -2,11 +2,11 @@
 /* Apply Diy Fonts */
 @font-face {
 	font-family: 'SimpX';
-	src:url('fonts/SimpX.eot?cwtq86');
-	src:url('fonts/SimpX.eot?#iefixcwtq86') format('embedded-opentype'),
-		url('fonts/SimpX.woff?cwtq86') format('woff'),
-		url('fonts/SimpX.ttf?cwtq86') format('truetype'),
-		url('fonts/SimpX.svg?cwtq86#SimpX') format('svg');
+	src:url('fonts/simpx.eot?cwtq86');
+	src:url('fonts/simpx.eot?#iefixcwtq86') format('embedded-opentype'),
+		url('fonts/simpx.woff?cwtq86') format('woff'),
+		url('fonts/simpx.ttf?cwtq86') format('truetype'),
+		url('fonts/simpx.svg?cwtq86#SimpX') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
