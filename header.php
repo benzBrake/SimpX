@@ -63,15 +63,14 @@
 });
 </script>
 <!--[if lt IE 7]>
-/>
-    <![endif]-->
+  <![endif]-->
 <!--[if IE 6]>
-    <script src="<?php $this->options->themeUrl('/js/DD_belatedPNG.js'); ?>"></script>
-    <script>DD_belatedPNG.fix('*');</script>
-    <![endif]-->
+  <script src="<?php $this->options->themeUrl('/js/DD_belatedPNG.js'); ?>"></script>
+  <script>DD_belatedPNG.fix('*');</script>
+  <![endif]-->
 <!--[if IE]>
-    <link rel="stylesheet" media="screen" href="<?php $this->options->themeUrl('ie.css'); ?>" />
-    <![endif]-->
+  <link rel="stylesheet" media="screen" href="<?php $this->options->themeUrl('ie.css'); ?>" />
+  <![endif]-->
 <link rel='index' title='<?php $this->options->title() ?>' href='<?php $this->options->siteUrl(); ?>' />
 <style type="text/css">.recentcomments a {display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
@@ -84,11 +83,11 @@
       <div id="logo">Hi@<a href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>"><?php $this->options->title() ?></a>$su root-</div>
       <div id="nav">
         <ul id="menus">
-          <li<?php if($this->is('index')): ?> class="home current_page_item"<?php endif; ?>><a href="<?php $this->options->siteUrl(); ?>"><?php _e('Home'); ?></a></li>
-         <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-         <?php while($pages->next()): ?>
-         <li class="page_item<?php if($this->is('page', $pages->slug)): ?> current_page_item<?php endif; ?>"><a href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a></li>
-         <?php endwhile; ?>
+      <li<?php if($this->is('index')): ?> class="home current_page_item"<?php endif; ?>><a href="<?php $this->options->siteUrl(); ?>"><?php _e('Home'); ?></a></li>
+     <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
+     <?php while($pages->next()): ?>
+     <li class="page_item<?php if($this->is('page', $pages->slug)): ?> current_page_item<?php endif; ?>"><a href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a></li>
+       <?php endwhile; ?>
 
         </ul>
         <div class="clear"></div>
