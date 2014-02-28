@@ -63,16 +63,15 @@
 });
 </script>
 <!--[if lt IE 7]>
-	<script src="<?php $this->options->themeUrl('/js/fonts.js'); ?>"></script>
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php $this->options->themeUrl('fonts.css'); ?>" />
-	<![endif]-->
+/>
+    <![endif]-->
 <!--[if IE 6]>
-	<script src="<?php $this->options->themeUrl('/js/DD_belatedPNG.js'); ?>"></script>
-	<script>DD_belatedPNG.fix('*');</script>
-	<![endif]-->
+    <script src="<?php $this->options->themeUrl('/js/DD_belatedPNG.js'); ?>"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
 <!--[if IE]>
-	<link rel="stylesheet" media="screen" href="<?php $this->options->themeUrl('ie.css'); ?>" />
-	<![endif]-->
+    <link rel="stylesheet" media="screen" href="<?php $this->options->themeUrl('ie.css'); ?>" />
+    <![endif]-->
 <link rel='index' title='<?php $this->options->title() ?>' href='<?php $this->options->siteUrl(); ?>' />
 <style type="text/css">.recentcomments a {display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
@@ -85,11 +84,11 @@
       <div id="logo">Hi@<a href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>"><?php $this->options->title() ?></a>$su root-</div>
       <div id="nav">
         <ul id="menus">
-		  <li<?php if($this->is('index')): ?> class="home current_page_item"<?php endif; ?>><a href="<?php $this->options->siteUrl(); ?>"><?php _e('Home'); ?></a></li>
-		 <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-		 <?php while($pages->next()): ?>
-		 <li class="page_item<?php if($this->is('page', $pages->slug)): ?> current_page_item<?php endif; ?>"><a href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a></li>
-	   	 <?php endwhile; ?>
+          <li<?php if($this->is('index')): ?> class="home current_page_item"<?php endif; ?>><a href="<?php $this->options->siteUrl(); ?>"><?php _e('Home'); ?></a></li>
+         <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
+         <?php while($pages->next()): ?>
+         <li class="page_item<?php if($this->is('page', $pages->slug)): ?> current_page_item<?php endif; ?>"><a href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a></li>
+         <?php endwhile; ?>
 
         </ul>
         <div class="clear"></div>
@@ -103,8 +102,10 @@
 
     <div class="subscribe right">
       <ul>
-        <li class="rssfeed"><span><a href="<?php $this->options->feedUrl(); ?>" title="Subscribe RSS Feed">Subscribe RSS Feed</a></span></li>
-        <li class="twitter-user"><span><a href="http://wpa.qq.com/msgrd?V=1&Uin=896149631&Site=im.qq.com&Menu=yes" title="Follow me on qq" rel="external nofollow">Follow me on qq</a></span></li>
+        <li class="rssfeed"><span><a href="<?php $this->options->feedUrl(); ?>" title="Subscribe RSS Feed"><i class="icon-rss"></i></a></span></li>
+        <?php if ($this->options->weibo): ?>
+            <li><span><a href="<?php $this->options->weibo() ?>" target="_blank" class="weibo text-hide" data-toggle="tooltip" data-placement="auto" title="关注我的微博">微博</a></li></span>
+            <?php endif; ?>
       </ul>
       <div class="clear"></div>
     </div>
