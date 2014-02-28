@@ -13,17 +13,6 @@
 					<div class="post box">
 					<div class="post-header">
 					<h1 class="post-title"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark"><?php $this->title() ?></a></h1>
-<!-- Baidu Button BEGIN -->
-    		<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="position: absolute; top: 18px; right: 15px;">
-        		<a class="bds_tsina"></a>
-        		<a class="bds_tqq"></a>
-        		<a class="bds_tsohu"></a>
-        		<a class="bds_t163"></a>
-        		<a class="bds_tfh"></a>
-        		<a class="bds_baidu"></a>
-        		<span class="bds_more"></span>
-    		</div>
-			<!-- Baidu Button END -->
 					<div class="postmeta">
 				<ul>
 					<li class="meta-date"><i class="icon-calendar"></i><?php $this->date('F j, Y'); ?></li>
