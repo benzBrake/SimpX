@@ -36,7 +36,7 @@
 				<div class="post-copyright box">
 					<?php $reprinted = $this->fields->reprinted;
 						if(empty($reprinted)) { ?>
-					<p>文章出自：<a href="http://32mb.cn" title="32MB.CN">32MB.CN - 一个神奇的小站</a>版权所有。
+					<p>文章出自：<a href="<?php $this->options->siteUrl(); ?>" title="32MB.CN"><?php $this->options->title(); ?></a>版权所有。
 					<?php } else { ?>
 					<p>via：<a href="<?php echo $reprinted; ?>"><?php echo $reprinted; ?></a>
 					<?php } ?>
