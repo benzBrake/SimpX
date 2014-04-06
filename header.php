@@ -13,56 +13,6 @@
 <link rel="stylesheet" type="text/css" media="screen" href="<?php $this->options->themeUrl('plugins.css'); ?>" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <script src="<?php $this->options->themeUrl('/js/tag.js'); ?>"></script>
-<script type="text/javascript"> 
-    jQuery(document).ready(function($) {
-        $(function() {
-    function addEditor(a, b, c) {
-        if (document.selection) {
-            a.focus();
-            sel = document.selection.createRange();
-            c ? sel.text = b + sel.text + c: sel.text = b;
-            a.focus()
-        } else if (a.selectionStart || a.selectionStart == '0') {
-            var d = a.selectionStart;
-            var e = a.selectionEnd;
-            var f = e;
-            c ? a.value = a.value.substring(0, d) + b + a.value.substring(d, e) + c + a.value.substring(e, a.value.length) : a.value = a.value.substring(0, d) + b + a.value.substring(e, a.value.length);
-            c ? f += b.length + c.length: f += b.length - e + d;
-            if (d == e && c) f -= c.length;
-                a.focus();
-                a.selectionStart = f;
-                a.selectionEnd = f
-            } else {
-                a.value += b + c;
-                a.focus()
-            }
-        }
-            var g = document.getElementById('comment') || 0;
-            var h = {
-                strong: function() {
-                    addEditor(g, '<strong>', '</strong>')
-                },
-                em: function() {
-                addEditor(g, '<em>', '</em>')
-            },
-            del: function() {
-                addEditor(g, '<del>', '</del>')
-            },
-            quote: function() {addEditor(g, '<blockquote>', '</blockquote>')},
-            Jiong: function() {addEditor(g, '(/ □ \\)')},
-            Qie: function() {addEditor(g, 'o(-\"-)o')},
-            Huan: function() {addEditor(g, '\\(^o^)/')},
-            Yun: function() {addEditor(g, '(+﹏+)~')},
-            Yv: function() {addEditor(g, '⊙︿⊙')},
-            empty: function(){
-                g.value="";g.focus()
-            },
-        };
-        window['SIMPALED'] = {};
-        window['SIMPALED']['Editor'] = h
-    });
-});
-</script>
 <!--[if lt IE 9]>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
