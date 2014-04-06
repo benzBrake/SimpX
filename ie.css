@@ -17,24 +17,27 @@
 
 #content {
 	_width: 622px;
+	margin-left: 0px;
 }
 
 #content .post .post-content {
 	_width: 590px;
 }
-
+#left-sidebar,#right-sidebar {
+	margin-left: 10px;
+	float: left;
+}
 #left-sidebar .widget ul li {
-	width: 198px;
-}
-#left-sidebar .widget ul li a {
-	width: 188px;
-}
-
-#right-sidebar .widget ul li {
 	width: 146px;
 }
-#right-sidebar .widget ul li a {
+#left-sidebar .widget ul li a {
 	width: 136px;
+}
+#right-sidebar .widget ul li {
+	width: 198px;
+}
+#right-sidebar .widget ul li a {
+	width: 188px;
 }
 
 .sidebar .widget p.browser {
@@ -63,8 +66,7 @@
 
 .re_icon {
 	_right: 15px;
-}
-
+}	
 #commentlist li ul.children li .re_icon {
 	_right: 30px;
 }
