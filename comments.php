@@ -1,45 +1,38 @@
 <div id="comments">
-    <?php $this->comments()->to($comments); ?>
-    <?php if ($comments->have()): ?>
-	<h3><?php $this->commentsNum(_t('No comment'), _t('Only 1 comment'), _t('%d comments')); ?></h3>
-    
-    <?php $comments->listComments(); ?>
-
-    <?php $comments->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
-    
-    <?php endif; ?>
-
+    <?php $this->comments('comment')->to($comments); ?>
     <?php if($this->allow('comment')): ?>
-    <div id="<?php $this->respondId(); ?>" class="respond box">
-        <div class="cancel-comment-reply">
-        <?php $comments->cancelReply(); ?>
+        <div id="<?php $this->respondId(); ?>" class="respond">
+            <div class="cancel-comment-reply"><?php $comments->cancelReply(); ?></div>
+            <form method="post" action="<?php $this->commentUrl() ?>" id="comment_form">
+                <?php if($this->user->hasLogin()): ?>
+                <p><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="退出">退出</a></p>
+                <?php else: ?>
+                <ul class="login_meta">
+                    <li>
+                        <label for="author">称呼<span class="required">*</span></label>
+                        <input type="text" name="author" id="author" size="15" value="<?php $this->remember('author'); ?>" required/>
+                    </li>
+                    <li>
+                        <label for="mail">电子邮件<?php if ($this->options->commentsRequireMail): ?><span class="required">*</span><?php endif; ?></label>
+                        <input type="text" name="mail" id="mail" size="15" value="<?php $this->remember('mail'); ?>" required/>
+                    </li>
+                    <li class="urltext">
+                        <label for="url">网站<?php if ($this->options->commentsRequireURL): ?><span class="required">*</span><?php endif; ?></label>
+                        <input type="text" name="url" id="url" size="15" value="<?php $this->remember('url'); ?>"/>
+                    </li>
+                </ul>
+                <?php endif; ?>
+                <p><textarea rows="3" cols="50" name="text" placeholder="添加一条评论" required ><?php $this->remember('text'); ?></textarea><button type="submit" class="submit">添加</button></p>
+            </form>
         </div>
-    
-    	<h3 id="response"><?php _e('添加新评论'); ?></h3>
-    	<form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form">
-            <?php if($this->user->hasLogin()): ?>
-    		<p><?php _e('登录身份：'); ?><a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="Logout"><?php _e('退出'); ?> &raquo;</a></p>
-            <?php else: ?>
-    		<p>
-                <label for="author" class="required"><?php _e('称呼'); ?>
-    			<input type="text" name="author" id="author" class="text" placeholder="称呼" size="15" value="<?php $this->remember('author'); ?>" required /></label>
-                <label for="mail"<?php if ($this->options->commentsRequireMail): ?> class="required"<?php endif; ?>><?php _e('Email'); ?>
-    			<input type="email" name="mail" id="mail" class="text" placeholder="邮箱" size="15" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> /></label>
-                <label for="url"<?php if ($this->options->commentsRequireURL): ?> class="required"<?php endif; ?>><?php _e('网站'); ?>
-    			<input type="url" name="url" id="url" class="text" placeholder="<?php _e('http://'); ?>" size="15"value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?> /></label>
-    		</p>
-            <?php endif; ?>
-    		<p>
-                <label for="textarea" class="required"><?php _e('内容'); ?></label>
-<?php $this->remember('text'); ?>
-                <textarea rows="8" cols="50" name="text" id="comment" class="textarea" cols="55" required ></textarea>
-            </p>
-    		<p>
-                <button type="submit" class="submit"><?php _e('Post Comments'); ?></button><?php Smilies_Plugin::output(); ?>
-            </p>
-    	</form>
-    </div>
     <?php else: ?>
-    <h3><?php _e('评论已关闭'); ?></h3>
+        <div class="msg-error">评论已关闭</div>
+    <?php endif; ?>
+    <?php if ($comments->have()): ?>
+        <div class="comments_count"><?php $this->commentsNum(_t('当前暂无评论'), _t('仅有一条评论'), _t('已有 %d 条评论')); ?></div>
+        <div class="comments_box">
+            <?php $comments->listComments(); ?>
+            <?php $comments->pageNav(); ?>
+        </div>
     <?php endif; ?>
 </div>

@@ -2,6 +2,16 @@
 @import url("reset.css");
 
 /* Apply global styles */
+::selection {
+	color: #222;
+	background: #D6EDFF;
+	text-shadow: none;	
+}
+::-moz-selection{
+color: #222;
+	background: #D6EDFF;
+	text-shadow: none;	
+}
 body {
 	background: #fff;
 	font: 13px/1.5 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
@@ -151,18 +161,12 @@ p.wp-caption-text {
 			width: 100%;
 			background: #0093F0;
 		}
-		#headder::selection {
-			background: #f1f1f1;
-			color: #0093F0;
-			}
-
 			#header .content {
 				width: 1000px;
 				margin: 0 auto;
 				height: 40px;
 				position: relative;
 			}
-
 				#header .content #logo {
 					font: 23px/1 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 					color: #fff;
@@ -457,63 +461,42 @@ p.wp-caption-text {
 						#content .post .tag-clouds-tpl a { margin: 0 3px; }
 
 				/* Apply comments styles */
-#comments {
-	padding: 15px;
-	background: #f9f9f9;
-	border: 1px solid #dfdfdf;
-}.comment-list,
-.comment-list ol {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}.comment-list li {
-	padding: 14px;
-	margin-top: 10px;
-	border: 1px solid#EEE;
-	background: #F8FCFE;
-}.comment-list li.comment-level-odd {
-	background: #F6F6F3;
-}.comment-list li.comment-level-even {
-	background: #FFF;
-}.comment-list li.comment-by-author {
-	background: #FFF9E8;
-}.comment-list li.comment-reply {
-	text-align: right;
-	font-size: .92857em;
-	float:right;
-	margin-top: -20px;
-}.comment-meta a {
-	color: #999;
-	font-size: .92857em;
-}.comment-author {
-	display: block;
-	margin-bottom: 3px;
-	color: #444;
-}.comment-author.avatar {
-	float: left;
-	margin-right: 10px;
-}.comment-author cite {
-	font-weight: bold;
-	font-style: normal;
-}
-
-/* Comment reply */
-.comment-list.respond {
-	margin-top: 15px;
-	border-top: 1px solid#EEE;
-}.respond.cancel-comment-reply {
-	float: right;
-	margin-top: 15px;
-	font-size: .92857em;
-}#comment-form label {
-	margin-bottom: .5em;
-	font-weight: bold;
-}#comment-form.required: after {
-	content: " *";
-	color: #C00;
-}.respond {
-	padding: 15px;
-}
+					#comments {
+						margin-top: 14px;
+						background: #f9f9f9;
+						border: 1px solid #dfdfdf;
+						padding:15px;
+					}
+					#comments p {margin-bottom:15px;}
+					.comments_box {padding-bottom:10px;padding-right:10px;}
+					.comments_count {padding-right:10px;margin-bottom:10px; font-size:12px; color:#999;}
+					.comment-child {margin-left:42px; border-top:1px dashed #ddd; padding-top:15px;}
+					.comment-list li {border-bottom:1px solid #ddd; margin-bottom:20px; position:relative;}
+					.comment-list .comment-children li {border-bottom:none; margin-bottom:0;}
+					.comment-reply {position:absolute; top:0; right:0; font-size:12px; line-height:18px;}
+					.comment-child .comment-reply {top:15px;}
+					.comment-reply a {font-size:12px; border:none; color:#888;}
+					.comment-reply a:hover {color:#0093F0;}
+					.comment-meta {float:left;color:#999; font-size:12px; padding-left:10px}
+					.comment-meta a {color:#999;}
+					.comment-author {float:left; font-size:12px; height:20px;}
+					.comment-author cite.fn {font-style:normal;}
+					.comment-body {overflow:hidden;}
+					.comment-body p {margin-left:42px; clear:both;}
+					img.avatar {float:left; margin-right:10px;}
+					.respond {margin-bottom:10px;padding-right:10px;}
+					.respond .cancel-comment-reply {float:right; font-size:11px;}
+					.respond .cancel-comment-reply a {color:#aaa;}
+					.respond .cancel-comment-reply a:hover {color:#0093F0;}
+					#comment_form p {font-size:12px; margin:0 0 5px; clear:left;}
+					#comment_form label {font-size:12px; color:#555; display:block;}
+					#comment_form label .required {color:#C04E37; padding-left:5px;}
+					#comment_form textarea {font-size:14px; height:48px; line-height:24px;padding:3px 4px 3px 6px; width:87.5% !important; margin:0 1% 0 1px;}
+					#comment_form button {float:right;font-family:"Microsoft Yahei"; color:#000; font-size:14px; cursor:pointer; height:32px; line-height:14px; width:9%; text-align:center; vertical-align:top}
+					.login_meta {padding:0 0 10px 1px; overflow:hidden;}
+					.login_meta li {float:left; width:25%; margin-right:2%;margin-bottom:0px;}
+					.login_meta input {width:99%; height:26px; font-size:14px;padding-left:5px;}
+					.login_meta li.urltext {width:33%;}
 			/* Apply sidebar styles */
 			#left-sidebar,#right-sidebar {
 				float: left;
