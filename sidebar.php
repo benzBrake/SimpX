@@ -43,21 +43,21 @@
 	        <?php $this->widget('Widget_Comments_Recent','ignoreAuthor=true')->to($comments); ?>
             <?php while($comments->next()): ?>
                 <li><a href="<?php $comments->permalink(); ?>">
-<?php
-$u = Helper::options()->siteUrl;
-$p = 'usr/img/avatar/';
-$d = $u . $p . 'default.jpg';
-$t = 1209600; // 設定: 14 天, 單位: 秒
-$f = md5(strtolower($comments->mail));
-$a = $u . $p . $f . '.jpg';
-$e = __TYPECHO_ROOT_DIR__ . '/' . $p . $f . '.jpg';
-if ( !is_file($e) || (time() - filemtime($e)) > $t ){//當頭像不存在或文件超過14天才更新
-  $g = 'http://www.gravatar.com/avatar/' . $f . '?s=32&d=' . $d . '&r=X';
-  copy($g, $e); $a = htmlspecialchars($g);
-}
-if ( filesize($e) < 500 ) copy($d, $e);
-?>
-<img class="avatar" src="<?php echo $a ?>" alt="" title="<?php echo $comments->author; ?>"/><?php $comments->author(false); ?>：</br><?php $comments->excerpt(10, '...'); ?></a></li>
+                  <?php
+                      $u = Helper::options()->siteUrl;
+                      $p = 'usr/img/avatar/';
+                      $d = $u . $p . 'default.jpg';
+                      $t = 1209600; // 設定: 14 天, 單位: 秒
+                      $f = md5(strtolower($comments->mail));
+                      $a = $u . $p . $f . '.jpg';
+                      $e = __TYPECHO_ROOT_DIR__ . '/' . $p . $f . '.jpg';
+                      if ( !is_file($e) || (time() - filemtime($e)) > $t ){//當頭像不存在或文件超過14天才更新
+                          $g = 'http://www.gravatar.com/avatar/' . $f . '?s=32&d=' . $d . '&r=X';
+                          copy($g, $e); $a = htmlspecialchars($g);
+                      }
+                      if ( filesize($e) < 500 ) copy($d, $e);
+                  ?>
+                  <img class="avatar" src="<?php echo $a ?>" alt="" title="<?php echo $comments->author; ?>"/><?php $comments->author(false); ?>：</br><?php $comments->excerpt(10, '...'); ?></a></li>
             <?php endwhile; ?>
     </ul>
   </div>
@@ -109,6 +109,14 @@ if ( filesize($e) < 500 ) copy($d, $e);
     </ul>
     </div>
   </div>
+<?php endif; ?>
+<?php if (empty($this->options->sidebarBlock) || in_array('ShowQRCode', $this->options->sidebarBlock)): ?>
+<div class="widget">
+    <h3 class="widget-title"><i class="icon-earth"></i>QRCode</h3>
+    <div class="widget-body">
+    <a href="http://qr.liantu.com/api.php?w=145&text=<?php $this->permalink() ?>" tittle="本页二维码"><img class="qrcode "src="http://qr.liantu.com/api.php?w=145&text=<?php $this->permalink() ?>" /></a>
+    </div>
+</div>
 <?php endif; ?>
 <?php if (empty($this->options->sidebarBlock) || in_array('ShowOther', $this->options->sidebarBlock)): ?>
   <div class="widget">
