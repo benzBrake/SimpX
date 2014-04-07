@@ -28,7 +28,7 @@
             <li class="meta-cat"><i class="icon-list"></i><?php $this->category(','); ?></li>
             <li class="meta-comments"><i class="icon-comment"></i><a href="<?php $this->permalink() ?>#comments" title="Comment on <?php $this->title() ?>"><?php $this->commentsNum('No Comments', '1 Comment', '%d Comments'); ?></a></li>
           </ul>
-          <p class="morelink"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark">More</a></p>
+          <p class="morelink"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark"><i class="icon-forward"></i></a></p>
           <div class="clear"></div>
         </div>
         </div>
