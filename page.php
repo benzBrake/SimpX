@@ -8,7 +8,7 @@
 
 		
 			
-				<div class="posthead box"><?php _e('Archive for the category: '); ?><strong><?php $this->category(','); ?></strong></div>
+				<div class="posthead box"><a href="/" title="Back to Home">Home</a> <i class="icon-arrow-right"></i> <?php _e('Page: '); ?><strong><?php $this->title() ?></strong></div>
 	
 				
 
