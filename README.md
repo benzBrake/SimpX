@@ -5,7 +5,7 @@
 <img src="http://32mb.cn/usr/uploads/2014/02/postfield.jpg" />
 <h3>友情链接</h3>
 <p>侧边栏友情链接小工具</p>
-<img src="http://ntu.me/di/CBMXH/friend_links.jpg" alt="friend links" />
+<img src="http://image.32mb.cn/links.jpg" alt="friend links" />
 <p>需要使用插件“Links”。下载地址：http://www.imhan.com/download/29
 <h3>侧边栏头像缓存</h3>
 <p>使用的Willin Kan大师的缓存代码<，需要添加一个目录usr/img/avatar/，并且设置权限为777</p>
