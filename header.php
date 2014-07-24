@@ -3,7 +3,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="text/html; charset=<?php $this->options->charset(); ?>" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title><?php $this->options->title(); ?><?php $this->archiveTitle(); ?></title>
+<title><?php $this->options->title(); ?><?php $this->archiveTitle(); ?>&nbsp;-&nbsp;<?php $this->options->description() ?></title>
 <?php $this->header(); ?>
 <!-- robots start -->
 <meta name="robots" content="index,follow" />
@@ -37,6 +37,9 @@
       <div id="logo">Hi@<a href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>"><?php $this->options->title() ?></a>$su root-</div>
       <div id="nav">
         <ul id="menus">
+                  <?php if($this->is('post')): ?>
+                     <li class="current_page_item"><a href="">正文</a></li>
+                  <?php endif; ?>
 		  <li<?php if($this->is('index')): ?> class="home current_page_item"<?php endif; ?>><a href="<?php $this->options->siteUrl(); ?>"><?php _e('Home'); ?></a></li>
 		 <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
 		 <?php while($pages->next()): ?>
