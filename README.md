@@ -3,6 +3,10 @@
 <h3>关于自定义字段reprinted</h3>
 <p>写文章的时候添加自定义字段reprinted即可显示文章来源</p>
 <img src="http://32mb.cn/usr/uploads/2014/02/postfield.jpg" />
+<h3>评论表情注意事项</h3>
+<ul>
+	<li>本功能需要插件<a href="http://kan.willin.org/typecho/Smilies.zip">Similes插件</a></li>
+	<li>后台→设置→评论→允许使用的HTML标签和属性，添加<code><img src=""></code>，不然评论中无法显示表情。</li>
 <h3>友情链接</h3>
 <p>侧边栏友情链接小工具</p>
 <img src="http://image.32mb.cn/links.jpg" alt="friend links" />
