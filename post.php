@@ -5,7 +5,6 @@
 		<div id="container">
 			<!-- content start -->
 			<div id="content">
-      <?php include('gg.php'); ?>
 
 				<div class="posthead box">
 					<a href="/" title="Back to Home">Home</a> <i class="icon-arrow-right"></i> <?php $this->category(','); ?> <i class="icon-arrow-right"></i> <?php $this->title() ?>				</div>
