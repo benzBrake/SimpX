@@ -1,81 +1,40 @@
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
-		
-		
-		<!-- container start -->
-		<div id="container">
-			<!-- content start -->
-			<div id="content">
-
-				<div class="posthead box">
-					<a href="/" title="Back to Home">Home</a> <i class="icon-arrow-right"></i> <?php $this->category(','); ?> <i class="icon-arrow-right"></i> <?php $this->title() ?>				</div>
-				
-					<div class="post box">
-					<div class="post-header">
-					<h1 class="post-title"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark"><?php $this->title() ?></a></h1>
-					<div class="postmeta">
-				<ul>
-					<li class="meta-date"><i class="icon-calendar"></i><?php $this->date('F j, Y'); ?></li>
-					<!--li class="meta-views"></li-->
-					<li class="meta-cat"><i class="icon-list"></i><?php $this->category(','); ?></li>
-					<li class="meta-comments"><i class="icon-comment"></i><a href="<?php $this->permalink() ?>#comments" title="Comment on <?php $this->title() ?>"><?php $this->commentsNum('No Comments', '1 Comment', '%d Comments'); ?></a></li>
-				</ul>
-						<div class="clear"></div>
-					</div>
-					</div>  
-					<!-- article-page start -->
-					<div class="post-content">
-						<?php $this->content(); ?>
-						<div class="clear"></div>
-					</div>
-					<div class="post-footer">
-					<p class="post-tags"><?php $this->tags(', ', true, 'none'); ?></p>
-					</div>
-					<!-- article-page end -->
-				</div>
-				<div class="post-copyright box">
-					<?php $reprinted = $this->fields->reprinted;
-						if(empty($reprinted)) { ?>
-					<p>文章出自：<a href="<?php $this->options->siteUrl(); ?>" title="32MB.CN"><?php $this->options->title(); ?></a>版权所有。
-					<?php } else { ?>
-					<p>via：<a href="<?php echo $reprinted; ?>"><?php echo $reprinted; ?></a>
-					<?php } ?>
-					。本站文章除注明出处外，皆为作者原创文章，可自由引用，但请注明来源。</p>
-				</div>
-				
-				<!-- related-posts start -->
-								<div class="related-posts box">
-					<h2  class="related_post_title">Related Posts</h2>
-					<ul class="related_post">
-					<?php $this->related(5)->to($relatedPosts); ?>
-					<?php if ($relatedPosts->have()): ?>
-					<?php while ($relatedPosts->next()): ?>
-					<li><a href="<?php $relatedPosts->permalink(); ?>" title="<?php $relatedPosts->title(); ?>"><?php $relatedPosts->title(); ?></a></li>
-						<?php endwhile; ?>
-						<?php else : ?>
-						<li>No Related Post</li>
-						<?php endif; ?>
-						</ul>
-					</div>
-								<!-- related-posts end -->
-								
-				<!-- postnavi start -->
-				<div class="postnavi box">
-					<p class="prev right"><?php $this->thePrev(); ?><i class="icon-arrow-right"></i></p>
-					<p class="next left"><i class="icon-arrow-left"></i><?php $this->theNext(); ?></p>
-					<div class="clear"></div>
-				</div>
-				<!-- postnavi end -->
-
-	<?php $this->need('comments.php'); ?>
-
-			</div>
-			<!-- content end -->
-
-			
-	<?php $this->need('sidebar.php'); ?>
-            
-            </div>
-		<div class="clear"></div>
-		<!-- container end -->
-		
-	<?php $this->need('footer.php'); ?>
+<?php $this->need('left-sidebar.php'); ?>
+	<div id="main" class="floatleft">
+	<article class="post entry box" itemscope itemtype="http://schema.org/BlogPosting">
+	<header class="entry-header">
+		<h1 class="entry-title" itemprop="name headline"><?php $this->title() ?></h1>
+		<ul class="entry-meta">
+			<li itemprop="author" itemscope itemtype="http://schema.org/Person"><?php _e('作者: '); ?><a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a></li>
+            <li><?php _e('时间: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date('F j, Y'); ?></time></li>
+            <li><?php _e('分类: '); ?><?php $this->category(','); ?></li>
+					<?php $currGroup = get_object_vars($this->user) ['row']['group'];
+						if ($currGroup == "administrator"): ?>
+							<li><a data-no-instant="" href="<?php $this->options->siteUrl(); ?>admin/write-post.php?cid=<?php echo $this->cid; ?>"><?php  _e('Edit'); ?></a></li>
+					<?php endif; ?>
+        </ul>
+	</header>
+		<div class="entry-content" itemprop="articleBody">
+			<?php $this->content(); ?>
+		</div>
+		<div class="entry-footer">
+			<?php $allFields = unserialize($this->___fields()); 
+				if (array_key_exists('copyright',unserialize($this->___fields()))) {
+					$fields = str_replace("\r\n","，",$allFields['copyright']);
+					$copyright = '本文参考自' . $fields . "。";
+				} else {
+					$copyright = '本文章为原创，转载请以链接形式注明本文地址 ';
+				} ?>
+			<div class="copyright"><?php _e($copyright); ?></div>
+			<span itemprop="keywords" class="tags-links"><?php _e('标签: '); ?><?php $this->tags(', ', true, 'none'); ?></span>
+		</div>
+    </article>
+    <ul class="entry-near">
+        <li>上一篇: <?php $this->thePrev('%s','没有了'); ?></li>
+        <li>下一篇: <?php $this->theNext('%s','没有了'); ?></li>
+    </ul>
+    <?php $this->need('comments.php'); ?>
+</div>
+<?php $this->need('sidebar.php'); ?>
+<?php $this->need('footer.php'); ?>

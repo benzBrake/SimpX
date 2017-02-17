@@ -1,70 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
-<head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="Content-Type" content="text/html; charset=<?php $this->options->charset(); ?>" />
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title><?php $this->options->title(); ?><?php $this->archiveTitle(); ?>&nbsp;-&nbsp;<?php $this->options->description() ?></title>
-<?php $this->header(); ?>
-<!-- robots start -->
-<meta name="robots" content="index,follow" />
-<!-- robots end -->
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" type="text/css" media="screen" href="<?php $this->options->themeUrl('style.css'); ?>" />
-<link rel="stylesheet" type="text/css" media="screen" href="<?php $this->options->themeUrl('plugins.css'); ?>" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<script src="<?php $this->options->themeUrl('/js/tag.js'); ?>"></script>
-<!--[if lt IE 9]>
-<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<!DOCTYPE HTML>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:og="http://ogp.me/ns#"
+	xmlns:fb="https://www.facebook.com/2008/fbml"
+	class="no-js">
+<head>
+	<title><?php $this->archiveTitle(array(
+			'category'  =>  _t('Category: %s'),
+			'search'	=>  _t('包含关键字 %s 的文章'),
+			'tag'	   =>  _t('标签 %s 下的文章'),
+			'author'	=>  _t('%s 发布的文章')
+		), '', ' - '); ?><?php $this->options->title(); ?></title>
+<?php if (!(is_pjax())): ?>
+	<meta charset="<?php $this->options->charset(); ?>">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<?php if ($this->options->FBlogoUrl): ?>
+		<meta property="og:image" content="<?php $this->options->FBlogoUrl() ?>"/>
+	<?php endif; ?>
+	<!-- 使用url函数转换相关路径 -->
+	<link rel="stylesheet" href="http://cdn.staticfile.org/normalize/2.1.3/normalize.min.css">
+	<link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>">
+	<link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
+	<link rel="stylesheet" href="<?php $this->options->themeUrl('fonts/font-awesome.min.css'); ?>">
+
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
-<!--[if lt IE 7]>
-	<![endif]-->
-<!--[if IE 6]>
-	<script src="<?php $this->options->themeUrl('/js/DD_belatedPNG.js'); ?>"></script>
-	<script>DD_belatedPNG.fix('*');</script>
-	<![endif]-->
-<!--[if IE]>
-	<link rel="stylesheet" media="screen" href="<?php $this->options->themeUrl('ie.css'); ?>" />
-	<![endif]-->
-<link rel='index' title='<?php $this->options->title() ?>' href='<?php $this->options->siteUrl(); ?>' />
-<style type="text/css">.recentcomments a {display:inline !important;padding:0 !important;margin:0 !important;}</style>
+
+	<!-- 通过自有函数输出HTML头部信息 -->
+	<?php $this->header(); ?>
+<?php endif; ?>
 </head>
 <body>
-<!-- wrapper start -->
-<div id="wrapper">
-  <!-- header start -->
-  <div id="header">
-    <div class="content">
-      <div id="logo">Hi@<a href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>"><?php $this->options->title() ?></a>$su root-</div>
-      <div id="nav">
-        <ul id="menus">
-                  <?php if($this->is('post')): ?>
-                     <li class="current_page_item"><a href="">正文</a></li>
-                  <?php endif; ?>
-		  <li<?php if($this->is('index')): ?> class="home current_page_item"<?php endif; ?>><a href="<?php $this->options->siteUrl(); ?>"><?php _e('Home'); ?></a></li>
-		 <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-		 <?php while($pages->next()): ?>
-		 <li class="page_item<?php if($this->is('page', $pages->slug)): ?> current_page_item<?php endif; ?>"><a href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a></li>
-	   	 <?php endwhile; ?>
+<?php if (!(is_pjax())): ?>
+<!--[if lt IE 8]>
+	<div class="browsehappy" role="dialog"><?php _e('当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>'); ?>.</div>
+<![endif]-->
 
-        </ul>
-        <div class="clear"></div>
-      </div>
-    </div>
-  </div>
-  <!-- header end -->
-  <!-- topbox start -->
-  <div id="topbox" class="box">
-    <div class="welcome left"> <?php if($this->user->hasLogin()): ?>Welcome back, <a href="<?php $this->options->adminUrl(); ?>"><?php $this->user->screenName(); ?></a>, how about you today. <?php else: ?>Hi, new friend, nice to meet you, welcome to my blog. <?php endif; ?></div>
-
-    <div class="subscribe right">
-      <ul>
-        <li class="rssfeed"><span><a href="<?php $this->options->feedUrl(); ?>" title="Subscribe RSS Feed"><i class="icon-rss"></i></a></span></li>
-        <?php if ($this->options->weibo): ?>
-            <li><span><a href="<?php $this->options->weibo() ?>" target="_blank" class="weibo text-hide" data-toggle="tooltip" data-placement="auto" title="关注我的微博">微博</a></li></span>
-            <?php endif; ?>
-      </ul>
-      <div class="clear"></div>
-    </div>
-    <div class="clear"></div>
-  </div>
-  <!-- topbox end -->
+<header id="header" class="clearfix">
+	<div class="site-name floatleft">
+		<a id="logo" href="<?php $this->options->siteUrl(); ?>">
+			<?php if ($this->options->logoUrl): ?>
+			<img src="<?php $this->options->logoUrl() ?>" alt="<?php $this->options->title() ?>" />
+			<?php endif; ?>
+			<?php $this->options->title() ?>
+		</a>
+	</div>
+	<?php $this->need('navmenu.php'); ?>
+</header><!-- end #header -->
+<?php endif; ?>
+<div id="body">
+	<div class="container wp">
+		<div class="row">

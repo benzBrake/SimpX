@@ -1,31 +1,48 @@
-  <!-- footer start -->
-  <div id="footer">
-    <div class="content">
-      <p><a href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>"><?php $this->options->title() ?></a> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="Creative Commons Attribution 3.0 License" rel="external nofollow">Creative Commons Attribution 3.0 License</a>. <a href="<?php $this->options->feedUrl(); ?>"><?php _e('文章'); ?> RSS</a> and <a href="<?php $this->options->commentsFeedUrl(); ?>"><?php _e('评论'); ?> RSS</a>. </p>
-      <p>Powered by <a href="http://www.typecho.org" title="typecho.org" rel="external nofollow">Typecho)))</a>. Theme designed by <a href="http://welee.me/" title="weleeTime" rel="external nofollow">weleeTime</a>&<a href="http://32mb.cn" title="逗妇乳">Tammy</a></p>
-      <div class="gotop"><a href="#" title="Top">Top</a></div>
-    </div>
-  </div>
-  <!-- footer end -->
-</div>
-<!-- wrapper end -->
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 
-<!-- javascript start -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="<?php $this->options->themeUrl('js/base.js'); ?>"></script>
-<!--baidu share start--> 
-<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6787278" ></script> 
-<script type="text/javascript" id="bdshell_js"></script> 
-<script type="text/javascript">
-	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
-</script> 
-<!--baidu share end-->
-<!-- javascript end -->
+        </div><!-- end .row -->
+    </div>
+</div><!-- end #body -->
+<?php if(!is_pjax()): ?>
+<footer id="footer" role="contentinfo">
+    &copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a>.&nbsp;Theme SimpX v2.&nbsp;
+    <?php _e('由 <a href="http://www.typecho.org">Typecho</a> 强力驱动'); ?>.
+		<div class="fixed-btn">
+		<a id="backtop" href="" title="<?php _e('返回顶部'); ?>" data-track="Footer,Click,BackTop">
+			<i class="fa fa-chevron-up"></i>
+		</a>
+		<a class="page-qrcode" title="<?php _e('可以使用手机扫一扫哦'); ?>">
+			<i class="fa fa-qrcode"></i>
+			<div class="qrcode-img">
+				<img src="http://qr.liantu.com/api.php?w=128&m=10&inpt=00BCD4&fg=00BCD4& pt=00BEEE&text=<?php echo str_replace('&','%26',$this->permalink); ?>" />
+			</div>
+		</a>
+		</div>
+<?php endif; ?>
+		<script src="//upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.3.min.js"></script>
+		<script src="<?php $this->options->themeUrl('jquery.pjax.js'); ?>"></script>
+<script>
+$("#backtop").click(function () {
+        $('body,html').animate({ scrollTop: 0 }, 200);
+        return false;
+ });
+$(".mobile-menu").click(function () {
+        $('#site-menu').toggle(300,function() {
+                $('#site-menu').toggleClass('mobile');
+        });
+ });
+</script>
+		</div>
 <?php $this->footer(); ?>
-<?php
-if ($this->is('single')) {
-    Helper::threadedCommentsScript();
-}
-?>
+</footer>
 </body>
+<div class="spinnerContainer">
+<div class="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+</div>
 </html>
