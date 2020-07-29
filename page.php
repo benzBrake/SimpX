@@ -1,7 +1,7 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<?php $this->need('header.php'); ?>
+<?php $this->need('components/header.php'); ?>
 
-<?php $this->need('left-sidebar.php'); ?>
+<?php $this->need('components/left-sidebar.php'); ?>
 
 <div id="main" class="floatleft">
     <article class="post entry box" itemscope itemtype="http://schema.org/BlogPosting">
@@ -12,8 +12,8 @@
             <?php $this->content(); ?>
         </div>
     </article>
-    <?php $this->need('comments.php'); ?>
+    <?php $this->need('components/comments.php'); ?>
 </div><!-- end #main-->
 
-<?php $this->need('sidebar.php'); ?>
-<?php $this->need('footer.php'); ?>
+<?php $this->need('components/sidebar.php'); ?>
+<?php $this->need('components/footer.php'); ?>

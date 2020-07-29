@@ -1,4 +1,11 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+/**
+ * 最新发表
+ *
+ * @package widget
+ */
+?>
 <div class="widget box">
 	<h4 class="widget-title">Recent Posts</h4>
 	<div class="widget-body recent-posts">

@@ -1,6 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<?php $this->need('header.php'); ?>
-<?php $this->need('left-sidebar.php'); ?>
+<?php $this->need('components/header.php'); ?>
+<?php $this->need('components/left-sidebar.php'); ?>
 	<div id="main" class="floatleft">
 	<article class="post entry box" itemscope itemtype="http://schema.org/BlogPosting">
 	<header class="entry-header">
@@ -27,14 +27,14 @@
 					$copyright = '本文章为原创，转载请以链接形式注明本文地址 ';
 				} ?>
 			<div class="copyright"><?php _e($copyright); ?></div>
-			<span itemprop="keywords" class="tags-links"><?php _e('标签: '); ?><?php $this->tags(', ', true, 'none'); ?></span>
+			<span itemprop="keywords" class="tags-links"><?php $this->tags('', true, ''); ?></span>
 		</div>
     </article>
     <ul class="entry-near">
         <li>上一篇: <?php $this->thePrev('%s','没有了'); ?></li>
         <li>下一篇: <?php $this->theNext('%s','没有了'); ?></li>
     </ul>
-    <?php $this->need('comments.php'); ?>
+    <?php $this->need('components/comments.php'); ?>
 </div>
-<?php $this->need('sidebar.php'); ?>
-<?php $this->need('footer.php'); ?>
+<?php $this->need('components/sidebar.php'); ?>
+<?php $this->need('components/footer.php'); ?>
