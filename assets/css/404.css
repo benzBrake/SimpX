@@ -1,0 +1,44 @@
+/* This stylesheet used in 404.php only */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #f1f1f1;
+	font: 13px/1.5 lucida sans unicode, lucida grande, lucida, arial, sans-serif;
+	color: #222;
+	text-align: center;
+}
+
+#wrapper {
+	width: 760px;
+	margin: 50px auto;
+	text-align: left;
+}
+
+#notice {
+	margin: 50px 0;
+}
+
+.box {
+	background: #f9f9f9;
+	border: 1px solid #dfdfdf;
+	margin-bottom: 10px;
+	padding: 30px 30px 10px 30px;
+}
+
+#content {
+	background: #f9f9f9 url(../img/404img.png) no-repeat scroll 20px 30px;
+}
+
+#content h1 {
+	margin-left: 138px;
+	margin-bottom: 10px;
+}
+
+#content p {
+	margin-left: 138px;
+	margin-bottom: 20px;
+	line-height: 1.65;
+}

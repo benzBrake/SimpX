@@ -1,7 +1,8 @@
 ﻿<?php 
 /**
  * 一款淡蓝主题，采用了高大上的字体图标(ie 6 不支持图标字体)。
- * @package 三栏主题：SimpX  (Theme designed by weleeTime.Mod By Tammy)
+ * (Theme designed by weleeTime. Mod By Ryan)
+ * @package SimpX
  * @author Tammy
  * @version 0.1.4
  * @link http://32mb.cn
@@ -14,11 +15,11 @@
   <div id="container">
     <!-- content start -->
     <div id="content">
-       <?php if ($this->options->topNotice) { ?>
+       <?php if ($this->options->topNotice): ?>
        <div class="notice box">
          <?php $this->options->topNotice() ?>
        </div>
-       <?php } else {} ?>
+       <?php endif; ?>
 <?php while($this->next()): ?>
       <div class="post box">
        <div class="post-header">
