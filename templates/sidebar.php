@@ -91,7 +91,7 @@
                 }
                 $memUsed = $memTotal - $memAvailable;
                 fclose($fh); ?>
-                <div><?php echo (int) ($memAvailable / 1024) ?> MB / <?php echo $memTotal / 1024 ?> MB</div>
+                <div><?php echo (int) ($memUsed / 1024) ?> MB / <?php echo $memTotal / 1024 ?> MB</div>
                 <div class="total" >
                     <div class="usage" style="width: <?php echo $memUsed / $memTotal * 100; ?>%"></div>
                 </div>
