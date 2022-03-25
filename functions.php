@@ -66,3 +66,111 @@ function themeConfig($form) {
 	array('ShowRecentPosts', 'ShowRecentComments','ShowTagCloud', 'ShowCategory', 'ShowArchive','ShowQRCode',), _t('边栏选项'));  
 	$form->addInput($sidebarBlock->multiMode());
 }
+
+/**
+ * 主题必须类
+ */
+class X extends Typecho_Widget
+{
+    private $activated;
+    private $themeInfo;
+    private $db;
+    private static $_instance = NULL;
+
+    /**
+     * 构造函数
+     */
+    public function __construct($request, $response, $params = null)
+    {
+        parent::__construct($request, $response, $params);
+        $this->db = Typecho_Db::get();
+        $this->activated = Typecho_Plugin::export()['activated'];
+        $this->thomeInfo = Typecho_Plugin::parseInfo(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'index.php');
+    }
+
+    /**
+     * 检查插件是否启用
+     * @param String $pluginName
+     * @return boolean
+     */
+    public function isPluginEnabled($pluginName)
+    {
+        return array_key_exists($pluginName, $this->activated);
+    }
+
+    /**
+     * 获取主题版本
+     * @return mixed
+     */
+    public function themeVersion()
+    {
+        return $this->themeInfo['version'];
+    }
+
+    /**
+     * 抛出 JSON
+     * @param $json
+     * @return void
+     */
+    public function throwJson($json)
+    {
+        $this->response->throwJson($json);
+    }
+
+
+    /**
+     * 输出正常信息
+     * @param array $data
+     * @param $msg
+     */
+    public function throwMsg($data = [], $msg = NULL)
+    {
+        $base = ['status' => 200];
+        if ($msg) $base['msg'] = $msg;
+        if (count($data)) $base['data'] = $data;
+        $this->throwJson($base);
+    }
+
+    /**
+     * 输出错误信息
+     * @param $msg
+     * @param int $code
+     */
+    public function throwErr($msg = NULL, $code = 500)
+    {
+        $base = ['status' => $code];
+        if ($msg) $base['msg'] = $msg;
+        $this->throwJson($base);
+    }
+}
+
+$baseDir = Helper::options()->themeFile('SimpX', '');
+require_once $baseDir . '/libs/XCore.php';
+
+/**
+ * @param $archive
+ * @return void
+ */
+function themeInit($archive) {
+    $archive->setThemeDir(XCore::themeFile('templates') . DIRECTORY_SEPARATOR);
+
+    $request = $archive->request;
+    $response = $archive->response;
+    $notice = X::alloc()->widget('Widget_Notice');
+    $db = Typecho_Db::get();
+    /**
+     * 增加二维码接口
+     * @see Widget_Archive#is
+     */
+    if ($archive->is('index')) {
+        /** 二维码接口 */
+        if ($request->is('qrcode')) {
+            require_once 'libs/external/qrcode.php';
+            $text = $request->get('text');
+            if (empty($text)) {
+                $text = Helper::options()->siteUrl;
+            }
+            QRcode::png($text, false, 'L', 10, 2);
+        }
+    }
+}
