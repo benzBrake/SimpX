@@ -829,6 +829,9 @@ img.avatar {
 .sidebar #tagCloud .widget-body {
   padding: 5px 15px;
 }
+.sidebar .ram {
+  padding: 5px;
+}
 .sidebar .ram .total {
   width: 100%;
   border: 1px solid;
