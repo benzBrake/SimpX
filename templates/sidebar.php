@@ -77,16 +77,24 @@
         <div class="widget-body">
             <div class="ram">
                 <?php $fh = fopen('/proc/meminfo', 'r');
-                $mem = 0;
+                $memTotal = 0;
+                $memUsed = 0;
+                $memAvailable = 0;
                 while ($line = fgets($fh)) {
                     $pieces = array();
                     if (preg_match('/^MemTotal:\s+(\d+)\skB$/', $line, $pieces)) {
-                        $mem = $pieces[1];
+                        $memTotal = $pieces[1];
                         break;
                     }
+                    if (preg_match('/^MemAvailable:\s+(\d+)\skB$/', $line, $pieces)) {
+                        $memAvailable = $pieces[1];
+                        break;
+                    }
+
+                    $memUsed = $memTotal - $memAvailable;
                 }
                 fclose($fh); ?>
-                <div class="usage" style="width: <?php $mem / 1024 / 32 * 100; ?>%"></div>
+                <div class="usage" style="width: <?php echo $memUsed / $memTotal * 100; ?>%"></div>
             </div>
         </div>
     </div>
