@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo XCore::themeUrl('assets/css/reset.css'); ?>"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo XCore::themeUrl('assets/css/style.css'); ?>"/>
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo XCore::themeUrl('assets/css/font.css'); ?>"/>
-    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" href="<?php echo XCore::getFavicon(); ?>">
     <!--[if lt IE 9]>
     <script src="<?php echo XCore::themeUrl('assets/js/css3-mediaqueries.js'); ?>"></script>
 	<![endif]-->

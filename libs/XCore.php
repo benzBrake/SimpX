@@ -148,7 +148,7 @@ class XCore
      */
     public static function getFavicon()
     {
-        return XCore::configStr("XFavicon", XCore::themeUrl('assets/images/favicon.ico'));
+        return XCore::configStr("XFavicon", XCore::themeUrl('assets/img/favicon.ico'));
     }
 
     /**
@@ -170,7 +170,7 @@ class XCore
             'default' => 'mp',
         ));
         if (empty($mail)) {
-            return XCore::themeUrl('/assets/images/default-avatar.png');
+            return XCore::themeUrl('/assets/img/default-avatar.png');
         }
         $url = $gravatarOptions->prefix;
         $url .= md5(strtolower(trim($mail)));
