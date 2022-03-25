@@ -84,17 +84,17 @@
                     $pieces = array();
                     if (preg_match('/^MemTotal:\s+(\d+)\skB$/', $line, $pieces)) {
                         $memTotal = $pieces[1];
-                        break;
                     }
                     if (preg_match('/^MemAvailable:\s+(\d+)\skB$/', $line, $pieces)) {
                         $memAvailable = $pieces[1];
-                        break;
                     }
-
-                    $memUsed = $memTotal - $memAvailable;
                 }
+                $memUsed = $memTotal - $memAvailable;
                 fclose($fh); ?>
-                <div class="usage" style="width: <?php echo $memUsed / $memTotal * 100; ?>%"></div>
+                <div><?php echo (int) ($memAvailable / 1024) ?> MB / <?php echo $memTotal / 1024 ?> MB</div>
+                <div class="total" >
+                    <div class="usage" style="width: <?php echo $memUsed / $memTotal * 100; ?>%"></div>
+                </div>
             </div>
         </div>
     </div>

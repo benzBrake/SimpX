@@ -829,6 +829,14 @@ img.avatar {
 .sidebar #tagCloud .widget-body {
   padding: 5px 15px;
 }
+.sidebar .ram .total {
+  width: 100%;
+  border: 1px solid;
+}
+.sidebar .ram .usage {
+  height: 15px;
+  background: #D6EDFF;
+}
 
 .widget ul li img.avatar {
   padding-top: 7px;

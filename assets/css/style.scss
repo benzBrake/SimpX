@@ -999,6 +999,18 @@ img.avatar {
       padding: 5px 15px;
     }
   }
+
+  .ram {
+    .total {
+      width: 100%;
+      border: 1px solid;
+    }
+
+    .usage {
+      height: 15px;
+      background: $selectionBackground;
+    }
+  }
 }
 
 .widget {
