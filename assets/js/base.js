@@ -6,6 +6,7 @@ $(document).ready(function(){
     })
     $("#container").css('min-height', $("#left-sidebar").height());
     $("#goTop").click(function (){
-        $(window).scrollTop(0);
+        $('html,body').animate({ scrollTop: 0 }, '200');
+        return false;
     });
 });

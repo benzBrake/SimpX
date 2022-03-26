@@ -50,7 +50,7 @@
                     <li<?php if ($this->is('index')): ?> class="home current"<?php endif; ?>><a
                             href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a></li>
                     <li class="pages has-dropdown<?php if ($this->is('page')): ?> current<?php endif; ?>">
-                        <a href="#" /><?php _e("页面"); ?></a>
+                        <a href="javascript:void(0);" /><?php _e("页面"); ?></a>
                         <ul class="dropdown">
                             <?php /** @var $pages */
                             $this->widget('Widget_Contents_Page_List')->to($pages); ?>
