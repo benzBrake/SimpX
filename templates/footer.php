@@ -10,7 +10,7 @@
                 href="<?php $this->options->commentsFeedUrl(); ?>"><?php _e('评论'); ?> RSS</a>. </p>
         <p>Powered by <a href="http://www.typecho.org" title="typecho.org" rel="external nofollow">Typecho)))</a>. Theme
             designed by <a href="http://welee.me/" title="weleeTime" rel="external nofollow">weleeTime</a>&<a
-                href="https://32mb.cc" title="逗妇乳">逗妇乳</a></p>
+                href="https://32mb.cc" title="<?php _e("逗妇乳"); ?>"><?php _e("逗妇乳"); ?></a></p>
         <div class="gotop"><a href="#" title="Top">Top</a></div>
     </div>
 </div>

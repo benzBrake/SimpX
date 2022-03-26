@@ -7,7 +7,8 @@
 
 body {
   background: #eeeeee;
-  font: 13px/1.5 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 13px;
+  font-family: "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   color: #222;
   text-align: center;
 }
@@ -129,32 +130,6 @@ address {
   font-size: 12px;
 }
 
-.alignleft {
-  float: left;
-  margin-right: 10px;
-  text-align: left;
-}
-
-.alignright {
-  float: right;
-  margin-left: 10px;
-  text-align: right;
-}
-
-.aligncenter {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.floatleft {
-  float: left;
-}
-
-.floatright {
-  float: right;
-}
-
 .left {
   float: left;
   margin-right: 10px;
@@ -165,26 +140,6 @@ address {
   margin-left: 10px;
 }
 
-.wp-caption {
-  background: #f1f1f1;
-  border: 1px solid #ddd;
-  margin-bottom: 5px;
-  padding: 5px 0;
-  text-align: center;
-}
-.wp-caption img {
-  margin: 0 5px;
-}
-
-p.wp-caption-text {
-  color: #222;
-  font-size: 12px;
-  margin-bottom: 0 !important;
-  padding: 0 5px !important;
-  padding: 3px 5px 0;
-  text-align: center;
-}
-
 .box {
   background: #f9f9f9;
   border: 1px solid #dfdfdf;
@@ -192,25 +147,32 @@ p.wp-caption-text {
 }
 
 .textarea {
-  font: 13px/1.5 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 13px;
+  font-family: "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   padding: 5px;
   width: 445px;
 }
 
-.crimsg {
-  padding: 6px 15px;
+.btn {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  padding: 0 5px;
+  cursor: pointer;
+  height: 26px;
+  box-sizing: border-box;
+}
+.btn-primary {
+  color: #fff;
+  background: #0093F0;
+}
+.btn-primary:hover {
+  background-color: #464646;
+  color: #fff;
+  border-color: #464646;
 }
 
 .hidden {
   display: none;
-}
-
-.center {
-  text-align: center;
-}
-
-.r {
-  text-align: right;
 }
 
 .clearfix {
@@ -364,6 +326,13 @@ p.wp-caption-text {
   width: 1000px;
   margin: 0 auto;
 }
+#container:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
 
 #content {
   width: 632px;
@@ -490,7 +459,6 @@ p.wp-caption-text {
 #content .post .post-content p img {
   background: #fff;
   border: 1px solid #ddd;
-  padding: 5px;
 }
 #content .post .post-content p img.wp-smiley {
   border: 0;
@@ -735,7 +703,7 @@ img.avatar {
 }
 #comment_form button {
   float: right;
-  font-family: "Microsoft Yahei";
+  font-family: "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   color: #000;
   font-size: 13px;
   cursor: pointer;
@@ -828,6 +796,9 @@ img.avatar {
   float: left;
   margin: 3px 5px 0 5px;
 }
+.sidebar .widget .qrcode {
+  min-height: 140px;
+}
 .sidebar #tagCloud .widget-body {
   padding: 5px 15px;
 }
@@ -918,7 +889,7 @@ ol.pages {
   list-style: none;
   font-size: 13px;
   line-height: 30px;
-  font-family: "Lucida Grande", Verdana, "Bitstream Vera Sans", Arial, sans-serif;
+  font-family: "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 ol.pages li {
   margin: 0 7px 0 0;

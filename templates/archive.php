@@ -14,8 +14,11 @@
         <?php while ($this->next()): ?>
             <div class="post box">
                 <div class="post-header">
-                    <h2 class="post-title"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>"
-                                              rel="bookmark"><?php $this->title() ?></a></h2>
+                    <h2 class="post-title">
+                        <a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark">
+                            <?php $this->title() ?>
+                        </a>
+                    </h2>
                 </div>
 
                 <div class="post-content">
@@ -23,19 +26,7 @@
                 </div>
                 <?php if ($this->is('archive')): ?>
                     <div class="post-footer">
-                        <div class="post-footer-meta">
-                            <ul>
-                                <li class="meta-date"><i class="icon-calendar"></i><?php $this->date('F j, Y'); ?></li>
-                                <li class="meta-cat"><i class="icon-list"></i><?php $this->category(','); ?></li>
-                                <li class="meta-comments"><i class="icon-comment"></i><a
-                                        href="<?php $this->permalink() ?>#comments"
-                                        title="Comment on <?php $this->title() ?>"><?php $this->commentsNum('No Comments', '1 Comment', '%d Comments'); ?></a>
-                                </li>
-                            </ul>
-                            <p class="morelink"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>"
-                                                   rel="bookmark"><i class="icon-forward"></i></a></p>
-                            <div class="clear"></div>
-                        </div>
+                        <?php $this->need("common/post-footer-meta.php"); ?>
                     </div>
                 <?php endif; ?>
             </div>

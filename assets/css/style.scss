@@ -1,9 +1,11 @@
-$defaultText: #222;
-$strongText: #0093F0;
-$linkText: #1ba1e2;
-$codeText: #000;
-$muteText: #aaa;
-$linkTextHover: #f9962b;
+$defaultColor: #222;
+$strongColor: #0093F0;
+$linkColor: #1ba1e2;
+$linkColorHover: #f9962b;
+$codeColor: #000;
+$muteColor: #aaa;
+$specColor: #fff;
+$specColorHover: #fff;
 $color_5: #555;
 $blockBg: #fff;
 $color_8: #d54e21;
@@ -24,49 +26,50 @@ $color_22: #2739CF;
 $color_23: #C8A453;
 $color_24: #AB2846;
 $codeFont: consolas, monaco, courier new, courier, monospace;
-$font_family_2: "Microsoft Yahei";
-$font_family_3: "Lucida Grande", Verdana, "Bitstream Vera Sans", Arial, sans-serif;
+$defaultFont: "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 $bgColor: #eeeeee;
 $bgColorSec: #F9F9F9;
-$background_color_2: #0093F0;
+$bgColorSpec: #0093F0;
+$bgColorSpecHover: #464646;
 $selectionBackground: #D6EDFF;
 ::selection,
 ::-moz-selection {
-  color: $defaultText;
+  color: $defaultColor;
   background: $selectionBackground;
   text-shadow: none;
 }
 
 body {
   background: $bgColor;
-  font: 13px/1.5 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-  color: $defaultText;
+  font-size: 13px;
+  font-family: $defaultFont;
+  color: $defaultColor;
   text-align: center;
 }
 
 a {
   &:link {
-    color: $linkText;
+    color: $linkColor;
     text-decoration: none;
   }
 
   &:visited {
-    color: $linkText;
+    color: $linkColor;
     text-decoration: none;
   }
 
   &:active {
-    color: $linkText;
+    color: $linkColor;
     text-decoration: none;
   }
 
   &:hover {
-    color: $linkTextHover;
+    color: $linkColorHover;
   }
 }
 
 i {
-  color: $strongText;
+  color: $strongColor;
 }
 
 abbr[title] {
@@ -138,7 +141,7 @@ pre {
   clear: both;
 
   code {
-    color: $codeText;
+    color: $codeColor;
     word-wrap: break-word;
     white-space: pre-wrap;
     background: transparent;
@@ -169,32 +172,6 @@ address {
   font-size: 12px;
 }
 
-.alignleft {
-  float: left;
-  margin-right: 10px;
-  text-align: left;
-}
-
-.alignright {
-  float: right;
-  margin-left: 10px;
-  text-align: right;
-}
-
-.aligncenter {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.floatleft {
-  float: left;
-}
-
-.floatright {
-  float: right;
-}
-
 .left {
   float: left;
   margin-right: 10px;
@@ -205,27 +182,6 @@ address {
   margin-left: 10px;
 }
 
-.wp-caption {
-  background: #f1f1f1;
-  border: 1px solid #ddd;
-  margin-bottom: 5px;
-  padding: 5px 0;
-  text-align: center;
-
-  img {
-    margin: 0 5px;
-  }
-}
-
-p.wp-caption-text {
-  color: $defaultText;
-  font-size: 12px;
-  margin-bottom: 0 !important;
-  padding: 0 5px !important;
-  padding: 3px 5px 0;
-  text-align: center;
-}
-
 .box {
   background: #f9f9f9;
   border: 1px solid #dfdfdf;
@@ -233,25 +189,33 @@ p.wp-caption-text {
 }
 
 .textarea {
-  font: 13px/1.5 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 13px;
+  font-family: $defaultFont;
   padding: 5px;
   width: 445px;
 }
 
-.crimsg {
-  padding: 6px 15px;
+.btn {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  padding: 0 5px;
+  cursor: pointer;
+  height: 26px;
+  box-sizing: border-box;
+
+  &-primary {
+    color: $specColor;
+    background: $bgColorSpec;
+    &:hover {
+      background-color: $bgColorSpecHover;
+      color: $specColorHover;
+      border-color: $bgColorSpecHover;
+    }
+  }
 }
 
 .hidden {
   display: none;
-}
-
-.center {
-  text-align: center;
-}
-
-.r {
-  text-align: right;
 }
 
 .clearfix {
@@ -296,7 +260,7 @@ p.wp-caption-text {
         text-decoration: none;
 
         &:hover {
-          color: $linkTextHover
+          color: $linkColorHover
         }
       }
     }
@@ -325,7 +289,7 @@ p.wp-caption-text {
 
             &:hover {
               background: #f1f1f1;
-              color: $linkTextHover
+              color: $linkColorHover
             }
           }
         }
@@ -350,7 +314,7 @@ p.wp-caption-text {
               a {
                 margin: 0;
                 padding: 8px 10px;
-                color: $linkText;
+                color: $linkColor;
                 display: block;
                 text-align: center;
               }
@@ -361,12 +325,12 @@ p.wp-caption-text {
         li.current {
           > a {
             background: #f1f1f1;
-            color: $linkText;
+            color: $linkColor;
             font-weight: bold;
 
             &:hover {
               background: $bgColor;
-              color: $linkTextHover;
+              color: $linkColorHover;
             }
           }
         }
@@ -374,11 +338,11 @@ p.wp-caption-text {
         li.current-cat {
           a {
             background: #fff;
-            color: $defaultText;
+            color: $defaultColor;
 
             &:hover {
               background: #fff;
-              color: $defaultText;
+              color: $defaultColor;
             }
           }
         }
@@ -387,7 +351,7 @@ p.wp-caption-text {
           background: $bgColor;
 
           > a {
-            color: $linkTextHover;
+            color: $linkColorHover;
           }
 
           .dropdown {
@@ -436,6 +400,14 @@ p.wp-caption-text {
 #container {
   width: 1000px;
   margin: 0 auto;
+
+  &:after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
 }
 
 #content {
@@ -477,7 +449,7 @@ p.wp-caption-text {
       }
 
       &-meta {
-        color: $muteText;
+        color: $muteColor;
         height: 16px;
         margin: 13px auto auto 0;
 
@@ -493,17 +465,17 @@ p.wp-caption-text {
             line-height: 16px;
 
             a {
-              color: $muteText;
+              color: $muteColor;
               text-decoration: none;
 
               &:hover {
-                color: $linkTextHover;
+                color: $linkColorHover;
               }
 
             }
 
             i {
-              color: $muteText;
+              color: $muteColor;
               margin-right: 3px;
             }
           }
@@ -538,7 +510,7 @@ p.wp-caption-text {
       border-top: 1px dotted #ddd;
 
       &-meta {
-        color: $muteText;
+        color: $muteColor;
         height: 16px;
         margin: 13px auto auto 15px;
 
@@ -554,17 +526,17 @@ p.wp-caption-text {
             line-height: 16px;
 
             a {
-              color: $muteText;
+              color: $muteColor;
               text-decoration: none;
 
               &:hover {
-                color: $linkTextHover;
+                color: $linkColorHover;
               }
 
             }
 
             i {
-              color: $muteText;
+              color: $muteColor;
               margin-right: 3px;
             }
           }
@@ -580,7 +552,7 @@ p.wp-caption-text {
       background: #fff;
 
       strong {
-        color: $strongText;
+        color: $strongColor;
       }
 
       p {
@@ -589,7 +561,6 @@ p.wp-caption-text {
         img {
           background: #fff;
           border: 1px solid #ddd;
-          padding: 5px;
         }
 
         img.wp-smiley {
@@ -649,10 +620,10 @@ p.wp-caption-text {
       padding-left: 20px;
       padding-top: 10px;
       font-size: 12px;
-      color: $muteText;
+      color: $muteColor;
 
       a {
-        color: $defaultText;
+        color: $defaultColor;
         text-decoration: none;
         display: inline-block;
         border: 1px solid #ddd;
@@ -800,7 +771,7 @@ p.wp-caption-text {
     color: $color_13;
 
     &:hover {
-      color: $strongText;
+      color: $strongColor;
     }
   }
 }
@@ -849,10 +820,10 @@ img.avatar {
     font-size: 11px;
 
     a {
-      color: $muteText;
+      color: $muteColor;
 
       &:hover {
-        color: $strongText;
+        color: $strongColor;
       }
     }
   }
@@ -886,8 +857,8 @@ img.avatar {
 
   button {
     float: right;
-    font-family: $font_family_2;
-    color: $codeText;
+    font-family: $defaultFont;
+    color: $codeColor;
     font-size: 13px;
     cursor: pointer;
     height: 32px;
@@ -979,7 +950,7 @@ img.avatar {
 
           &:hover {
             background: #F8FCFE;
-            color: $strongText;
+            color: $strongColor;
             border-left: 3px solid #0093F0;
             padding-left: 5px;
           }
@@ -994,6 +965,10 @@ img.avatar {
         }
       }
     }
+
+    .qrcode {
+      min-height: 140px;
+    }
   }
 
   #tagCloud {
@@ -1004,6 +979,7 @@ img.avatar {
 
   .ram {
     padding: 5px;
+
     .total {
       width: 100%;
       border: 1px solid;
@@ -1059,7 +1035,7 @@ img.avatar {
 #footer {
   background: #0093F0;
   margin-top: 30px;
-  color: $defaultText;
+  color: $defaultColor;
   width: 100%;
 
   a {
@@ -1106,7 +1082,7 @@ ol.pages {
   list-style: none;
   font-size: 13px;
   line-height: 30px;
-  font-family: $font_family_3;
+  font-family: $defaultFont;
 
   li {
     margin: 0 7px 0 0;
@@ -1123,7 +1099,7 @@ ol.pages {
   li.current {
     a {
       color: $blockBg;
-      background-color: $background_color_2;
+      background-color: $bgColorSpec;
       border: 1px solid #0093F0;
     }
   }

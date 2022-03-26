@@ -4,6 +4,7 @@ $(document).ready(function(){
     },function () {
         $(this).removeClass('block');
     })
+    $("#container").css('min-height', $("#left-sidebar").height())
 	// $("a[rel='external'],a[rel='external nofollow']").click(function(){window.open(this.href);return false});
 	// $('.gotop').click(function(){$('#header').ScrollTo(800);return false;});
 	// $('.addcomment').click(function(){$('#respond').ScrollTo(1000);return false;});

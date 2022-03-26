@@ -6,7 +6,7 @@
         <div id="searchbox" class="box">
             <form action="" method="get">
                 <input type="text" class="searchfield" name="s" size="24" value=""/>
-                <input type="submit" name="button" id="searchsubmit" value="Search" class="searchbutton"/>
+                <input type="submit" name="button" id="searchsubmit" value="Search" class="btn btn-primary"/>
             </form>
         </div>
     <?php endif; ?>

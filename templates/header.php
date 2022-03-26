@@ -79,8 +79,10 @@
                 <li class="rssfeed"><span><a href="<?php $this->options->feedUrl(); ?>" title="Subscribe RSS Feed"><i
                                 class="icon-rss"></i></a></span></li>
                 <?php if ($this->options->weibo): ?>
-                    <li><span><a href="<?php $this->options->weibo() ?>" target="_blank" class="weibo text-hide"
-                                 data-toggle="tooltip" data-placement="auto" title="关注我的微博">微博</a></li></span>
+                    <li>
+                        <span>
+                            <a href="<?php $this->options->weibo() ?>" target="_blank" class="weibo text-hide"
+                                 data-toggle="tooltip" data-placement="auto" title="关注我的微博"><?php _e("微博"); ?></a></li></span>
                 <?php endif; ?>
             </ul>
         </div>
