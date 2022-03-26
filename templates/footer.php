@@ -11,7 +11,7 @@
         <p>Powered by <a href="http://www.typecho.org" title="typecho.org" rel="external nofollow">Typecho)))</a>. Theme
             designed by <a href="http://welee.me/" title="weleeTime" rel="external nofollow">weleeTime</a>&<a
                 href="https://32mb.cc" title="<?php _e("逗妇乳"); ?>"><?php _e("逗妇乳"); ?></a></p>
-        <div class="gotop"><a href="#" title="Top">Top</a></div>
+        <div id="goTop" class="gotop"><a href="#" title="Top">Top</a></div>
     </div>
 </div>
 <!-- footer end -->

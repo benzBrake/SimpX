@@ -4,5 +4,8 @@ $(document).ready(function(){
     },function () {
         $(this).removeClass('block');
     })
-    $("#container").css('min-height', $("#left-sidebar").height())
+    $("#container").css('min-height', $("#left-sidebar").height());
+    $("#goTop").click(function (){
+        $(window).scrollTop(0);
+    });
 });
