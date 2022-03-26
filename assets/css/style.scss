@@ -6,15 +6,14 @@ $codeColor: #000;
 $muteColor: #aaa;
 $specColor: #fff;
 $specColorHover: #fff;
+$requiredColor: #C04E37;
+$titleColor: #545454;
 $color_5: #555;
-$blockBg: #fff;
 $color_8: #d54e21;
 $color_9: #598527;
 $color_10: #545454;
-$color_10: #545454;
 $color_12: #999;
 $color_13: #888;
-$color_14: #C04E37;
 $color_15: #ccc;
 $color_16: #111;
 $color_17: #666;
@@ -27,6 +26,7 @@ $color_23: #C8A453;
 $color_24: #AB2846;
 $codeFont: consolas, monaco, courier new, courier, monospace;
 $defaultFont: "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+$bgColorBlock: #fff;
 $bgColor: #eeeeee;
 $bgColorSec: #F9F9F9;
 $bgColorSpec: #0093F0;
@@ -156,16 +156,6 @@ img {
   max-width: 100%;
 }
 
-buy {
-  border-left: 3px solid #0093F0;
-  display: block;
-  padding-left: 18px;
-
-  &:hover {
-    background: url(../img/redbg.png);
-  }
-}
-
 address {
   margin-bottom: 20px;
   font-style: italic;
@@ -206,6 +196,7 @@ address {
   &-primary {
     color: $specColor;
     background: $bgColorSpec;
+
     &:hover {
       background-color: $bgColorSpecHover;
       color: $specColorHover;
@@ -250,13 +241,13 @@ address {
 
     #logo {
       font: 23px/1 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-      color: $blockBg;
+      color: $bgColorBlock;
       position: absolute;
       top: 8px;
       left: 0;
 
       a {
-        color: $blockBg;
+        color: $bgColorBlock;
         text-decoration: none;
 
         &:hover {
@@ -282,7 +273,7 @@ address {
 
           a {
             display: block;
-            color: $blockBg;
+            color: $bgColorBlock;
             padding: 8px 10px;
             text-decoration: none;
             white-space: nowrap;
@@ -389,10 +380,6 @@ address {
           padding-left: 20px;
         }
       }
-
-      li.twitter-user {
-        background: url(assets/img/twitter_16.png) no-repeat scroll 0 0;
-      }
     }
   }
 }
@@ -440,6 +427,10 @@ address {
       border-bottom: 1px dotted #ddd;
       padding: 0 15px;
       padding-bottom: 5px;
+
+      h2 {
+        color: $titleColor;
+      }
 
       .post-author-gravatar {
         float: right;
@@ -491,7 +482,7 @@ address {
       text-shadow: 1px 1px 2px #ccc;
 
       a {
-        color: $color_10;
+        color: $titleColor;
         text-decoration: none;
 
         &:hover {
@@ -631,7 +622,7 @@ address {
         background: #FFF9E8;
 
         &:hover {
-          color: $blockBg;
+          color: $bgColorBlock;
           background: #0093F0;
         }
       }
@@ -683,26 +674,6 @@ address {
     font-size: 12px;
     padding: 5px 0;
     line-height: 1.5;
-
-    .newer {
-      a {
-        display: block;
-        border: 1px solid #dfdfdf;
-        padding: 5px 10px;
-        background: #f9f9f9 url(assets/img/post-nav-next.gif) no-repeat scroll 80px 7px;
-        padding-right: 30px !important;
-      }
-    }
-
-    .older {
-      a {
-        display: block;
-        border: 1px solid #dfdfdf;
-        padding: 5px 10px;
-        background: #f9f9f9 url(assets/img/post-nav-previous.gif) no-repeat scroll 10px 7px;
-        padding-left: 30px !important;
-      }
-    }
   }
 }
 
@@ -842,7 +813,7 @@ img.avatar {
     display: block;
 
     .required {
-      color: $color_14;
+      color: $requiredColor;
       padding-left: 5px;
     }
   }
@@ -852,20 +823,16 @@ img.avatar {
     height: 72px;
     line-height: 24px;
     padding: 3px 4px 3px 6px;
-    width: 97.5% !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
 
   button {
     float: right;
-    font-family: $defaultFont;
-    color: $codeColor;
     font-size: 13px;
     cursor: pointer;
-    height: 32px;
-    line-height: 14px;
     width: 9%;
     text-align: center;
-    vertical-align: top;
   }
 }
 
@@ -875,20 +842,20 @@ img.avatar {
 
   li {
     float: left;
-    width: 25%;
-    margin-right: 2%;
-    margin-bottom: 0px;
-  }
+    width: 33.3%;
+    margin-bottom: 0;
 
-  input {
-    width: 99%;
-    height: 26px;
-    font-size: 14px;
-    padding-left: 5px;
-  }
+    label {
+      padding: 5px 0;
+    }
 
-  li.urltext {
-    width: 33%;
+    input {
+      width: 100%;
+      height: 26px;
+      font-size: 14px;
+      padding: 5px;
+      box-sizing: border-box;
+    }
   }
 }
 
@@ -913,10 +880,10 @@ img.avatar {
     margin-bottom: 10px;
 
     .widget-title {
-      font: bold 15px verdana, arial, sans-serif;
+      font-size: 13px;
       font-weight: bold;
       padding: 5px 10px;
-      color: $color_10;
+      color: $titleColor;
       text-shadow: 1px 1px 2px #ccc;
       border-bottom: 1px dotted #ddd;
 
@@ -937,7 +904,6 @@ img.avatar {
 
     ul {
       li {
-        line-height: 1.85;
         font-size: 12px;
         line-height: 23px;
         clear: both;
@@ -960,7 +926,6 @@ img.avatar {
           float: left;
           height: 30px;
           width: 30px;
-          float: left;
           margin: 3px 5px 0 5px;
         }
       }
@@ -1026,7 +991,7 @@ img.avatar {
 
     &:hover {
       background: #464646;
-      color: $blockBg;
+      color: $bgColorBlock;
       border-color: #464646;
     }
   }
@@ -1039,7 +1004,7 @@ img.avatar {
   width: 100%;
 
   a {
-    color: $blockBg;
+    color: $bgColorBlock;
     text-decoration: none;
 
     &:hover {
@@ -1098,7 +1063,7 @@ ol.pages {
 
   li.current {
     a {
-      color: $blockBg;
+      color: $bgColorBlock;
       background-color: $bgColorSpec;
       border: 1px solid #0093F0;
     }

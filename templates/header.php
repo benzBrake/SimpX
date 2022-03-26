@@ -67,6 +67,7 @@
             </div>
         </div>
     </div>
+    <div class="clearfix"></div>
     <!-- header end -->
     <!-- topbox start -->
     <div id="topbox" class="box">

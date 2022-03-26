@@ -1,5 +1,5 @@
 <div id="comments">
-    <?php $this->comments('comment')->to($comments); ?>
+    <?php /** @var $comments */$this->comments('comment')->to($comments); ?>
     <?php if($this->allow('comment')): ?>
     <div id="<?php $this->respondId(); ?>" class="respond">
         <div class="cancel-comment-reply"><?php $comments->cancelReply(); ?></div>
@@ -33,8 +33,8 @@
                 </li>
             </ul>
             <?php endif; ?>
-            <p><textarea rows="5" id="comment" cols="50" name="text" placeholder="添加一条评论" required><?php $this->remember('text'); ?></textarea></p>
-            <p class="submit"><button type="submit" class="submit">添加</button></p>
+            <p><textarea rows="5" id="comment" cols="50" name="text" placeholder="<?php _e("添加一条评论"); ?>" required><?php $this->remember('text'); ?></textarea></p>
+            <p class="submit"><button type="submit" class="submit btn btn-primary"><?php _e("发射"); ?></button></p>
             <script type="text/javascript">
                 Smilies = {
                     dom: function(id) {return document.getElementById(id)},
@@ -56,33 +56,33 @@
                 };
             </script>
            <div id="Smilies">
-               <a href="javascript:Smilies.grin(':?:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_question.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':razz:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_razz.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':sad:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_sad.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':evil:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_evil.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':!:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_exclaim.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':smile:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_smile.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':oops:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_redface.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':grin:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_biggrin.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':eek:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_surprised.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':shock:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_eek.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':???:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_confused.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':cool:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_cool.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':lol:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_lol.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':mad:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_mad.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':twisted:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_twisted.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':roll:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_rolleyes.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':wink:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_wink.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':idea:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_idea.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':arrow:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_arrow.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':neutral:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_neutral.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':cry:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_cry.gif" alt="" class="smiley"></a>
-               <a href="javascript:Smilies.grin(':mrgreen:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_mrgreen.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':?:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_question.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':razz:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_razz.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':sad:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_sad.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':evil:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_evil.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':!:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_exclaim.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':smile:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_smile.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':oops:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_redface.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':grin:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_biggrin.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':eek:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_surprised.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':shock:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_eek.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':???:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_confused.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':cool:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_cool.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':lol:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_lol.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':mad:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_mad.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':twisted:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_twisted.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':roll:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_rolleyes.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':wink:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_wink.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':idea:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_idea.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':arrow:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_arrow.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':neutral:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_neutral.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':cry:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_cry.gif" alt="" class="smiley"></a>
+               <a href="javascript:Smilies.grin(':mrgreen:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_mrgreen.gif" alt="" class="smiley"></a>
                </div>
         </form>
     </div>
     <?php else: ?>
-        <div class="msg-error">评论已关闭</div>
+        <div class="msg-error"><?php _e("评论已关闭"); ?></div>
     <?php endif; ?>
     <?php if ($comments->have()): ?>
         <div class="comments_count">

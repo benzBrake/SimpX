@@ -15,7 +15,7 @@
 				<div class="widget">
 				<div class="widget-browser">
 				<div class="widget-body">
-					<p class="browser">You are using IE 6 right now, we will work better for you if you upgrade to IE 8 or switch to another browser.</p>
+					<p class="browser"><?php _e("You are using IE 6 right now, we will work better for you if you upgrade to IE 8 or switch to another browser."); ?></p>
 					<a href="http://www.mozilla.com/en-US/" title="Firefox" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/firefox.png'); ?>" width="64" height="64" /></a>&nbsp;
 					<a href="http://www.google.com/chrome" title="Google Chrome" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/chrome.png'); ?>" width="64" height="64" /></a>&nbsp;
 					<a href="http://www.opera.com/" title="Opera" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/opera.png'); ?>" width="64" height="64" /></a>&nbsp;
@@ -143,7 +143,7 @@
     <?php endif; ?>
     <?php if (empty($this->options->sidebarBlock) || in_array('ShowOther', $this->options->sidebarBlock)): ?>
         <div class="widget">
-            <h3 class="widget-title"><i class="icon-cog"></i>Other</h3>
+            <h3 class="widget-title"><i class="icon-cog"></i><?php _e("其他"); ?></h3>
             <div class="widget-body">
                 <ul>
                     <?php if ($this->user->hasLogin()): ?>

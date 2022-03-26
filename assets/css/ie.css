@@ -1,6 +1,6 @@
 /* This stylesheet used in IE6, IE7 and IE8 only. */
 #topbox {
-	padding: 6px 15px 1px;
+	_margin-top: 10px;
 }
 
 #topbox .subscribe {
