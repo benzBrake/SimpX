@@ -40,6 +40,7 @@ class X extends Typecho_Widget
     private $themeInfo;
     private $db;
     private static $_instance = NULL;
+    private $smiliesRegex;
 
     /**
      * 构造函数
@@ -50,6 +51,63 @@ class X extends Typecho_Widget
         $this->db = Typecho_Db::get();
         $this->activated = Typecho_Plugin::export()['activated'];
         $this->thomeInfo = Typecho_Plugin::parseInfo(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'index.php');
+        $this->initSmiliesRegex();
+    }
+
+    private function initSmiliesRegex()
+    {
+        $smiliesRegex = array(
+            ':?:' => 'icon_question.gif',
+            ':razz:' => 'icon_razz.gif',
+            ':sad:' => 'icon_sad.gif',
+            ':evil:' => 'icon_evil.gif',
+            ':!:' => 'icon_exclaim.gif',
+            ':smile:' => 'icon_smile.gif',
+            ':oops:' => 'icon_redface.gif',
+            ':grin:' => 'icon_biggrin.gif',
+            ':eek:' => 'icon_surprised.gif',
+            ':shock:' => 'icon_eek.gif',
+            ':???:' => 'icon_confused.gif',
+            ':cool:' => 'icon_cool.gif',
+            ':lol:' => 'icon_lol.gif',
+            ':mad:' => 'icon_mad.gif',
+            ':twisted:' => 'icon_twisted.gif',
+            ':roll:' => 'icon_rolleyes.gif',
+            ':wink:' => 'icon_wink.gif',
+            ':idea:' => 'icon_idea.gif',
+            ':arrow:' => 'icon_arrow.gif',
+            ':neutral:' => 'icon_neutral.gif',
+            ':cry:' => 'icon_cry.gif',
+            ':mrgreen:' => 'icon_mrgreen.gif',
+            '8-)' => 'icon_cool.gif',
+            '8-O' => 'icon_eek.gif',
+            ':-(' => 'icon_sad.gif',
+            ':-)' => 'icon_smile.gif',
+            ':-?' => 'icon_confused.gif',
+            ':-D' => 'icon_biggrin.gif',
+            ':-P' => 'icon_razz.gif',
+            ':-o' => 'icon_surprised.gif',
+            ':-x' => 'icon_mad.gif',
+            ':-|' => 'icon_neutral.gif',
+            ';-)' => 'icon_wink.gif',
+            '8)' => 'icon_cool.gif',
+            '8O' => 'icon_eek.gif',
+            ':(' => 'icon_sad.gif',
+            ':)' => 'icon_smile.gif',
+            ':?' => 'icon_confused.gif',
+            ':D' => 'icon_biggrin.gif',
+            ':P' => 'icon_razz.gif',
+            ':o' => 'icon_surprised.gif',
+            ':x' => 'icon_mad.gif',
+            ':|' => 'icon_neutral.gif',
+            ';)' => 'icon_wink.gif',
+        );
+        foreach ($smiliesRegex as $key => $img) {
+            $smiley = preg_quote($key, '#');
+            $imgUrl = Typecho_Common::url("assets/img/Smilies/$img", Helper::options()->themeUrl);
+            $regex = "#(?s)<pre[^<]*>.*?<\/pre>(*SKIP)(*F)|$smiley#ism";
+            $this->smiliesRegex[$key] = ['regex' => $regex, 'replacement', 'replacement' => "<img src=\"$imgUrl\" />"];
+        }
     }
 
     /**
@@ -106,11 +164,43 @@ class X extends Typecho_Widget
         if ($msg) $base['msg'] = $msg;
         $this->throwJson($base);
     }
+
+    /**
+     * 解析表情图片
+     *
+     * @access public
+     * @param string $content 评论内容
+     * @return string
+     */
+    public static function showSmilies(string $content, $archive, $lastResult)
+    {
+        $content = empty($lastResult) ? $content : $lastResult;
+
+        $options = Helper::options();
+        //允许图片标签
+//        $options->commentsHTMLTagAllowed .= '<img src="" alt="" style=""/>';
+        return self::parseSmilies($content);
+    }
+
+    /**
+     * 整理表情数据
+     *
+     * @access private
+     * @param string $content 正文内容
+     * @return array
+     */
+    private static function parseSmilies(string $content)
+    {
+        foreach (X::alloc()->smiliesRegex as $item) {
+            $content = preg_replace($item['regex'], $item['replacement'], $content);
+        }
+        return $content;
+    }
 }
 
 $baseDir = Helper::options()->themeFile('SimpX', '');
 require_once $baseDir . '/libs/XCore.php';
-
+Typecho_Plugin::factory('Widget_Abstract_Comments')->contentEx = array('X', 'showSmilies');
 /**
  * @param $archive
  * @return void
