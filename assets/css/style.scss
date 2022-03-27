@@ -553,11 +553,6 @@ address {
           background: #fff;
           border: 1px solid #ddd;
         }
-
-        img.wp-smiley {
-          border: 0;
-          padding: 0;
-        }
       }
 
       h3 {
@@ -856,6 +851,16 @@ img.avatar {
       padding: 5px;
       box-sizing: border-box;
     }
+  }
+}
+
+#math-problem {
+  label {
+    line-height: 30px;
+    float: left;
+  }
+  input {
+    float: right;
   }
 }
 

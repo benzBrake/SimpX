@@ -166,20 +166,42 @@ class X extends Typecho_Widget
     }
 
     /**
-     * 解析表情图片
+     * 评论内容处理
      *
      * @access public
      * @param string $content 评论内容
      * @return string
      */
-    public static function showSmilies(string $content, $archive, $lastResult)
+    public static function commentsEx(string $content, $archive, $lastResult)
     {
         $content = empty($lastResult) ? $content : $lastResult;
 
         $options = Helper::options();
         //允许图片标签
-//        $options->commentsHTMLTagAllowed .= '<img src="" alt="" style=""/>';
+        $options->commentsHTMLTagAllowed .= '<img src="" alt="" style=""/>';
         return self::parseSmilies($content);
+    }
+
+    /**
+     * 评论发表内容过滤
+     * @param $comment
+     * @param $archive
+     * @param $lastResult
+     * @return void
+     */
+    public static function commentPostFilter($comment, $archive, $lastResult) {
+        $comment = empty($lastResult) ? $comment : $lastResult;
+        $sum= $_POST['sum'];
+        switch($sum){
+            case intval($_POST['num1']) + intval($_POST['num2']):
+                break;
+            case null:
+                throw new Typecho_Widget_Exception(_t('对不起: 请输入验证码。<a href="javascript:history.back(-1)">返回上一页</a>','评论失败'));
+                break;
+            default:
+                throw new Typecho_Widget_Exception(_t('对不起: 验证码错误，请<a href="javascript:history.back(-1)">返回</a>重试。','评论失败'));
+        }
+        return $comment;
     }
 
     /**
@@ -200,7 +222,8 @@ class X extends Typecho_Widget
 
 $baseDir = Helper::options()->themeFile('SimpX', '');
 require_once $baseDir . '/libs/XCore.php';
-Typecho_Plugin::factory('Widget_Abstract_Comments')->contentEx = array('X', 'showSmilies');
+Typecho_Plugin::factory('Widget_Abstract_Comments')->contentEx = ['X', 'commentsEx'];
+Typecho_Plugin::factory('Widget_Feedback')->comment = ['X', 'commentPostFilter'];
 /**
  * @param $archive
  * @return void
@@ -228,4 +251,15 @@ function themeInit($archive)
             QRcode::png($text, false, 'L', 10, 2);
         }
     }
+}
+
+//算术验证评论
+function spam_protection_math()
+{
+    $num1 = rand(1, 49);
+    $num2 = rand(1, 49);
+    echo "<label style=\"line-height:30px;\" for=\"math\"><code>$num1</code>+<code>$num2</code> = </label>\n";
+    echo "<input type=\"text\" name=\"sum\" class=\"text\" value=\"\" size=\"25\" tabindex=\"4\" style=\"width:130px;float:right;\" placeholder=\"计算结果：\">\n";
+    echo "<input type=\"hidden\" name=\"num1\" value=\"$num1\">\n";
+    echo "<input type=\"hidden\" name=\"num2\" value=\"$num2\">";
 }
