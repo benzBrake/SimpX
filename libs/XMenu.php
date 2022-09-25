@@ -12,7 +12,7 @@ class XMenu
      */
     public static function show($slug)
     {
-        if (X::alloc()->isPluginEnabled('TeMenu')) {
+        if (X::getInstance()->isPluginEnabled('TeMenu')) {
             $navigation = json_decode(Typecho_Widget::widget('Widget_Options')->plugin('TeMenu')->navigation, true);
             if (!array_key_exists($slug, $navigation)) {
                 return;
@@ -20,7 +20,7 @@ class XMenu
             $menu = $navigation[$slug]['menu'];
             $html = self::callback($menu, 'current=current-menu-item&caret=' . XMenu::moreIcon());
             _e($html);
-        } elseif (X::alloc()->isPluginEnabled('NavMenu')) {
+        } elseif (X::getInstance()->isPluginEnabled('NavMenu')) {
             Typecho_Widget::widget('NavMenu_List')->navMenu('header', 'wrapTag=&current=current-menu-item&caret=' . XMenu::moreIcon());
         } else {
             /** @var Widget_Contents_Page_List $pages */
@@ -82,7 +82,7 @@ class XMenu
      */
     public static function showMobi($slug)
     {
-        if (X::alloc()->isPluginEnabled('TeMenu')) {
+        if (X::getInstance()->isPluginEnabled('TeMenu')) {
             $navigation = json_decode(Typecho_Widget::widget('Widget_Options')->plugin('TeMenu')->navigation, true);
             if (!array_key_exists($slug, $navigation)) {
                 return;
@@ -90,7 +90,7 @@ class XMenu
             $menu = $navigation[$slug]['menu'];
             $html = self::mobiCallback($menu, 'current=current-menu-item&caret=' . XMenu::moreIcon());
             _e($html);
-        } elseif (X::alloc()->isPluginEnabled('NavMenu')) {
+        } elseif (X::getInstance()->isPluginEnabled('NavMenu')) {
             Typecho_Widget::widget('NavMenu_List')->navMenu('header', 'wrapTag=&current=current-menu-item&caret=' . XMenu::moreIcon());
         } else {
             /** @var Widget_Contents_Page_List $pages */

@@ -54,6 +54,15 @@ class X extends Typecho_Widget
         $this->initSmiliesRegex();
     }
 
+    /**
+     * 获取单例
+     * @return X
+     */
+    public static function getInstance($params = null, $request = null, $disableSandboxOrCallback = true)
+    {
+        return self::widget(static::class, $params, $request, $disableSandboxOrCallback);
+    }
+
     private function initSmiliesRegex()
     {
         $smiliesRegex = array(
@@ -213,7 +222,7 @@ class X extends Typecho_Widget
      */
     private static function parseSmilies(string $content)
     {
-        foreach (X::alloc()->smiliesRegex as $item) {
+        foreach (X::getInstance()->smiliesRegex as $item) {
             $content = preg_replace($item['regex'], $item['replacement'], $content);
         }
         return $content;
@@ -234,7 +243,7 @@ function themeInit($archive)
 
     $request = $archive->request;
     $response = $archive->response;
-    $notice = X::alloc()->widget('Widget_Notice');
+    $notice = X::getInstance()->widget('Widget_Notice');
     $db = Typecho_Db::get();
     /**
      * 增加二维码接口
