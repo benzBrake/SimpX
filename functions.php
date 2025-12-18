@@ -66,3 +66,19 @@ function themeConfig($form) {
 	array('ShowRecentPosts', 'ShowRecentComments','ShowTagCloud', 'ShowCategory', 'ShowArchive','ShowQRCode',), _t('边栏选项'));  
 	$form->addInput($sidebarBlock->multiMode());
 }
+
+function themeInit($self)
+{
+    $request = $self->request;
+    if ($self->is('index')) {
+        if ($request->is('qrcode')) {
+            require_once dirname(__FILE__) . '/libs/qrcode.php';
+            $text = $request->filter('xss')->filter('strval')->get('text');
+            if (empty($text)) {
+                $text = Helper::options()->siteUrl;
+            }
+            QRcode::png($text, false, 'L', 10, 2);
+            die();
+        }
+    }
+}
