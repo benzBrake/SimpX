@@ -1,5 +1,64 @@
-/* Load reset browser defaults */
-@import url("reset.css");
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: "" "";
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+
+:focus {
+	outline: 0;
+}
+
+ins {
+	text-decoration: none;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+/* end reset css */
 
 /* Apply global styles */
 ::selection {
@@ -80,7 +139,7 @@ buy {
 	padding-left:18px;
 }
 buy:hover {
-	background: url(./img/redbg.png);
+	background: url(../../img/redbg.png);
 }
 address { margin-bottom: 20px; font-style: italic; font-size: 12px; }
 
@@ -231,7 +290,7 @@ p.wp-caption-text {
 		}
 
 			#topbox .welcome {
-				background: url(img/xiao16.png) no-repeat scroll 0 1px;
+				background: url(../../img/xiao16.png) no-repeat scroll 0 1px;
 				padding-left: 20px;
 			}
 
@@ -334,7 +393,7 @@ p.wp-caption-text {
 						#content .post .post-content strong { color: #0093F0; }					
 						#content .post .post-content p { margin: 8px; }
 						#content .post .post-content h3 { 
-							background: url(./img/redbg.png);
+							background: url(../../img/redbg.png);
 							border-left: 5px solid #0093F0;
 							display: block;
 							clear: both;
@@ -369,7 +428,7 @@ p.wp-caption-text {
 						#content .post .post-content .blogroll { margin: -20px 0 20px; }
 
 							#content .post .post-content .blogroll ul li {
-								background: url(img/bullet_white.png) no-repeat scroll 0 4px;
+								background: url(../../img/bullet_white.png) no-repeat scroll 0 4px;
 								list-style-type: none;
 								padding-left: 20px;
 								margin-left: 0;

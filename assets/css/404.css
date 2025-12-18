@@ -29,7 +29,7 @@ body {
 }
 
 #content {
-	background: #f9f9f9 url(img/404img.png) no-repeat scroll 20px 30px;
+	background: #f9f9f9 url(../../img/404img.png) no-repeat scroll 20px 30px;
 }
 
 #content h1 {
