@@ -1,29 +1,35 @@
-<!-- sidebar start -->
-
+<?php
+/**
+ * 侧边栏模板
+ */
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+/* @var Widget_Archive $this */
+?>
 <div id="right-sidebar" class="sidebar">
     <!-- searchform start -->
     <?php if (empty($this->options->sidebarBlock) || in_array('ShowSearchBox', $this->options->sidebarBlock)): ?>
-        <div id="searchbox" class="box">
+        <div id="search-box" class="box">
             <form action="" method="get">
-                <input type="text" class="searchfield" name="s" size="24" value=""/>
-                <input type="submit" name="button" id="searchsubmit" value="Search" class="searchbutton"/>
+                <label for="s" class="screen-reader-text">Search for:</label>
+                <input type="text" class="search-field" name="s" size="24" value=""/>
+                <input type="submit" name="button" id="search-submit" value="Search" class="search-button"/>
             </form>
         </div>
     <?php endif; ?>
     <!-- searchform end -->
     <!--[if IE 6]>
-				<div class="widget">
-				<div class="widget-browser">
-				<div class="widget-body">
-					<p class="browser">You are using IE 6 right now, we will work better for you if you upgrade to IE 8 or switch to another browser.</p>
-					<a href="http://www.mozilla.com/en-US/" title="Firefox" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/firefox.png'); ?>" width="64" height="64" /></a>&nbsp;
-					<a href="http://www.google.com/chrome" title="Google Chrome" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/chrome.png'); ?>" width="64" height="64" /></a>&nbsp;
-					<a href="http://www.opera.com/" title="Opera" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/opera.png'); ?>" width="64" height="64" /></a>&nbsp;
-					<a href="http://www.apple.com/safari/download/" title="Apple Safari" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/safari.png'); ?>" width="64" height="64" /></a>
-				</div>
-				</div>
-				</div>
-				<![endif]-->
+        <div class="widget">
+            <div class="widget-browser">
+                <div class="widget-body">
+                    <p class="browser">You are using IE 6 right now, we will work better for you if you upgrade to IE 8 or switch to another browser.</p>
+                    <a href="https://www.mozilla.com/en-US/" title="Firefox" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/firefox.png'); ?>" width="64" height="64" /></a>&nbsp;
+                    <a href="https://www.google.com/chrome" title="Google Chrome" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/chrome.png'); ?>" width="64" height="64" /></a>&nbsp;
+                    <a href="https://www.opera.com/" title="Opera" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/opera.png'); ?>" width="64" height="64" /></a>&nbsp;
+                    <a href="https://www.apple.com/safari/download/" title="Apple Safari" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/safari.png'); ?>" width="64" height="64" /></a>
+                </div>
+            </div>
+        </div>
+        <![endif]-->
     <?php if (empty($this->options->sidebarBlock) || in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
         <div class="widget">
             <h3 class="widget-title"><i class="icon-list"></i>Recent Posts</h3>
@@ -40,12 +46,14 @@
                 <h3 class="widget-title"><i class="icon-user"></i>Recent Comments</h3>
                 <div class="widget-body">
                     <ul>
-                        <?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true')->to($comments); ?>
+                        <?php /** @var Widget_Comments_Recent $comments */
+                        $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true')->to($comments); ?>
                         <?php while ($comments->next()): ?>
                             <li>
                                 <a href="<?php $comments->permalink(); ?>">
                                     <?php $comments->gravatar(); ?>
-                                    <?php $comments->author(false); ?>：</br><?php $comments->excerpt(10, '...'); ?></a></li>
+                                    <?php $comments->author(false); ?>：</br><?php $comments->excerpt(10, '...'); ?></a>
+                            </li>
                         <?php endwhile; ?>
                     </ul>
                 </div>
@@ -57,7 +65,8 @@
 
             <h3 class="widget-title"><i class="icon-tag"></i>Tag Cloud</h3>
             <div class="widget-body">
-                <?php $this->widget('Widget_Metas_Tag_Cloud', 'ignoreZeroCount=1&limit=50')->to($tags); ?>
+                <?php /** @var Widget_Metas_Tag_Cloud $tags */
+                $this->widget('Widget_Metas_Tag_Cloud', 'ignoreZeroCount=1&limit=50')->to($tags); ?>
                 <?php while ($tags->next()): ?>
                     <a href="<?php $tags->permalink(); ?>" title='<?php $tags->name(); ?>'><?php $tags->name(); ?></a>
                 <?php endwhile; ?>
@@ -77,15 +86,17 @@
             </div>
         </div>
     <?php endif; ?>
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowBlogroll', $this->options->sidebarBlock)): ?>
-        <div class="widget">
-            <h3 class="widget-title"><i class="icon-users"></i>Friends</h3>
-            <div class="widget-body">
-                <ul>
-                    <?php Links_Plugin::output(); ?>
-                </ul>
+    <?php if (isPluginEnabled('Links')): ?>
+        <?php if (empty($this->options->sidebarBlock) || in_array('ShowBlogroll', $this->options->sidebarBlock)): ?>
+            <div class="widget">
+                <h3 class="widget-title"><i class="icon-users"></i>Friends</h3>
+                <div class="widget-body">
+                    <ul>
+                        <?php Links_Plugin::output(); ?>
+                    </ul>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
     <?php endif; ?>
     <?php if (empty($this->options->sidebarBlock) || in_array('ShowArchive', $this->options->sidebarBlock)): ?>
         <div class="widget">
@@ -102,7 +113,8 @@
         <div class="widget widget-qrcode">
             <h3 class="widget-title"><i class="icon-earth"></i>QRCode</h3>
             <div class="widget-body">
-                <img class="qrcode" src="<?php echo Typecho_Common::url('?qrcode&text=' . $this->permalink, $this->options->index) ?>"/>
+                <img class="qrcode"
+                     src="<?php echo Typecho_Common::url('?qrcode&text=' . $this->permalink, $this->options->index) ?>"/>
             </div>
         </div>
     <?php endif; ?>

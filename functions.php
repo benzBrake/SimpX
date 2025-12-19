@@ -82,3 +82,9 @@ function themeInit($self)
         }
     }
 }
+
+function isPluginEnabled($name)
+{
+    $plugins = Typecho_Plugin::export();
+    return isset($plugins['activated'][$name]);
+}

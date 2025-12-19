@@ -45,11 +45,11 @@
 	_color: #9e0b0f;
 }
 
-#searchbox .searchfield {
+#search-box .search-field {
 	width: 110px;
 }
 
-#searchbox .searchbutton {
+#search-box .search-button {
 	padding: 3px 1px 4px;
 }
 

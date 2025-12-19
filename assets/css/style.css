@@ -165,16 +165,6 @@ code {
     border: 1px dotted #0093F0;
 }
 
-buy {
-    border-left: 3px solid #0093F0;
-    display: block;
-    padding-left: 18px;
-}
-
-buy:hover {
-    background: url(../../img/redbg.png);
-}
-
 address {
     margin-bottom: 20px;
     font-style: italic;
@@ -268,6 +258,10 @@ p.wp-caption-text {
 
 .clear {
     clear: both;
+}
+
+.screen-reader-text {
+    display: none;
 }
 
 #wrapper {
@@ -906,18 +900,18 @@ img.avatar {
 }
 
 /* Apply searchform styles */
-#searchbox {
+#search-box {
     padding: 10px;
 }
 
-#searchbox .searchfield {
+#search-box .search-field {
     border: 1px solid #ccc;
     width: 115px;
     font: 12px/1 lucida sans unicode, lucida grande, lucida, arial, sans-serif;
     padding: 3px;
 }
 
-#searchbox .searchbutton {
+#search-box .search-button {
     border: 1px solid #ccc;
     font: 12px/1 arial, sans-serif;
     padding: 3px 3px 2px;
@@ -926,7 +920,7 @@ img.avatar {
     cursor: pointer;
 }
 
-#searchbox .searchbutton:hover {
+#search-box .search-button:hover {
     background: #464646;
     color: #fff;
     border: 1px solid #464646;
