@@ -1,10 +1,10 @@
 ﻿<?php
 /**
- * 一款淡蓝主题，采用了高大上的字体图标(ie 6 不支持图标字体)。
+ * 一款淡蓝主题，采用了<del>高大上</del>的字体图标(ie 6 不支持图标字体)。
  * @package 三栏主题：SimpX  (Theme designed by weleeTime.Mod By Tammy)
  * @author Tammy
  * @version 0.1.4
- * @link http://32mb.cn
+ * @link http://32mb.cc
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
