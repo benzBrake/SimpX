@@ -11,8 +11,8 @@
 <!-- wrapper end -->
 
 <!-- javascript start -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="<?php $this->options->themeUrl('js/base.js'); ?>"></script>
+<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/jquery-1.9.1.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/base.js'); ?>"></script>
 <!--baidu share start-->
 <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6787278"></script>
 <script type="text/javascript" id="bdshell_js"></script>
