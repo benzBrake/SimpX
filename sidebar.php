@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 侧边栏模板
  */
@@ -11,8 +12,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         <div id="search-box" class="box">
             <form action="" method="get">
                 <label for="s" class="screen-reader-text">Search for:</label>
-                <input type="text" class="search-field" name="s" size="24" value=""/>
-                <input type="submit" name="button" id="search-submit" value="Search" class="search-button"/>
+                <input type="text" class="search-field" name="s" size="24" value="" />
+                <input type="submit" name="button" id="search-submit" value="Search" class="search-button" />
             </form>
         </div>
     <?php endif; ?>
@@ -114,7 +115,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             <h3 class="widget-title"><i class="icon-earth"></i>QRCode</h3>
             <div class="widget-body">
                 <img class="qrcode"
-                     src="<?php echo Typecho_Common::url('?qrcode&text=' . $this->permalink, $this->options->index) ?>"/>
+                    src="<?php echo Typecho_Common::url('?qrcode&text=' . $this->permalink, $this->options->index) ?>" />
             </div>
         </div>
     <?php endif; ?>
@@ -129,7 +130,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                         <li><a href="<?php $this->options->logoutUrl(); ?>"><?php _e('退出'); ?></a></li>
                     <?php else: ?>
                         <li class="last"><a
-                                    href="<?php $this->options->adminUrl('login.php'); ?>"><?php _e('登录'); ?></a></li>
+                                href="<?php $this->options->adminUrl('login.php'); ?>"><?php _e('登录'); ?></a></li>
                     <?php endif; ?>
                     <li><a href="http://validator.w3.org/check/referer">Valid XHTML</a></li>
                 </ul>
