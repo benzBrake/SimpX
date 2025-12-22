@@ -24,10 +24,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             <div class="widget-browser">
                 <div class="widget-body">
                     <p class="browser">You are using IE 6 right now, we will work better for you if you upgrade to IE 8 or switch to another browser.</p>
-                    <a href="https://www.mozilla.com/en-US/" title="Firefox" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/firefox.png'); ?>" width="64" height="64" /></a>&nbsp;
-                    <a href="https://www.google.com/chrome" title="Google Chrome" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/chrome.png'); ?>" width="64" height="64" /></a>&nbsp;
-                    <a href="https://www.opera.com/" title="Opera" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/opera.png'); ?>" width="64" height="64" /></a>&nbsp;
-                    <a href="https://www.apple.com/safari/download/" title="Apple Safari" rel="external nofollow"><img src="<?php $this->options->themeUrl('img/safari.png'); ?>" width="64" height="64" /></a>
+                    <a href="https://www.mozilla.com/en-US/" title="Firefox" rel="external nofollow"><img src="<?php $this->options->themeUrl('assets/img/firefox.png'); ?>" width="64" height="64" /></a>&nbsp;
+                    <a href="https://www.google.com/chrome" title="Google Chrome" rel="external nofollow"><img src="<?php $this->options->themeUrl('assets/img/chrome.png'); ?>" width="64" height="64" /></a>&nbsp;
+                    <a href="https://www.opera.com/" title="Opera" rel="external nofollow"><img src="<?php $this->options->themeUrl('assets/img/opera.png'); ?>" width="64" height="64" /></a>&nbsp;
+                    <a href="https://www.apple.com/safari/download/" title="Apple Safari" rel="external nofollow"><img src="<?php $this->options->themeUrl('assets/img/safari.png'); ?>" width="64" height="64" /></a>
                 </div>
             </div>
         </div>
