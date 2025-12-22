@@ -52,7 +52,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <?php endif; ?>
     <?php if (empty($this->options->sidebarBlock) || in_array('ShowOther', $this->options->sidebarBlock)): ?>
         <div class="widget">
-            <h3 class="widget-title"><i class="icon-cog"></i>Other</h3>
+            <h3 class="widget-title"><i class="icon-forward"></i>Other</h3>
             <div class="widget-body">
                 <ul>
                     <?php if ($this->user->hasLogin()): ?>
