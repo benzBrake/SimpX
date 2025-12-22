@@ -62,12 +62,12 @@
                     };
                 </script>
                 <div id="Smilies">
-                    <a href="javascript:Smilies.grin(':?:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_question.gif" alt="" class="smiley"></a>
-                    <a href="javascript:Smilies.grin(':razz:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_razz.gif" alt="" class="smiley"></a>
-                    <a href="javascript:Smilies.grin(':sad:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_sad.gif" alt="" class="smiley"></a>
-                    <a href="javascript:Smilies.grin(':evil:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_evil.gif" alt="" class="smiley"></a>
-                    <a href="javascript:Smilies.grin(':!:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_exclaim.gif" alt="" class="smiley"></a>
-                    <a href="javascript:Smilies.grin(':smile:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_smile.gif" alt="" class="smiley"></a>
+                    <a href="javascript:Smilies.grin(':?:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_question.gif" alt="" class="smiley"></a>
+                    <a href="javascript:Smilies.grin(':razz:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_razz.gif" alt="" class="smiley"></a>
+                    <a href="javascript:Smilies.grin(':sad:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_sad.gif" alt="" class="smiley"></a>
+                    <a href="javascript:Smilies.grin(':evil:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_evil.gif" alt="" class="smiley"></a>
+                    <a href="javascript:Smilies.grin(':!:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_exclaim.gif" alt="" class="smiley"></a>
+                    <a href="javascript:Smilies.grin(':smile:')"><img src="<?php $this->options->themeUrl('assets/img/Smilies/'); ?>icon_smile.gif" alt="" class="smiley"></a>
                     <a href="javascript:Smilies.grin(':oops:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_redface.gif" alt="" class="smiley"></a>
                     <a href="javascript:Smilies.grin(':grin:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_biggrin.gif" alt="" class="smiley"></a>
                     <a href="javascript:Smilies.grin(':eek:')"><img src="<?php $this->options->themeUrl('/img/Smilies/'); ?>icon_surprised.gif" alt="" class="smiley"></a>

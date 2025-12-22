@@ -425,7 +425,7 @@ p.wp-caption-text {
 }
 
 #top-box .welcome {
-    background: url(../../img/xiao16.png) no-repeat scroll 0 1px;
+    background: url(../img/xiao16.png) no-repeat scroll 0 1px;
     padding-left: 20px;
 }
 
@@ -439,7 +439,7 @@ p.wp-caption-text {
 }
 
 #top-box .subscribe ul li.twitter-user {
-    background: url(img/twitter_16.png) no-repeat scroll 0 0;
+    background: url(../img/twitter_16.png) no-repeat scroll 0 0;
 }
 
 /* Apply content styles */
@@ -602,7 +602,7 @@ p.wp-caption-text {
 }
 
 .content .post .post-content h3 {
-    background: url(../../img/redbg.png);
+    background: url(../img/redbg.png);
     border-left: 5px solid #0093F0;
     display: block;
     clear: both;
