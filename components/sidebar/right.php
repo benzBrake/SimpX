@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 右侧边栏模板
  */
@@ -43,7 +44,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <?php endif; ?>
     <?php if (empty($this->options->sidebarBlock) || in_array('ShowRecentComments', $this->options->sidebarBlock)): ?>
         <?php if ($this->is('index')): ?>
-            <div class="widget">
+            <div class="widget widget-comments">
                 <h3 class="widget-title"><i class="icon-user"></i>Recent Comments</h3>
                 <div class="widget-body">
                     <ul>
@@ -51,9 +52,17 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                         $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true')->to($comments); ?>
                         <?php while ($comments->next()): ?>
                             <li>
-                                <a href="<?php $comments->permalink(); ?>">
-                                    <?php $comments->gravatar(); ?>
-                                    <?php $comments->author(false); ?>：</br><?php $comments->excerpt(10, '...'); ?></a>
+                                <a class="widget-comments-item" href="<?php $comments->permalink(); ?>">
+                                    <?php $comments->gravatar(28); ?>
+                                    <div class="widget-comments-item-content">
+                                        <div class="widget-comments-item-author">
+                                            <?php $comments->author(false); ?>
+                                        </div>
+                                        <div class="widget-comments-item-excerpt">
+                                            <?php $comments->excerpt(20, '...'); ?>
+                                        </div>
+                                    </div>
+                                </a>
                             </li>
                         <?php endwhile; ?>
                     </ul>
