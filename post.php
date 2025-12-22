@@ -24,7 +24,7 @@
                     <li class="meta-date"><i class="icon-calendar"></i><?php $this->date(); ?></li>
                     <!--li class="meta-views"></li-->
                     <li class="meta-cat"><i class="icon-list"></i><?php $this->category(','); ?></li>
-                    <li class="meta-comments"><i class="icon-comment"></i><a href="<?php $this->permalink() ?>#comments" title="<?php _e("对《%s》发表评论", $this->title) ?>"><?php $this->commentsNum('暂无评论', '1 评论', '%d 评论'); ?></a></li>
+                    <li class="meta-comments"><i class="icon-comment"></i><a href="<?php $this->permalink() ?>#comments" title="<?php _e("对《%s》发表评论", $this->title) ?>"><?php $this->commentsNum(_t('暂无评论'), _t('1 条评论'), _t('%d 条评论')); ?></a></li>
                 </ul>
             </div>
             <!-- article-page start -->

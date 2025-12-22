@@ -57,7 +57,7 @@
                             <li class="current_page_item"><a href="">正文</a></li>
                         <?php endif; ?>
                         <li<?php if ($this->is('index')): ?> class="home current_page_item" <?php endif; ?>><a
-                                href="<?php $this->options->siteUrl(); ?>"><?php _e('Home'); ?></a></li>
+                                href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a></li>
                             <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
                             <?php while ($pages->next()): ?>
                                 <li class="page_item<?php if ($this->is('page', $pages->slug)): ?> current_page_item<?php endif; ?>">
@@ -81,11 +81,11 @@
 
                 <div class="subscribe right">
                     <ul>
-                        <li class="rssfeed"><span><a href="<?php $this->options->feedUrl(); ?>" title="Subscribe RSS Feed"><i
+                        <li class="rssfeed"><span><a href="<?php $this->options->feedUrl(); ?>" title="<?php _e("订阅 RSS Feed"); ?>"><i
                                         class="icon-rss"></i></a></span></li>
                         <?php if ($this->options->weibo): ?>
                             <li><span><a href="<?php $this->options->weibo() ?>" target="_blank" class="weibo text-hide"
-                                        data-toggle="tooltip" data-placement="auto" title="关注我的微博">微博</a></li></span>
+                                        data-toggle="tooltip" data-placement="auto" title="<?php _e("关注我的微博"); ?>"><?php _e("微博") ?></a></li></span>
                         <?php endif; ?>
                     </ul>
                     <div class="clear"></div>

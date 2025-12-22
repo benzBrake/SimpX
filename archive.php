@@ -40,7 +40,7 @@
                             <li class="meta-cat"><i class="icon-list"></i><?php $this->category(','); ?></li>
                             <li class="meta-comments"><i class="icon-comment"></i><a
                                     href="<?php $this->permalink() ?>#comments"
-                                    title="Comment on <?php $this->title() ?>"><?php $this->commentsNum('No Comments', '1 Comment', '%d Comments'); ?></a>
+                                    title="Comment on <?php $this->title() ?>"><?php $this->commentsNum(_t('暂无评论'), _t('1 条评论'), _t('%d 条评论')); ?></a>
                             </li>
                         </ul>
                         <div class="clear"></div>
