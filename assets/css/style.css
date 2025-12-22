@@ -1,13 +1,65 @@
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
     margin: 0;
     padding: 0;
     border: 0;
@@ -24,20 +76,26 @@ body {
     line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
     list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
     quotes: "" "";
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: "";
 }
 
-caption, th, td {
+caption,
+th,
+td {
     text-align: left;
     font-weight: normal;
 }
@@ -395,14 +453,14 @@ p.wp-caption-text {
 }
 
 #wrapper.with-right-sidebar .content {
-    width: 640px;
-    margin-right: 200px;
+    width: 630px;
+    margin-right: 210px;
 }
 
 #wrapper.with-both-sidebars .content {
-    width: 640px;
+    width: 630px;
     margin-left: 160px;
-    margin-right: 200px;
+    margin-right: 210px;
 }
 
 .content .notice,
@@ -422,14 +480,13 @@ p.wp-caption-text {
 }
 
 .content .post {
-    padding: 15px 0;
+    padding: 0;
     position: relative;
 }
 
 .content .post .post-header {
     border-bottom: 1px dotted #ddd;
-    padding: 0 15px;
-    padding-bottom: 5px;
+    padding: 10px;
 }
 
 .content .post .post-header .post-author-gravatar {
@@ -442,7 +499,6 @@ p.wp-caption-text {
 .content .post .post-title {
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 10px;
     line-height: 1;
     text-shadow: 1px 1px 2px #ccc;
 }
@@ -460,41 +516,47 @@ p.wp-caption-text {
     padding-right: 5px;
 }
 
-.content .post .post-header .postmeta {
+.content .post .post-header .post-meta {
     color: #aaa;
-    height: 16px;
+    margin-right: 30px;
 }
 
-.content .post .post-footer .postmeta {
-    height: 16px;
-    margin: 13px auto auto 15px;
-}
-
-.content .post .postmeta ul li {
+.content .post ul.post-meta li {
     display: inline;
-    float: left;
-    padding-right: 25px;
+    padding-right: 10px;
     line-height: 1;
     font: 12px arial, sans-serif;
-    height: 16px;
 }
 
-.content .post .postmeta ul li a {
+.content .post ul.post-meta li a {
     text-decoration: none;
 }
 
-.content .post .postmeta ul li i {
+.content .post ul.post-meta li i {
     padding-right: 3px;
 }
 
-.content .post .postmeta ul li a:hover {
+.content .post ul.post-meta li a:hover {
+    color: #d54e21;
+}
+
+.content .post .more-link {
+    float: right;
+    margin: 10px;
+}
+
+.content .post .more-link a {
+    display: block;
+}
+.content .post .more-link a:hover {
     color: #d54e21;
 }
 
 .content .post .post-content {
     overflow: hidden;
     padding: 5px 15px;
-    font: 13px/1.65 "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;;
+    font: 13px/1.65 "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    ;
     background: #fff;
 }
 
@@ -560,8 +622,13 @@ p.wp-caption-text {
 }
 
 .content .post .post-footer {
-    height: 25px;
     border-top: 1px dotted #ddd;
+    padding: 0;
+    height: 40px;
+}
+
+.content .post .post-footer .post-meta {
+    margin: 10px 80px 10px 10px;
 }
 
 .content .post .post-tags {
@@ -584,17 +651,6 @@ p.wp-caption-text {
 .content .post .post-tags a:hover {
     color: #fff;
     background: #0093F0;
-}
-
-.content .post .morelink {
-    float: right;
-    margin-right: 10px;
-}
-
-.content .post .morelink a {
-    display: block;
-    width: 16px;
-    height: 16px;
 }
 
 .post-copyright {
@@ -837,7 +893,7 @@ img.avatar {
 
 #right-sidebar {
     float: right;
-    width: 190px;
+    width: 200px;
 }
 
 .sidebar {
@@ -867,12 +923,12 @@ img.avatar {
     background: #fff;
 }
 
-.sidebar .widget .widget-browser .widget-body, .sidebar #tagCloud .widget-body {
+.sidebar .widget .widget-browser .widget-body,
+.sidebar #tagCloud .widget-body {
     padding: 5px 15px;
 }
 
-.sidebar .widget ul {
-}
+.sidebar .widget ul {}
 
 .sidebar .widget ul li {
     /* background: url(img/bullet.png) no-repeat scroll 0 8px; */
@@ -910,7 +966,7 @@ img.avatar {
 }
 
 .widget-qrcode img.qrcode {
-	width: 100%;
+    width: 100%;
 }
 
 /* Apply searchform styles */
@@ -1016,15 +1072,13 @@ ol.pages li.current a {
 
 
 /** tag **/
-#tagCloud {
-}
+#tagCloud {}
 
 #tagCloud a {
     text-decoration: none;
 }
 
-#tagCloud a:hover {
-}
+#tagCloud a:hover {}
 
 #tagCloud .color0 {
     color: #2F5FC2;
@@ -1078,8 +1132,7 @@ ol.pages li.current a {
     font-size: 115%
 }
 
-#tagCloud .weight6 {
-}
+#tagCloud .weight6 {}
 
 #tagCloud .size0 {
     font-size: 8px;
@@ -1107,4 +1160,4 @@ ol.pages li.current a {
 
 #tagCloud .size6 {
     font-size: 20px;
-} 
+}

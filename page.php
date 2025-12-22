@@ -22,7 +22,7 @@
             <div class="post-header">
                 <h2 class="post-title"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark"><?php $this->title() ?></a></h2>
 
-                <div class="postmeta">
+                <div class="post-meta">
                     <ul>
                         <li class="meta-date"><?php $this->date('F j, Y'); ?></li>
                         <li class="meta-comments"><a href="<?php $this->permalink() ?>#comments" title="Comment on <?php $this->title() ?>"><?php $this->commentsNum('No Comments', '1 Comment', '%d Comments'); ?></a></li>

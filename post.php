@@ -23,7 +23,7 @@
         <div class="post box">
             <div class="post-header">
                 <h1 class="post-title"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark"><?php $this->title() ?></a></h1>
-                <div class="postmeta">
+                <div class="post-meta">
                     <ul>
                         <li class="meta-date"><i class="icon-calendar"></i><?php $this->date('F j, Y'); ?></li>
                         <!--li class="meta-views"></li-->
