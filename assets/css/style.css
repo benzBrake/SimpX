@@ -703,7 +703,7 @@ p.wp-caption-text {
 }
 
 .content .post-navi {
-    padding: 6px 15px;
+    padding: 10px;
     font-size: 12px;
 }
 
@@ -774,7 +774,7 @@ p.wp-caption-text {
 #comments {
     background: #f9f9f9;
     border: 1px solid #dfdfdf;
-    padding: 15px;
+    padding: 10px;
 }
 
 #comments p {
