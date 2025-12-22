@@ -851,6 +851,12 @@ p.wp-caption-text {
 
 .comment-author cite.fn {
     font-style: normal;
+    font-weight: bold;
+}
+
+.comment-author .avatar {
+    float: left;
+    margin-right: 8px;
 }
 
 .comment-body {
@@ -860,6 +866,10 @@ p.wp-caption-text {
 .comment-body p {
     margin-left: 42px;
     clear: both;
+}
+
+.comment-content {
+    font-size: 12px;
 }
 
 .respond {
@@ -910,11 +920,25 @@ p.wp-caption-text {
     color: #000;
     font-size: 13px;
     cursor: pointer;
-    height: 32px;
+    height: 28px;
     line-height: 14px;
-    width: 9%;
+    width: 48px;
     text-align: center;
-    vertical-align: top
+    vertical-align: top;
+    border: 1px solid #ccc;
+    border-radius: 0;
+}
+
+#Smilies {
+    height: 32px;
+}
+
+#Smilies a {
+    display: block;
+    float: left;
+    margin-right: 5px;
+    top: 5px;
+    position: relative;
 }
 
 .login_meta {
@@ -1029,6 +1053,7 @@ p.wp-caption-text {
 .widget-comments .widget-comments-item-content {
     margin-left: 40px;
 }
+
 .widget-comments .widget-comments-item-author,
 .widget-comments .widget-comments-item-excerpt {
     font-size: 12px;
