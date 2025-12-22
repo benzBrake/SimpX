@@ -563,16 +563,32 @@ p.wp-caption-text {
     color: #d54e21;
 }
 
-.content .post .post-content {
+.content .post .post-content-wrapper {
     overflow: hidden;
-    padding: 5px 10px;
-    font: 13px/1.65 "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    padding: 10px;
     background: #fff;
-    
+    position: relative;
+}
+
+.content .post .post-content-placeholder {
+    visibility: hidden;
+}
+
+.content .post .post-content {
+    background: #fff;
+    font: 13px/1.65 "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.container:not(.single) .content .post .post-content {
+    position: absolute;
+    inset: 10px;
+    line-height: 20px;
+    overflow: hidden;
 }
 
 .container.single .post-content {
     min-height: 100px;
+    padding: 10px;
 }
 
 .content .post .post-content strong {
@@ -580,7 +596,7 @@ p.wp-caption-text {
 }
 
 .content .post .post-content p {
-    margin: 8px 0;
+    margin-bottom: 5px;
 }
 
 .content .post .post-content h3 {
