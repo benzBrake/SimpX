@@ -514,6 +514,7 @@ p.wp-caption-text {
     line-height: 1;
     text-shadow: 1px 1px 2px #ccc;
 }
+
 .content .post .post-title i {
     margin-left: -3px;
 }
@@ -559,6 +560,7 @@ p.wp-caption-text {
 .content .post .more-link a {
     display: block;
 }
+
 .content .post .more-link a:hover {
     color: #d54e21;
 }
@@ -741,6 +743,31 @@ p.wp-caption-text {
 
 .content .post .tag-clouds-tpl a {
     margin: 0 3px;
+}
+
+/* Apply wp-related-posts styles */
+
+.related-posts {
+    padding: 10px;
+}
+
+.related-post-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px #ccc;
+}
+
+.related-post-title i {
+    vertical-align: -1px;
+    margin-right: 3px;
+}
+
+.related_post li {
+    background: url(../img/bullet.png) no-repeat scroll 2px center;
+    list-style-type: none;
+    padding-left: 12px;
+    font-size: 12px;
 }
 
 /* Apply comments styles */

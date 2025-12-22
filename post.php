@@ -49,7 +49,7 @@
 
         <!-- related-posts start -->
         <div class="related-posts box">
-            <h2 class="related_post_title">Related Posts</h2>
+            <h2 class="related-post-title"><i class="icon-text"></i><?php _e("相关文章"); ?></h2>
             <ul class="related_post">
                 <?php $this->related(5)->to($relatedPosts); ?>
                 <?php if ($relatedPosts->have()): ?>

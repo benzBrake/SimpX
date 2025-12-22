@@ -164,24 +164,6 @@
 	content: "\e647";
 }
 
-/* Apply wp-related-posts styles */
-
-.related-posts {
-	padding: 15px;
-}
-
-.related_post_title {
-	font-size: 14px;
-	font-weight: bold;
-	margin-bottom: 5px;
-	text-shadow: 1px 1px 2px #ccc;
-}
-
-.related_post li {
-	background: url(../../img/005_47.png) no-repeat scroll 0 7px;
-	padding: 2px 0 2px 15px;
-}
-
 /* Apply poll-daddy styles */
 
 .PDS_Poll {
