@@ -2,10 +2,20 @@
 
 
 <!-- container start -->
-<div id="container">
+<div class="container">
     <!-- content START -->
-    <div id="content">
-
+    <?php $status = getSiderbarStatus(); ?>
+    <?php if ($status->showLeftSidebar): ?>
+        <div id="left-sidebar" class="sidebar">
+            <?php $this->need('components/sidebar/left.php'); ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($status->showRightSidebar): ?>
+        <div id="right-sidebar" class="sidebar">
+            <?php $this->need('components/sidebar/right.php'); ?>
+        </div>
+    <?php endif; ?>
+    <div id="main" class="content">
         <div class="posthead box"><a href="/" title="Back to Home">Home</a> <i class="icon-arrow-right"></i> <?php _e('Page: '); ?><strong><?php $this->title() ?></strong></div>
 
         <div class="post box">
@@ -25,15 +35,9 @@
                 <?php $this->content(); ?>
             </div>
         </div>
-
-
         <?php $this->need('comments.php'); ?>
-
     </div>
     <!-- content END -->
-
-    <?php include('sidebar.php'); ?>
-
 </div>
 <div class="clear"></div>
 <!-- container end -->

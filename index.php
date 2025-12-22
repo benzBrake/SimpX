@@ -12,15 +12,25 @@ $this->need('header.php');
 ?>
 
 <!-- container start -->
-<div id="container">
+<div class="container">
     <!-- content start -->
-    <div id="content">
+    <?php $status = getSiderbarStatus(); ?>
+    <?php if ($status->showLeftSidebar): ?>
+        <div id="left-sidebar" class="sidebar">
+            <?php $this->need('components/sidebar/left.php'); ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($status->showRightSidebar): ?>
+        <div id="right-sidebar" class="sidebar">
+            <?php $this->need('components/sidebar/right.php'); ?>
+        </div>
+    <?php endif; ?>
+    <div id="main" class="content">
         <?php if ($this->options->topNotice) { ?>
             <div class="notice box">
                 <?php $this->options->topNotice() ?>
             </div>
-        <?php } else {
-        } ?>
+        <?php } ?>
         <?php while ($this->next()): ?>
             <div class="post box">
                 <div class="post-header">
@@ -61,9 +71,6 @@ $this->need('header.php');
         <!-- pagenavi END -->
     </div>
     <!-- content end -->
-
-
-    <?php $this->need('sidebar.php'); ?>
     <div class="clear"></div>
 </div>
 <!-- container end -->

@@ -2,11 +2,20 @@
 
 
 <!-- container start -->
-<div id="container">
+<div class="container">
     <!-- content START -->
-    <div id="content">
-
-
+    <?php $status = getSiderbarStatus(); ?>
+    <?php if ($status->showLeftSidebar): ?>
+        <div id="left-sidebar" class="sidebar">
+            <?php $this->need('components/sidebar/left.php'); ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($status->showRightSidebar): ?>
+        <div id="right-sidebar" class="sidebar">
+            <?php $this->need('components/sidebar/right.php'); ?>
+        </div>
+    <?php endif; ?>
+    <div id="main" class="content">
         <?php if ($this->is('archive')): ?>
             <div class="posthead box"><?php _e('Archive for the category: '); ?><strong><?php $this->category(','); ?></strong></div>
         <?php endif; ?>
@@ -49,9 +58,6 @@
 
     </div>
     <!-- content END -->
-
-    <?php include('sidebar.php'); ?>
-
 </div>
 <div class="clear"></div>
 <!-- container end -->

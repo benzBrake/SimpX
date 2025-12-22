@@ -55,27 +55,39 @@ function themeConfig($form)
     echo ('<style>body{font-family:Microsoft Yahei,微软雅黑;}</style><div style="font-size:14px;border-left:5px solid #0093f0;padding-left:8px;"><h2>SimpX</h2>&nbsp;Theme&nbsp;版本：1.5&nbsp;&nbsp;<strong>主题设置页</strong>&nbsp;&nbsp;<a href="http://doufu.ru/typecho-theme-simpx.html" title="检查更新">检查更新</a></div>');
     $topNotice = new Typecho_Widget_Helper_Form_Element_Text('topNotice', NULL, NULL, _t('顶部公告'), _t('这里可以输入一段文字显示顶部公告。（留空为不显示）'));
     $form->addInput($topNotice);
-    $sidebarBlock = new Typecho_Widget_Helper_Form_Element_Checkbox(
-        'sidebarBlock',
+
+    $leftSidebarModules = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'leftSidebarModules',
+        array(
+            'ShowCategory' => _t('显示分类'),
+            'ShowArchive' => _t('显示归档'),
+            'ShowBlogroll' => _t('显示友情链接'),
+            'ShowQRCode' => _t('显示二维码'),
+            'ShowOther' => _t('显示其它杂项'),
+        ),
+        array('ShowCategory', 'ShowArchive', 'ShowQRCode'),
+        _t('左侧边栏选项')
+    );
+    $form->addInput($leftSidebarModules->multiMode());
+
+    $rightSidebarModules = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'rightSidebarModules',
         array(
             'ShowSearchBox' => _t('显示搜索工具'),
             'ShowRecentPosts' => _t('显示最新文章'),
             'ShowRecentComments' => _t('显示最近回复'),
             'ShowTagCloud' => _t('显示标签云'),
-            'ShowCategory' => _t('显示分类'),
-            'ShowArchive' => _t('显示归档'),
-            'ShowOther' => _t('显示其它杂项'),
-            'ShowBlogroll' => _t('显示友情链接'),
-            'ShowQRCode' => _t('显示二维码')
         ),
-        array('ShowRecentPosts', 'ShowRecentComments', 'ShowTagCloud', 'ShowCategory', 'ShowArchive', 'ShowQRCode',),
-        _t('边栏选项')
+        array('ShowSearchBox', 'ShowRecentPosts', 'ShowRecentComments', 'ShowTagCloud'),
+        _t('右侧边栏选项')
     );
-    $form->addInput($sidebarBlock->multiMode());
+    $form->addInput($rightSidebarModules->multiMode());
+
 }
 
 function themeInit($self)
 {
+    $options = Helper::options();
     $request = $self->request;
     if ($self->is('index')) {
         if ($request->is('qrcode')) {
@@ -94,4 +106,25 @@ function isPluginEnabled($name)
 {
     $plugins = Typecho_Plugin::export();
     return isset($plugins['activated'][$name]);
+}
+
+function getSiderbarStatus() {
+    $options = Helper::options();
+    $leftBlock = $options->leftSidebarModules;
+    $rightBlock = $options->rightSidebarModules;
+    $status = array(
+        'showLeftSidebar' => isset($leftBlock) && is_array($leftBlock) && !empty($leftBlock),
+        'showRightSidebar' => isset($rightBlock) && is_array($rightBlock) && !empty($rightBlock),
+    );
+    $status['containerClass'] = '';
+    if ($status['showLeftSidebar'] && $status['showRightSidebar']) {
+        $status['containerClass'] = 'with-both-sidebars';
+    } elseif ($status['showLeftSidebar']) {
+        $status['containerClass'] = 'with-left-sidebar';
+    } elseif ($status['showRightSidebar']) {
+        $status['containerClass'] = 'with-right-sidebar';
+    } else {
+        $status['containerClass'] = 'no-sidebar';
+    }
+    return Typecho_Config::factory($status);
 }

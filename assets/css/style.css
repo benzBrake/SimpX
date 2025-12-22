@@ -266,7 +266,29 @@ p.wp-caption-text {
 
 #wrapper {
     width: 100%;
+    margin: 0 auto;
     text-align: left;
+}
+
+#wrapper .container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#wrapper.no-sidebar .container {
+    width: 720px;
+}
+
+#wrapper.with-left-sidebar .container {
+    width: 800px;
+}
+
+#wrapper.with-right-sidebar .container {
+    width: 840px;
+}
+
+#wrapper.with-both-sidebars .container {
+    width: 1000px;
 }
 
 /* Apply header styles */
@@ -281,14 +303,12 @@ p.wp-caption-text {
     margin-top: 0;
 }
 
-#header .content {
-    width: 1000px;
-    margin: 0 auto;
+#header .container {
     height: 40px;
     position: relative;
 }
 
-#header .content #logo {
+#header .container #logo {
     font: 23px/1 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     color: #fff;
     position: absolute;
@@ -296,43 +316,43 @@ p.wp-caption-text {
     left: 0;
 }
 
-#header .content #logo a {
+#header .container #logo a {
     color: #fff;
     text-decoration: none;
 }
 
-#header .content #logo a:hover {
+#header .container #logo a:hover {
     color: #d54e21;
 }
 
-#header .content #nav {
+#header .container #nav {
     font: 13px/1 georgia, times new roman, times, serif;
     position: absolute;
     top: 6px;
     right: 0;
 }
 
-#header .content #nav #menus li {
+#header .container #nav #menus li {
     display: inline;
     float: left;
 }
 
-#header .content #nav #menus li a {
+#header .container #nav #menus li a {
     display: block;
     padding: 8px 10px;
     color: #fff;
     text-decoration: none;
 }
 
-#header .content #nav #menus li a:hover {
+#header .container #nav #menus li a:hover {
     background: #f1f1f1;
     color: #000;
 }
 
-#header .content #nav #menus li.current_page_item a,
-#header .content #nav #menus li.current_page_item a:hover,
-#header .content #nav #menus li.current-cat a,
-#header .content #nav #menus li.current-cat a:hover {
+#header .container #nav #menus li.current_page_item a,
+#header .container #nav #menus li.current_page_item a:hover,
+#header .container #nav #menus li.current-cat a,
+#header .container #nav #menus li.current-cat a:hover {
     background: #fff;
     color: #222;
 }
@@ -341,7 +361,6 @@ p.wp-caption-text {
 #topbox {
     font-size: 12px;
     padding: 6px 15px;
-    width: 970px;
     margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
@@ -365,54 +384,62 @@ p.wp-caption-text {
     background: url(img/twitter_16.png) no-repeat scroll 0 0;
 }
 
-/* Apply container styles */
-#container {
-    width: 1000px;
-    margin: 0 auto;
-}
-
 /* Apply content styles */
-#content {
-    width: 632px;
-    float: left;
-    margin-left: 158px;
+.content {
+    width: 100%;
 }
 
-#content .notice,
-#content .posthead {
+#wrapper.with-left-sidebar .content {
+    width: 640px;
+    margin-left: 160px;
+}
+
+#wrapper.with-right-sidebar .content {
+    width: 640px;
+    margin-right: 200px;
+}
+
+#wrapper.with-both-sidebars .content {
+    width: 640px;
+    margin-left: 160px;
+    margin-right: 200px;
+}
+
+.content .notice,
+.content .posthead {
     font-size: 12px;
     padding: 6px 15px;
 }
 
-#content .posthead i {
+.content .posthead i {
     top: 4px;
     position: relative;
     font-size: 1.5em;
 }
 
-#content .notice {
+.content .notice {
     color: #598527;
 }
 
-#content .post {
+.content .post {
     padding: 15px 0;
     position: relative;
 }
 
-#content .post .post-header {
+.content .post .post-header {
     border-bottom: 1px dotted #ddd;
     padding: 0 15px;
     padding-bottom: 5px;
 }
 
-#content .post .post-header .post-author-gravatar {
+.content .post .post-header .post-author-gravatar {
     float: right;
     position: absolute;
     right: 28px;
     top: 5px;
 }
 
-#content .post .post-title {
+.content .post .post-title {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -420,30 +447,30 @@ p.wp-caption-text {
     text-shadow: 1px 1px 2px #ccc;
 }
 
-#content .post .post-title a {
+.content .post .post-title a {
     color: #545454;
     text-decoration: none;
 }
 
-#content .post .post-title a:hover {
+.content .post .post-title a:hover {
     color: #d54e21;
 }
 
-#content .post .post-title i {
+.content .post .post-title i {
     padding-right: 5px;
 }
 
-#content .post .post-header .postmeta {
+.content .post .post-header .postmeta {
     color: #aaa;
     height: 16px;
 }
 
-#content .post .post-footer .postmeta {
+.content .post .post-footer .postmeta {
     height: 16px;
     margin: 13px auto auto 15px;
 }
 
-#content .post .postmeta ul li {
+.content .post .postmeta ul li {
     display: inline;
     float: left;
     padding-right: 25px;
@@ -452,35 +479,34 @@ p.wp-caption-text {
     height: 16px;
 }
 
-#content .post .postmeta ul li a {
+.content .post .postmeta ul li a {
     text-decoration: none;
 }
 
-#content .post .postmeta ul li i {
+.content .post .postmeta ul li i {
     padding-right: 3px;
 }
 
-#content .post .postmeta ul li a:hover {
+.content .post .postmeta ul li a:hover {
     color: #d54e21;
 }
 
-#content .post .post-content {
+.content .post .post-content {
     overflow: hidden;
     padding: 5px 15px;
-    width: 600px;
     font: 13px/1.65 "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;;
     background: #fff;
 }
 
-#content .post .post-content strong {
+.content .post .post-content strong {
     color: #0093F0;
 }
 
-#content .post .post-content p {
+.content .post .post-content p {
     margin: 8px;
 }
 
-#content .post .post-content h3 {
+.content .post .post-content h3 {
     background: url(../../img/redbg.png);
     border-left: 5px solid #0093F0;
     display: block;
@@ -489,41 +515,41 @@ p.wp-caption-text {
     padding-left: 10px;
 }
 
-#content .post .post-content p img {
+.content .post .post-content p img {
     background: #fff;
     border: 1px solid #ddd;
     padding: 5px;
 }
 
-#content .post .post-content p img.wp-smiley {
+.content .post .post-content p img.wp-smiley {
     border: 0;
     padding: 0;
 }
 
-#content .post .post-content ul,
-#content .post .post-content ol {
+.content .post .post-content ul,
+.content .post .post-content ol {
     margin-bottom: 20px;
 }
 
-#content .post .post-content ul li,
-#content .post .post-content ol li {
+.content .post .post-content ul li,
+.content .post .post-content ol li {
     margin-left: 20px;
     padding: 2px 0;
 }
 
-#content .post .post-content ul li {
+.content .post .post-content ul li {
     list-style-type: disc;
 }
 
-#content .post .post-content ol li {
+.content .post .post-content ol li {
     list-style-type: decimal;
 }
 
-#content .post .post-content .blogroll {
+.content .post .post-content .blogroll {
     margin: -20px 0 20px;
 }
 
-#content .post .post-content .blogroll ul li {
+.content .post .post-content .blogroll ul li {
     background: url(../../img/bullet_white.png) no-repeat scroll 0 4px;
     list-style-type: none;
     padding-left: 20px;
@@ -533,12 +559,12 @@ p.wp-caption-text {
     width: 30%;
 }
 
-#content .post .post-footer {
+.content .post .post-footer {
     height: 25px;
     border-top: 1px dotted #ddd;
 }
 
-#content .post .post-tags {
+.content .post .post-tags {
     width: 550px;
     padding-left: 20px;
     padding-top: 10px;
@@ -546,7 +572,7 @@ p.wp-caption-text {
     color: #aaa;
 }
 
-#content .post .post-tags a {
+.content .post .post-tags a {
     color: #222;
     text-decoration: none;
     display: inline-block;
@@ -555,17 +581,17 @@ p.wp-caption-text {
     background: #FFF9E8;
 }
 
-#content .post .post-tags a:hover {
+.content .post .post-tags a:hover {
     color: #fff;
     background: #0093F0;
 }
 
-#content .post .morelink {
+.content .post .morelink {
     float: right;
     margin-right: 10px;
 }
 
-#content .post .morelink a {
+.content .post .morelink a {
     display: block;
     width: 16px;
     height: 16px;
@@ -575,68 +601,61 @@ p.wp-caption-text {
     padding: 10px 15px;
 }
 
-#content .post .apnavi {
+.content .post .apnavi {
     margin-bottom: 20px;
     font-size: 12px;
     line-height: 1.5;
 }
 
-#content .post .apnavi span {
+.content .post .apnavi span {
     padding: 0 3px;
 }
 
-#content .postnavi {
+.content .postnavi {
     padding: 6px 15px;
     font-size: 12px;
 }
 
-#content .postnavi i {
+.content .postnavi i {
     font-size: 16px;
     position: relative;
     top: 2px;
 }
 
-#content .postnavi .prev {
-}
-
-#content .postnavi .next {
-}
-
-#content .pagenavi {
+.content .pagenavi {
     font-size: 12px;
     padding: 5px 0;
     line-height: 1.5;
 }
 
-#content .pagenavi .newer a,
-#content .pagenavi .older a {
+.content .pagenavi .newer a,
+.content .pagenavi .older a {
     display: block;
     border: 1px solid #dfdfdf;
     padding: 5px 10px;
 }
 
-#content .pagenavi .newer a {
+.content .pagenavi .newer a {
     background: #f9f9f9 url(img/post-nav-next.gif) no-repeat scroll 80px 7px;
     padding-right: 30px !important;
 }
 
-#content .pagenavi .older a {
+.content .pagenavi .older a {
     background: #f9f9f9 url(img/post-nav-previous.gif) no-repeat scroll 10px 7px;
     padding-left: 30px !important;
 }
 
-#content .post .tag-clouds-tpl {
+.content .post .tag-clouds-tpl {
     line-height: 32px;
     margin-bottom: 20px;
 }
 
-#content .post .tag-clouds-tpl a {
+.content .post .tag-clouds-tpl a {
     margin: 0 3px;
 }
 
 /* Apply comments styles */
 #comments {
-    margin-top: 14px;
     background: #f9f9f9;
     border: 1px solid #dfdfdf;
     padding: 15px;
@@ -734,7 +753,6 @@ img.avatar {
 
 .respond {
     margin-bottom: 10px;
-    padding-right: 10px;
 }
 
 .respond .cancel-comment-reply {
@@ -812,18 +830,14 @@ img.avatar {
 }
 
 /* Apply sidebar styles */
-#left-sidebar, #right-sidebar {
-    float: left;
-}
-
 #left-sidebar {
-    width: 148px;
-    position: absolute;
+    float: left;
+    width: 150px;
 }
 
 #right-sidebar {
-    width: 200px;
-    margin-left: 10px;
+    float: right;
+    width: 190px;
 }
 
 .sidebar {
@@ -943,20 +957,20 @@ img.avatar {
     color: #ccc;
 }
 
-#footer .content {
+#footer .container {
     width: 1000px;
     margin: 0 auto;
     padding: 15px 0;
     position: relative;
 }
 
-#footer .content .gotop {
+#footer .container .gotop {
     position: absolute;
     top: 0;
     right: 0;
 }
 
-#footer .content .gotop a {
+#footer .container .gotop a {
     display: block;
     background: #f1f1f1;
     padding: 3px 8px;
@@ -967,7 +981,7 @@ img.avatar {
     text-decoration: none;
 }
 
-#footer .content .gotop a:hover {
+#footer .container .gotop a:hover {
     color: #111;
 }
 

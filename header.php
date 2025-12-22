@@ -43,10 +43,11 @@
 
 <body>
     <!-- wrapper start -->
-    <div id="wrapper">
+    <div id="wrapper" class="<?php $status = getSiderbarStatus();
+                                echo $status->containerClass ?>">
         <!-- header start -->
         <div id="header">
-            <div class="content">
+            <div class="container">
                 <div id="logo">Hi@<a href="<?php $this->options->siteUrl(); ?>"
                         title="<?php $this->options->title() ?>"><?php $this->options->title() ?></a>$su root-
                 </div>
@@ -72,22 +73,24 @@
         </div>
         <!-- header end -->
         <!-- topbox start -->
-        <div id="topbox" class="box">
-            <div class="welcome left"> <?php if ($this->user->hasLogin()): ?>Welcome back, <a
-                    href="<?php $this->options->adminUrl(); ?>"><?php $this->user->screenName(); ?></a>, how about you today. <?php else: ?>Hi, new friend, nice to meet you, welcome to my blog. <?php endif; ?>
-            </div>
+        <div class="container">
+            <div id="topbox" class="box">
+                <div class="welcome left"> <?php if ($this->user->hasLogin()): ?>Welcome back, <a
+                        href="<?php $this->options->adminUrl(); ?>"><?php $this->user->screenName(); ?></a>, how about you today. <?php else: ?>Hi, new friend, nice to meet you, welcome to my blog. <?php endif; ?>
+                </div>
 
-            <div class="subscribe right">
-                <ul>
-                    <li class="rssfeed"><span><a href="<?php $this->options->feedUrl(); ?>" title="Subscribe RSS Feed"><i
-                                    class="icon-rss"></i></a></span></li>
-                    <?php if ($this->options->weibo): ?>
-                        <li><span><a href="<?php $this->options->weibo() ?>" target="_blank" class="weibo text-hide"
-                                    data-toggle="tooltip" data-placement="auto" title="关注我的微博">微博</a></li></span>
-                    <?php endif; ?>
-                </ul>
+                <div class="subscribe right">
+                    <ul>
+                        <li class="rssfeed"><span><a href="<?php $this->options->feedUrl(); ?>" title="Subscribe RSS Feed"><i
+                                        class="icon-rss"></i></a></span></li>
+                        <?php if ($this->options->weibo): ?>
+                            <li><span><a href="<?php $this->options->weibo() ?>" target="_blank" class="weibo text-hide"
+                                        data-toggle="tooltip" data-placement="auto" title="关注我的微博">微博</a></li></span>
+                        <?php endif; ?>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
                 <div class="clear"></div>
             </div>
-            <div class="clear"></div>
         </div>
         <!-- topbox end -->
