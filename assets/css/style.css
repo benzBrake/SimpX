@@ -933,13 +933,14 @@ img.avatar {
     font-size: 12px;
 }
 
-.sidebar .widget {
+/* Apply widget styles */
+.widget {
     background: #f9f9f9;
     border: 1px solid #dfdfdf;
     margin-bottom: 10px;
 }
 
-.sidebar .widget .widget-title {
+.widget .widget-title {
     font: bold 15px verdana, arial, sans-serif;
     font-weight: bold;
     padding: 5px 10px;
@@ -948,22 +949,22 @@ img.avatar {
     border-bottom: 1px dotted #ddd;
 }
 
-.sidebar .widget .widget-title i {
+.widget .widget-title i {
     padding-right: 4px;
 }
 
-.sidebar .widget .widget-body {
+.widget .widget-body {
     background: #fff;
 }
 
-.sidebar .widget .widget-browser .widget-body,
+.widget .widget-browser .widget-body,
 .sidebar #tagCloud .widget-body {
     padding: 5px 15px;
 }
 
-.sidebar .widget ul {}
+.widget ul {}
 
-.sidebar .widget ul li {
+.widget ul l {
     /* background: url(img/bullet.png) no-repeat scroll 0 8px; */
     line-height: 1.85;
     font-size: 12px;
@@ -971,21 +972,21 @@ img.avatar {
     clear: both;
 }
 
-.sidebar .widget ul li a {
+.widget ul l a {
     padding-left: 8px;
     padding-right: 5px;
     border-bottom: solid 1px #eee;
     display: block;
 }
 
-.sidebar .widget ul li a:hover {
+.widget ul l a:hover {
     background: #F8FCFE;
     color: #0093F0;
     border-left: 3px solid #0093F0;
     padding-left: 5px;
 }
 
-.sidebar .widget ul li img {
+.widget ul l img {
     float: left;
     height: 30px;
     width: 30px;
