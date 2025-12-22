@@ -39,9 +39,9 @@ $this->need('header.php');
                             rel="bookmark"><?php $this->title() ?></a>
                     </h2>
                 </div>
-                <div class="post-content">
-                    <?php $this->excerpt(350, '...'); ?>
-                    <!--<?php $this->content(); ?>-->
+                <div class="post-content-wrapper">
+                    <div class="post-content-placeholder">&nbsp;<br>&nbsp;<br>&nbsp;<br></div>
+                    <div class="post-content"><?php $this->excerpt(350, '...'); ?></div>
                     <div class="clear"></div>
                 </div>
                 <div class="post-footer">

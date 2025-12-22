@@ -26,9 +26,7 @@
                     <h2 class="post-title"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark"><?php $this->title() ?></a></h2>
                 </div>
 
-                <div class="post-content">
-                    <?php $this->excerpt(350, '...'); ?>
-                </div>
+                <div class="post-content"><?php $this->excerpt(350, '...'); ?></div>
                 <?php if ($this->is('archive')): ?>
                     <div class="post-footer">
                         <div class="more-link">
