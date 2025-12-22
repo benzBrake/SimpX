@@ -1047,18 +1047,21 @@ p.wp-caption-text {
 
 #search-box .search-field {
     border: 1px solid #ccc;
-    width: 115px;
     font: 12px/1 lucida sans unicode, lucida grande, lucida, arial, sans-serif;
     padding: 3px;
+    width: 123px;
+    height: 18px;
 }
 
 #search-box .search-button {
     border: 1px solid #ccc;
     font: 12px/1 arial, sans-serif;
-    padding: 3px 3px 2px;
-    margin-left: -5px;
     background: #f9f9f9;
     cursor: pointer;
+    float: right;
+    height: 26px;
+    width: 48px;
+    padding: 0 8px;
 }
 
 #search-box .search-button:hover {
