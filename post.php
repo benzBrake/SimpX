@@ -1,8 +1,6 @@
 <?php $this->need('header.php'); ?>
-
-
 <!-- container start -->
-<div class="container">
+<div class="container single">
     <!-- content start -->
     <?php $status = getSiderbarStatus(); ?>
     <?php if ($status->showLeftSidebar): ?>
@@ -16,22 +14,18 @@
         </div>
     <?php endif; ?>
     <div id="main" class="content">
-        <div class="posthead box">
-            <a href="/" title="Back to Home">Home</a> <i class="icon-arrow-right"></i> <?php $this->category(','); ?> <i class="icon-arrow-right"></i> <?php $this->title() ?>
+        <div class="post-breadcrumb box">
+            <a href="<?php $this->options->index(); ?>" title="<?php _e("回到首页") ?>"><?php _e("首页") ?></a><i class="icon-arrow-right"></i><?php $this->category(','); ?><i class="icon-arrow-right"></i><?php $this->title() ?>
         </div>
-
         <div class="post box">
             <div class="post-header">
-                <h1 class="post-title"><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark"><?php $this->title() ?></a></h1>
-                <div class="post-meta">
-                    <ul>
-                        <li class="meta-date"><i class="icon-calendar"></i><?php $this->date('F j, Y'); ?></li>
-                        <!--li class="meta-views"></li-->
-                        <li class="meta-cat"><i class="icon-list"></i><?php $this->category(','); ?></li>
-                        <li class="meta-comments"><i class="icon-comment"></i><a href="<?php $this->permalink() ?>#comments" title="Comment on <?php $this->title() ?>"><?php $this->commentsNum('No Comments', '1 Comment', '%d Comments'); ?></a></li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
+                <h2 class="post-title"><i class="icon-text"></i><a href="<?php $this->permalink() ?>" title="<?php $this->title() ?>" rel="bookmark"><?php $this->title() ?></a></h2>
+                <ul class="post-meta">
+                    <li class="meta-date"><i class="icon-calendar"></i><?php $this->date(); ?></li>
+                    <!--li class="meta-views"></li-->
+                    <li class="meta-cat"><i class="icon-list"></i><?php $this->category(','); ?></li>
+                    <li class="meta-comments"><i class="icon-comment"></i><a href="<?php $this->permalink() ?>#comments" title="<?php _e("对《%s》发表评论", $this->title) ?>"><?php $this->commentsNum('暂无评论', '1 评论', '%d 评论'); ?></a></li>
+                </ul>
             </div>
             <!-- article-page start -->
             <div class="post-content">
@@ -39,7 +33,7 @@
                 <div class="clear"></div>
             </div>
             <div class="post-footer">
-                <p class="post-tags"><?php $this->tags(', ', true, 'none'); ?></p>
+                <p class="post-tags"><i class="icon-tag"></i><?php $this->tags(', ', true, _t('Notice: undefined index: 0 in post.php')); ?></p>
             </div>
             <!-- article-page end -->
         </div>
@@ -68,13 +62,13 @@
             </ul>
         </div>
         <!-- related-posts end -->
-        <!-- postnavi start -->
-        <div class="postnavi box">
+        <!-- post-navi start -->
+        <div class="post-navi box">
             <p class="prev right"><?php $this->thePrev(); ?><i class="icon-arrow-right"></i></p>
             <p class="next left"><i class="icon-arrow-left"></i><?php $this->theNext(); ?></p>
             <div class="clear"></div>
         </div>
-        <!-- postnavi end -->
+        <!-- post-navi end -->
         <?php $this->need('comments.php'); ?>
     </div>
     <!-- content end -->

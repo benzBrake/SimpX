@@ -17,7 +17,7 @@
     <?php endif; ?>
     <div id="main" class="content">
         <?php if ($this->is('archive')): ?>
-            <div class="posthead box"><?php _e('Archive for the category: '); ?><strong><?php $this->category(','); ?></strong></div>
+            <div class="post-breadcrumb box"><?php _e('Archive for the category: '); ?><strong><?php $this->category(','); ?></strong></div>
         <?php endif; ?>
 
         <?php while ($this->next()): ?>

@@ -415,30 +415,30 @@ p.wp-caption-text {
     color: #222;
 }
 
-/* Apply topbox styles */
-#topbox {
+/* Apply top-box styles */
+#top-box {
     font-size: 12px;
-    padding: 6px 15px;
+    padding: 6px 10px;
     margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
 }
 
-#topbox .welcome {
+#top-box .welcome {
     background: url(../../img/xiao16.png) no-repeat scroll 0 1px;
     padding-left: 20px;
 }
 
-#topbox .subscribe ul li {
+#top-box .subscribe ul li {
     display: inline;
     margin-left: 15px;
 }
 
-#topbox .subscribe ul li span {
+#top-box .subscribe ul li span {
     padding-left: 20px;
 }
 
-#topbox .subscribe ul li.twitter-user {
+#top-box .subscribe ul li.twitter-user {
     background: url(img/twitter_16.png) no-repeat scroll 0 0;
 }
 
@@ -464,12 +464,12 @@ p.wp-caption-text {
 }
 
 .content .notice,
-.content .posthead {
+.content .post-breadcrumb {
     font-size: 12px;
-    padding: 6px 15px;
+    padding: 5px 10px;
 }
 
-.content .posthead i {
+.content .post-breadcrumb i {
     top: 4px;
     position: relative;
     font-size: 1.5em;
@@ -486,7 +486,19 @@ p.wp-caption-text {
 
 .content .post .post-header {
     border-bottom: 1px dotted #ddd;
+}
+
+.content .post .post-header .post-title {
     padding: 10px;
+}
+
+.content .post .post-header .post-title i {
+    vertical-align: -1px;
+    margin-right: 3px;
+}
+
+.single .content .post .post-header .post-title {
+    margin-right: 0;
 }
 
 .content .post .post-header .post-author-gravatar {
@@ -502,6 +514,9 @@ p.wp-caption-text {
     line-height: 1;
     text-shadow: 1px 1px 2px #ccc;
 }
+.content .post .post-title i {
+    margin-left: -3px;
+}
 
 .content .post .post-title a {
     color: #545454;
@@ -512,13 +527,9 @@ p.wp-caption-text {
     color: #d54e21;
 }
 
-.content .post .post-title i {
-    padding-right: 5px;
-}
-
 .content .post .post-header .post-meta {
     color: #aaa;
-    margin-right: 30px;
+    padding: 0 10px 5px;
 }
 
 .content .post ul.post-meta li {
@@ -554,10 +565,14 @@ p.wp-caption-text {
 
 .content .post .post-content {
     overflow: hidden;
-    padding: 5px 15px;
+    padding: 5px 10px;
     font: 13px/1.65 "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-    ;
     background: #fff;
+    
+}
+
+.container.single .post-content {
+    min-height: 100px;
 }
 
 .content .post .post-content strong {
@@ -565,7 +580,7 @@ p.wp-caption-text {
 }
 
 .content .post .post-content p {
-    margin: 8px;
+    margin: 8px 0;
 }
 
 .content .post .post-content h3 {
@@ -632,11 +647,13 @@ p.wp-caption-text {
 }
 
 .content .post .post-tags {
-    width: 550px;
-    padding-left: 20px;
-    padding-top: 10px;
     font-size: 12px;
     color: #aaa;
+    padding: 10px;
+}
+
+.content .post .post-tags i {
+    padding-right: 3px;
 }
 
 .content .post .post-tags a {
@@ -667,12 +684,12 @@ p.wp-caption-text {
     padding: 0 3px;
 }
 
-.content .postnavi {
+.content .post-navi {
     padding: 6px 15px;
     font-size: 12px;
 }
 
-.content .postnavi i {
+.content .post-navi i {
     font-size: 16px;
     position: relative;
     top: 2px;

@@ -72,9 +72,9 @@
             </div>
         </div>
         <!-- header end -->
-        <!-- topbox start -->
+        <!-- top-box start -->
         <div class="container">
-            <div id="topbox" class="box">
+            <div id="top-box" class="box">
                 <div class="welcome left"> <?php if ($this->user->hasLogin()): ?>Welcome back, <a
                         href="<?php $this->options->adminUrl(); ?>"><?php $this->user->screenName(); ?></a>, how about you today. <?php else: ?>Hi, new friend, nice to meet you, welcome to my blog. <?php endif; ?>
                 </div>
@@ -93,4 +93,4 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <!-- topbox end -->
+        <!-- top-box end -->
