@@ -991,29 +991,28 @@ img.avatar {
 
 .widget ul {}
 
-.widget ul l {
-    /* background: url(img/bullet.png) no-repeat scroll 0 8px; */
+.widget ul li {
     line-height: 1.85;
     font-size: 12px;
     line-height: 23px;
     clear: both;
 }
 
-.widget ul l a {
+.widget ul li a {
     padding-left: 8px;
     padding-right: 5px;
     border-bottom: solid 1px #eee;
     display: block;
 }
 
-.widget ul l a:hover {
+.widget ul li a:hover {
     background: #F8FCFE;
     color: #0093F0;
     border-left: 3px solid #0093F0;
     padding-left: 5px;
 }
 
-.widget ul l img {
+.widget ul li img {
     float: left;
     height: 30px;
     width: 30px;
@@ -1021,7 +1020,7 @@ img.avatar {
     margin: 3px 5px 0 5px;
 }
 
-.widget ul li img.avatar {
+.widget ul lii img.avatar {
     padding-top: 7px;
     padding-right: 5px;
 }
