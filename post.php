@@ -64,8 +64,8 @@
         <!-- related-posts end -->
         <!-- post-navi start -->
         <div class="post-navi box">
-            <p class="prev right"><?php $this->thePrev(); ?><i class="icon-arrow-right"></i></p>
-            <p class="next left"><i class="icon-arrow-left"></i><?php $this->theNext(); ?></p>
+            <div class="post-navi-next"><i class="icon-arrow-left"></i><?php $this->theNext(); ?></div>
+            <div class="post-navi-prev"><?php $this->thePrev(); ?><i class="icon-arrow-right"></i></div>
             <div class="clear"></div>
         </div>
         <!-- post-navi end -->

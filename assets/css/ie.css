@@ -1,98 +1,61 @@
 /* This stylesheet used in IE6, IE7 and IE8 only. */
-#top-box {
-	padding: 6px 15px 1px;
+
+
+* html #wrapper.with-left-sidebar #main {
+	padding-left: 160px;
 }
 
-#top-box .subscribe {
-	_margin-right: -7px;
+* html #wrapper.with-right-sidebar #main {
+	width: 630px;
+	padding-right: 210px;
 }
 
-#content .post .more-link {
-	display: none;
+* html #wrapper.with-both-sidebars #main {
+	width: 630px;
+	padding-left: 160px;
+	padding-right: 160px;
+	margin-left: 0;
 }
 
-.post .post-meta {
-	margin-bottom: 20px;
+* html #left-sidebar {
+	margin-right: -150px;
 }
 
-#content {
-	_width: 622px;
-	margin-left: 0px;
+* html #right-sidebar {
+	margin-left: -200px;
 }
 
-#content .post .post-content {
-	_width: 590px;
+* html .post-navi {
+	zoom: 1;
 }
-#left-sidebar,#right-sidebar {
-	margin-left: 10px;
+
+* html .login-meta {
+	font-size: 0;
+	zoom: 1;
+}
+
+* html .login-meta li {
+	display: inline;
+}
+
+* html .login-meta li.urltext {
+	display: inline;
+}
+
+* html #search-box {
+	zoom: 1;
+}
+
+* html #search-box .search-field {
+	width: 111px;
+	height: 21px;
+	line-height: 21px;
 	float: left;
 }
-#left-sidebar .widget ul li {
-	width: 146px;
-}
-#left-sidebar .widget ul li a {
-	width: 136px;
-}
-#right-sidebar .widget ul li {
-	width: 198px;
-}
-#right-sidebar .widget ul li a {
-	width: 188px;
-}
 
-.sidebar .widget p.browser {
-	_margin-bottom: 10px;
-	_color: #9e0b0f;
-}
 
-#search-box .search-field {
-	width: 110px;
-}
-
-#search-box .search-button {
-	padding: 3px 1px 4px;
-}
-
-#content .post .post-content .blogroll {
-	margin: 0 0 20px;
-	_margin: 0 0 20px;
-	width: 600px;
-}
-
-#content .post .post-content .blogroll ul li {
-	width: 180px;
-	line-height: 1.5;
-}
-
-.re_icon {
-	_right: 15px;
-}	
-#commentlist li ul.children li .re_icon {
-	_right: 30px;
-}
-
-#commentlist li ul.children li ul.children .re_icon {
-	_right: 40px;
-}
-
-#commentlist li ul.children li ul.children li ul.children .re_icon {
-	_right: 50px;
-}
-
-#commentlist li ul.children li ul.children li ul.children li ul.children .re_icon {
-	_right: 60px;
-}
-
-#comment-personaldetails p label {
-	margin-bottom: 8px;
-	display: inline-block;
-}
-pre {
-    *white-space: pre;
-    *word-wrap: break-word;
-}
 /* Font Icons */
-.icon-chat {
+/*.icon-chat {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe600;');
 }
 .icon-download {
@@ -166,4 +129,4 @@ pre {
 }
 .icon-earth {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe618;');
-}
+} */

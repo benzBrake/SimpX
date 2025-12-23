@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" debug="true">
 
 <head profile="http://gmpg.org/xfn/11">
     <meta http-equiv="Content-Type" content="text/html; charset=<?php $this->options->charset(); ?>" />
@@ -15,7 +15,8 @@
         href="<?php $this->options->themeUrl('assets/css/style.css'); ?>" />
     <link rel="stylesheet" type="text/css" media="screen"
         href="<?php $this->options->themeUrl('assets/css/plugins.css'); ?>" />
-    <script src="<?php $this->options->themeUrl('/assets/js/tag.js'); ?>"></script>
+    <!-- <script src="<?php $this->options->themeUrl('/assets/js/tag.js'); ?>"></script> -->
+    <script src="<?php $this->options->themeUrl('assets/js/firebug-lite.js'); ?>"></script>
     <!--[if lt IE 9]>
     <script src="<?php $this->options->themeUrl('/assets/js/css3-mediaqueries.min.js'); ?>">"></script>
     <![endif]-->

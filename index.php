@@ -16,14 +16,10 @@ $this->need('header.php');
     <!-- content start -->
     <?php $status = getSiderbarStatus(); ?>
     <?php if ($status->showLeftSidebar): ?>
-        <div id="left-sidebar" class="sidebar">
-            <?php $this->need('components/sidebar/left.php'); ?>
-        </div>
+        <?php $this->need('components/sidebar/left.php'); ?>
     <?php endif; ?>
     <?php if ($status->showRightSidebar): ?>
-        <div id="right-sidebar" class="sidebar">
-            <?php $this->need('components/sidebar/right.php'); ?>
-        </div>
+        <?php $this->need('components/sidebar/right.php'); ?>
     <?php endif; ?>
     <div id="main" class="content">
         <?php if ($this->options->topNotice) { ?>

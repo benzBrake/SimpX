@@ -13,13 +13,6 @@
 <!-- javascript start -->
 <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/jquery-1.9.1.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/base.js'); ?>"></script>
-<!--baidu share start-->
-<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6787278"></script>
-<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
-</script>
-<!--baidu share end-->
 <!-- javascript end -->
 <?php $this->footer(); ?>
 <?php

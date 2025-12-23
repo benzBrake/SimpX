@@ -6,8 +6,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 /* @var Widget_Archive $this */
 ?>
 
-<div id="left-sidebar" class="sidebar">
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowCategory', $this->options->sidebarBlock)): ?>
+<div id="left-sidebar" class="sidebar left">
+    <?php if (empty($this->options->leftSidebarModules) || in_array('ShowCategory', $this->options->leftSidebarModules)): ?>
         <div class="widget">
             <h3 class="widget-title"><i class="icon-layout"></i><?php _e('Categories'); ?></h3>
             <div class="widget-body">
@@ -19,7 +19,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         </div>
     <?php endif; ?>
     <?php if (isPluginEnabled('Links')): ?>
-        <?php if (empty($this->options->sidebarBlock) || in_array('ShowBlogroll', $this->options->sidebarBlock)): ?>
+        <?php if (empty($this->options->leftSidebarModules) || in_array('ShowBlogroll', $this->options->leftSidebarModules)): ?>
             <div class="widget">
                 <h3 class="widget-title"><i class="icon-users"></i>Friends</h3>
                 <div class="widget-body">
@@ -30,7 +30,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             </div>
         <?php endif; ?>
     <?php endif; ?>
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowArchive', $this->options->sidebarBlock)): ?>
+    <?php if (empty($this->options->leftSidebarModules) || in_array('ShowArchive', $this->options->leftSidebarModules)): ?>
         <div class="widget">
             <h3 class="widget-title"><i class="icon-calendar"></i>Archives</h3>
             <div class="widget-body">
@@ -41,7 +41,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             </div>
         </div>
     <?php endif; ?>
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowQRCode', $this->options->sidebarBlock)): ?>
+    <?php if (empty($this->options->leftSidebarModules) || in_array('ShowQRCode', $this->options->leftSidebarModules)): ?>
         <div class="widget widget-qrcode">
             <h3 class="widget-title"><i class="icon-earth"></i>QRCode</h3>
             <div class="widget-body">
@@ -50,7 +50,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             </div>
         </div>
     <?php endif; ?>
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowOther', $this->options->sidebarBlock)): ?>
+    <?php if (empty($this->options->leftSidebarModules) || in_array('ShowOther', $this->options->leftSidebarModules)): ?>
         <div class="widget">
             <h3 class="widget-title"><i class="icon-forward"></i>Other</h3>
             <div class="widget-body">

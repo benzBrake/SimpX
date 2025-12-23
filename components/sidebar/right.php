@@ -9,7 +9,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 <div id="right-sidebar" class="sidebar">
     <!-- searchform start -->
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowSearchBox', $this->options->sidebarBlock)): ?>
+    <?php if (empty($this->options->rightSidebarModules) || in_array('ShowSearchBox', $this->options->rightSidebarModules)): ?>
         <div id="search-box" class="box">
             <form action="" method="get">
                 <label for="s" class="screen-reader-text"><?php _e("搜索内容") ?></label><input type="text" class="search-field" name="s" 
@@ -31,7 +31,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             </div>
         </div>
         <![endif]-->
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
+    <?php if (empty($this->options->rightSidebarModules) || in_array('ShowRecentPosts', $this->options->rightSidebarModules)): ?>
         <div class="widget">
             <h3 class="widget-title"><i class="icon-list"></i>Recent Posts</h3>
             <div class="widget-body recent-posts">
@@ -41,7 +41,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             </div>
         </div>
     <?php endif; ?>
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowRecentComments', $this->options->sidebarBlock)): ?>
+    <?php if (empty($this->options->rightSidebarModules) || in_array('ShowRecentComments', $this->options->rightSidebarModules)): ?>
         <?php if ($this->is('index')): ?>
             <div class="widget widget-comments">
                 <h3 class="widget-title"><i class="icon-user"></i>Recent Comments</h3>
@@ -69,7 +69,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             </div>
         <?php endif; ?>
     <?php endif; ?>
-    <?php if (empty($this->options->sidebarBlock) || in_array('ShowTagCloud', $this->options->sidebarBlock)): ?>
+    <?php if (empty($this->options->rightSidebarModules) || in_array('ShowTagCloud', $this->options->rightSidebarModules)): ?>
         <div class="widget" id="tagCloud">
 
             <h3 class="widget-title"><i class="icon-tag"></i>Tag Cloud</h3>
