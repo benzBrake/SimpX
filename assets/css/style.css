@@ -861,6 +861,7 @@ p.wp-caption-text {
 .comment-author .avatar {
     float: left;
     margin-right: 8px;
+    margin-top: 4px;
 }
 
 .comment-body {
