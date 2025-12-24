@@ -64,8 +64,8 @@
         <!-- related-posts end -->
         <!-- post-navi start -->
         <div class="post-navi box">
-            <div class="post-navi-next"><i class="icon-arrow-left"></i><?php $this->theNext(); ?></div>
             <div class="post-navi-prev"><?php $this->thePrev(); ?><i class="icon-arrow-right"></i></div>
+            <div class="post-navi-next"><i class="icon-arrow-left"></i><?php $this->theNext(); ?></div>
             <div class="clear"></div>
         </div>
         <!-- post-navi end -->
@@ -75,5 +75,4 @@
 </div>
 <div class="clear"></div>
 <!-- container end -->
-
 <?php $this->need('footer.php'); ?>

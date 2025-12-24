@@ -44,14 +44,19 @@
 
 * html #search-box {
 	zoom: 1;
+	position: relative;
 }
 
 * html #search-box .search-field {
-	width: 111px;
+	width: 112px;
 	height: 21px;
 	line-height: 21px;
-	float: left;
-	display: inline;
+}
+
+* html #search-box .search-button {
+	position: absolute;
+	right: 10px;
+	top: 11px;
 }
 
 * html .widget ul li a {
@@ -60,4 +65,8 @@
 
 * html .content .post .post-content ol {
 	padding-left: 10px;
+}
+
+.post-navi-prev {
+	float: left
 }

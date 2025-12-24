@@ -708,20 +708,23 @@ p.wp-caption-text {
 .content .post-navi {
     padding: 10px;
     font-size: 12px;
+    display: flex;
 }
 
 .content .post-navi i {
     font-size: 16px;
     position: relative;
     top: 2px;
+    zoom: 1;
 }
 
 .content .post-navi .post-navi-prev {
-    float: left;
+    flex: 1;
 }
 
 .content .post-navi .post-navi-next {
-    float: right;
+    flex: 1;
+    text-align: right;
 }
 
 .content .pagenavi {
@@ -968,13 +971,11 @@ p.wp-caption-text {
 #left-sidebar {
     float: left;
     width: 150px;
-    /* margin-right: -150px; */
 }
 
 #right-sidebar {
     float: right;
     width: 200px;
-    /* margin-left: -200px; */
 }
 
 .sidebar {
@@ -1067,13 +1068,17 @@ p.wp-caption-text {
 /* Apply searchform styles */
 #search-box {
     padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
 }
 
 #search-box .search-field {
     border: 1px solid #ccc;
     font: 12px/1 lucida sans unicode, lucida grande, lucida, arial, sans-serif;
     padding: 3px;
-    float:left;
+    flex: 1;
+    min-width: 0;
     box-sizing: border-box;
 }
 
@@ -1083,7 +1088,6 @@ p.wp-caption-text {
     background: #f9f9f9;
     cursor: pointer;
     padding: 6px 8px;
-    float: right;
     box-sizing: border-box;
 }
 
