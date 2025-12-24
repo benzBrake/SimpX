@@ -193,9 +193,9 @@ strong {
 }
 
 blockquote {
-    padding: 2px 2px 1px 15px;
+    padding: 2px 2px 2px 30px;
     color: #555;
-    background: #F4F5F7;
+    background: #F4F5F7 url(../img/blockquote.gif) no-repeat left top;
     border: 1px dashed #DEE9F6;
     font-size: 12px;
 }
@@ -445,6 +445,7 @@ p.wp-caption-text {
 /* Apply content styles */
 #main {
     width: 100%;
+    position: relative;
 }
 
 #wrapper.with-left-sidebar #main {
@@ -1072,7 +1073,7 @@ p.wp-caption-text {
     border: 1px solid #ccc;
     font: 12px/1 lucida sans unicode, lucida grande, lucida, arial, sans-serif;
     padding: 3px;
-    width: 137px;
+    float:left;
     box-sizing: border-box;
 }
 
