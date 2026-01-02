@@ -97,56 +97,60 @@ function getSiderbarStatus()
     return SUtils::getInstance()->getSidebarStatus();
 }
 
-function getPermalinkFromCoid($coid)
+function themeFields($layout)
 {
-    $db       = Typecho_Db::get();
-    $options  = Typecho_Widget::widget('Widget_Options');
-    $contents = Typecho_Widget::widget('Widget_Abstract_Contents');
+    if ($_SERVER['SCRIPT_NAME'] == "/admin/write-post.php") {
+        $copyright = new Typecho_Widget_Helper_Form_Element_Textarea('copyright', NULL, NULL, _t('文章来源'), _t('填入链接，一行一个（留空为不显示）'));
+        $copyright->input->setAttribute('style', 'width: 100%');
+        $layout->addItem($copyright);
+        echo '
+<style id="copyright-editor-style">
+.copyright-editor{
+    border:1px solid #ddd;
+    padding:8px;
+    margin-top:6px;
+    background:#f9f9f9;
+    position: relative;
+}
+.copyright-editor-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+#copyright-add {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.copyright-item {
+    margin-bottom:6px;
+    cursor:move;
+    padding:4px;
+    border:1px solid #ccc;
+    background:#f9f9f9;
+    list-style: none;
+}
+.copyright-item input{
+    width:40%;
+    margin-right:6px;
+    float:left;
+}
+.copyright-item .delete-btn{
+    float:left;
+    cursor:pointer;
+    background-color: #ffd9d1;
+}
+.clear{clear:both;}
+</style>
 
-    $row = $db->fetchRow($db->select('cid, type, author, text')->from('table.comments')
-        ->where('coid = ? AND status = ?', $coid, 'approved'));
+<div class="copyright-editor" id="copyright-editor" style="display: none">
+    <label class="copyright-editor-label"><i class="i-caret-right"></i>版权所有</label>
+    <button type="button" id="copyright-add" class="btn btn-xs primary">添加文章来源</button>
+    <div id="copyright-list"></div>
+</div>
 
-    if (empty($row)) return 'Comment not found!';
-    $cid = $row['cid'];
-
-    $select = $db->select('coid, parent')->from('table.comments')
-        ->where('cid = ? AND status = ?', $cid, 'approved')->order('coid');
-
-    if ($options->commentsShowCommentOnly)
-        $select->where('type = ?', 'comment');
-
-    $comments = $db->fetchAll($select);
-
-    if ($options->commentsOrder == 'DESC')
-        $comments = array_reverse($comments);
-
-    foreach ($comments as $key => $val)
-        $array[$val['coid']] = $val['parent'];
-
-    $i = $coid;
-    while ($i != 0) {
-        $break = $i;
-        $i = $array[$i];
+<script id="copyright-editor-script" src="' . Helper::options()->themeUrl('assets/js/copyright-editor.js', 'SimpX') . '" dragsortsrc="' . Helper::options()->themeUrl('assets/js/jquery.dragsort.min.js', 'SimpX') . '"></script>';
     }
-
-    $count = 0;
-    foreach ($array as $key => $val) {
-        if ($val == 0) $count++;
-        if ($key == $break) break;
-    }
-
-    $parentContent = $contents->push($db->fetchRow($contents->select()->where('table.contents.cid = ?', $cid)));
-    $permalink = rtrim($parentContent['permalink'], '/');
-
-    $page = ($options->commentsPageBreak)
-        ? '/comment-page-' . ceil($count / $options->commentsPageSize)
-        : (substr($permalink, -5, 5) == '.html' ? '' : '/');
-
-    return array(
-        "author" => $row['author'],
-        "text" => $row['text'],
-        "href" => "{$permalink}{$page}#{$row['type']}-{$coid}"
-    );
 }
 function themeConfig($form)
 {
