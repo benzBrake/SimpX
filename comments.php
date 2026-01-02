@@ -1212,6 +1212,12 @@
                     vertical-align: -3px;
                     margin-right: 2px;
                     border: 0;
+                    padding: 0;
+                    background: transparent;
+                    -webkit-box-shadow: unset;
+                    -moz-box-shadow: unset;
+                    box-shadow: unset;
+
                 }
             </style>
         </div>
