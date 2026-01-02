@@ -1,9 +1,12 @@
+<div class="clear"></div>
+</div>
+<!-- container end -->
 <!-- footer start -->
 <div id="footer">
     <div class="container">
         <p><a href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>"><?php $this->options->title() ?></a> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="Creative Commons Attribution 3.0 License" rel="external nofollow">Creative Commons Attribution 3.0 License</a>. <a href="<?php $this->options->feedUrl(); ?>"><?php _e('文章'); ?> RSS</a> and <a href="<?php $this->options->commentsFeedUrl(); ?>"><?php _e('评论'); ?> RSS</a>. </p>
         <p>Powered by <a href="http://www.typecho.org" title="typecho.org" rel="external nofollow">Typecho)))</a>. Theme designed by <a href="http://welee.me/" title="weleeTime" rel="external nofollow">weleeTime</a>&<a href="http://32mb.cc" title="逗妇乳">Ryan</a></p>
-        <div class="gotop"><a href="#" title="Top">Top</a></div>
+        <div class="go-top"><a href="#" title="Top">Top</a></div>
     </div>
 </div>
 <!-- footer end -->
@@ -11,15 +14,19 @@
 <!-- wrapper end -->
 
 <!-- javascript start -->
-<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/jquery-1.9.1.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/jquery.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/jquery.poshytip.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/base.js'); ?>"></script>
 <!-- javascript end -->
 <?php $this->footer(); ?>
-<?php
-if ($this->is('single')) {
-    Helper::threadedCommentsScript();
-}
-?>
 </body>
-
 </html>
+<?php
+$htmlSource = ob_get_contents();
+ob_clean();
+if (Helper::options()->compressHtml) {
+    $htmlSource = compressHtml($htmlSource);
+}
+print $htmlSource;
+ob_end_flush();
+?>

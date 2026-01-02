@@ -1,4 +1,102 @@
 <?php
+
+
+class SUtils
+{
+    private static $_instance = null;
+    private $_sidebarStatus = null;
+    private $_pluginStatus = array(); // 缓存插件状态
+
+    private function __construct() {} // 禁止直接实例化
+
+    /**
+     * 获取单例实例
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance === null) {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * 获取侧边栏状态（带缓存）
+     */
+    public function getSidebarStatus()
+    {
+        if ($this->_sidebarStatus === null) {
+            $this->_sidebarStatus = $this->_computeSidebarStatus();
+        }
+        return $this->_sidebarStatus;
+    }
+
+    /**
+     * 检查插件是否启用（带缓存）
+     * 
+     * @param string $name 插件名称
+     * @return bool 是否启用
+     */
+    public function isPluginEnabled($name)
+    {
+        if (!isset($this->_pluginStatus[$name])) {
+            $plugins = Typecho_Plugin::export();
+            $this->_pluginStatus[$name] = isset($plugins['activated'][$name]);
+        }
+        return $this->_pluginStatus[$name];
+    }
+
+    /**
+     * 计算侧边栏状态（原始逻辑）
+     */
+    private function _computeSidebarStatus()
+    {
+        $options = Helper::options();
+
+        $hasLeftSidebar = isset($options->leftSidebarModules) &&
+            is_array($options->leftSidebarModules) &&
+            !empty($options->leftSidebarModules);
+
+        $hasRightSidebar = isset($options->rightSidebarModules) &&
+            is_array($options->rightSidebarModules) &&
+            !empty($options->rightSidebarModules);
+
+        if ($hasLeftSidebar && $hasRightSidebar) {
+            $wrapperClass = 'with-both-sidebars';
+        } elseif ($hasLeftSidebar) {
+            $wrapperClass = 'with-left-sidebar';
+        } elseif ($hasRightSidebar) {
+            $wrapperClass = 'with-right-sidebar';
+        } else {
+            $wrapperClass = 'no-sidebar';
+        }
+
+        return Typecho_Config::factory(array(
+            'showLeftSidebar' => $hasLeftSidebar,
+            'showRightSidebar' => $hasRightSidebar,
+            'wrapperClass' => $wrapperClass
+        ));
+    }
+}
+
+/**
+ * 检查插件是否启用
+ * 
+ * @param string $name 插件名称
+ * @return bool 是否启用
+ */
+function isPluginEnabled($name)
+{
+    return SUtils::getInstance()->isPluginEnabled($name);
+}
+/**
+ * 获取侧边栏状态
+ */
+function getSiderbarStatus()
+{
+    return SUtils::getInstance()->getSidebarStatus();
+}
+
 function getPermalinkFromCoid($coid)
 {
     $db       = Typecho_Db::get();
@@ -83,11 +181,28 @@ function themeConfig($form)
     );
     $form->addInput($rightSidebarModules->multiMode());
 
+    $compressHtml = new Typecho_Widget_Helper_Form_Element_Radio(
+        'compressHtml',
+        array(
+            '0' => _t('关闭'),
+            '1' => _t('开启'),
+        ),
+        true,
+        _t('HTML压缩'),
+        _t('开启后，将压缩HTML代码，减少页面体积，提高加载速度。')
+    );
+    $form->addInput($compressHtml);
 }
 
 function themeInit($self)
 {
     $options = Helper::options();
+    //评论启用 markdown 语法
+    $options->commentsMarkdown = true;
+    //允许评论使用表情
+    //允许图片标签
+    $options->commentsHTMLTagAllowed .= '<img class="" src="" data-src="" alt="" style="" title="" alt=""/>';
+
     $request = $self->request;
     if ($self->is('index')) {
         if ($request->is('qrcode')) {
@@ -102,29 +217,53 @@ function themeInit($self)
     }
 }
 
-function isPluginEnabled($name)
-{
-    $plugins = Typecho_Plugin::export();
-    return isset($plugins['activated'][$name]);
-}
 
-function getSiderbarStatus() {
-    $options = Helper::options();
-    $leftBlock = $options->leftSidebarModules;
-    $rightBlock = $options->rightSidebarModules;
-    $status = array(
-        'showLeftSidebar' => isset($leftBlock) && is_array($leftBlock) && !empty($leftBlock),
-        'showRightSidebar' => isset($rightBlock) && is_array($rightBlock) && !empty($rightBlock),
-    );
-    $status['containerClass'] = '';
-    if ($status['showLeftSidebar'] && $status['showRightSidebar']) {
-        $status['containerClass'] = 'with-both-sidebars';
-    } elseif ($status['showLeftSidebar']) {
-        $status['containerClass'] = 'with-left-sidebar';
-    } elseif ($status['showRightSidebar']) {
-        $status['containerClass'] = 'with-right-sidebar';
-    } else {
-        $status['containerClass'] = 'no-sidebar';
+function compressHtml($html_source)
+{
+    $chunks = preg_split('/(<!--<nocompress>-->.*?<!--<\/nocompress>-->|<nocompress>.*?<\/nocompress>|<pre.*?\/pre>|<textarea.*?\/textarea>|<script.*?\/script>)/msi', $html_source, -1, PREG_SPLIT_DELIM_CAPTURE);
+    $compress = '';
+    foreach ($chunks as $c) {
+        if (strtolower(substr($c, 0, 19)) == '<!--<nocompress>-->') {
+            $c = substr($c, 19, strlen($c) - 19 - 20);
+            $compress .= $c;
+            continue;
+        } else if (strtolower(substr($c, 0, 12)) == '<nocompress>') {
+            $c = substr($c, 12, strlen($c) - 12 - 13);
+            $compress .= $c;
+            continue;
+        } else if (strtolower(substr($c, 0, 4)) == '<pre' || strtolower(substr($c, 0, 9)) == '<textarea') {
+            $compress .= $c;
+            continue;
+        } else if (strtolower(substr($c, 0, 7)) == '<script' && strpos($c, '//') != false && (strpos($c, "\r") !== false || strpos($c, "\n") !== false)) { // JS代码，包含“//”注释的，单行代码不处理
+            $tmps = preg_split('/(\r|\n)/ms', $c, -1, PREG_SPLIT_NO_EMPTY);
+            $c = '';
+            foreach ($tmps as $tmp) {
+                if (strpos($tmp, '//') !== false) { // 对含有“//”的行做处理
+                    if (substr(trim($tmp), 0, 2) == '//') { // 开头是“//”的就是注释
+                        continue;
+                    }
+                    $chars = preg_split('//', $tmp, -1, PREG_SPLIT_NO_EMPTY);
+                    $is_quot = $is_apos = false;
+                    foreach ($chars as $key => $char) {
+                        if ($char == '"' && ($key == 0 || $chars[$key - 1] != '\\') && !$is_apos) {
+                            $is_quot = !$is_quot;
+                        } else if ($char == '\'' && ($key == 0 || $chars[$key - 1] != '\\') && !$is_quot) {
+                            $is_apos = !$is_apos;
+                        } else if ($char == '/' && isset($chars[$key + 1]) && $chars[$key + 1] == '/' && !$is_quot && !$is_apos) {
+                            $tmp = substr($tmp, 0, $key); // 不是字符串内的就是注释
+                            break;
+                        }
+                    }
+                }
+                $c .= $tmp;
+            }
+        }
+        $c = preg_replace('/[\\n\\r\\t]+/', ' ', $c); // 清除换行符，清除制表符
+        $c = preg_replace('/\\s{2,}/', ' ', $c); // 清除额外的空格
+        $c = preg_replace('/>\\s</', '> <', $c); // 清除标签间的空格
+        $c = preg_replace('/\\/\\*.*?\\*\\//i', '', $c); // 清除 CSS & JS 的注释
+        $c = preg_replace('/<!--[^!]*-->/', '', $c); // 清除 HTML 的注释
+        $compress .= $c;
     }
-    return Typecho_Config::factory($status);
+    return $compress;
 }

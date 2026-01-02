@@ -10,23 +10,22 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
-
-<!-- container start -->
-<div class="container">
-    <!-- content start -->
-    <?php $status = getSiderbarStatus(); ?>
-    <?php if ($status->showLeftSidebar): ?>
-        <?php $this->need('components/sidebar/left.php'); ?>
-    <?php endif; ?>
-    <?php if ($status->showRightSidebar): ?>
-        <?php $this->need('components/sidebar/right.php'); ?>
-    <?php endif; ?>
-    <div id="main" class="content">
-        <?php if ($this->options->topNotice) { ?>
-            <div class="notice box">
-                <?php $this->options->topNotice() ?>
-            </div>
-        <?php } ?>
+<!-- content start -->
+<?php $status = getSiderbarStatus(); ?>
+<?php if ($status->showLeftSidebar): ?>
+    <?php $this->need('components/sidebar/left.php'); ?>
+<?php endif; ?>
+<?php if ($status->showRightSidebar): ?>
+    <?php $this->need('components/sidebar/right.php'); ?>
+<?php endif; ?>
+<div id="main" class="content">
+    <?php if ($this->options->topNotice) { ?>
+        <div class="notice p-2 box">
+            <i class="icon-info"></i>
+            <?php $this->options->topNotice() ?>
+        </div>
+    <?php } ?>
+    <div class="post-list">
         <?php while ($this->next()): ?>
             <div class="post box">
                 <div class="post-header">
@@ -35,10 +34,7 @@ $this->need('header.php');
                             rel="bookmark"><?php $this->title() ?></a>
                     </h2>
                 </div>
-                <div class="post-content-wrapper">
-                    <div class="post-content-placeholder">&nbsp;<br>&nbsp;<br>&nbsp;<br></div>
-                    <div class="post-content"><?php $this->excerpt(350, '...'); ?></div>
-                    <div class="clear"></div>
+                <div class="post-content-wrapper"><div class="post-content-placeholder">&nbsp;<br>&nbsp;<br>&nbsp;<br></div><div class="post-content"><?php $this->excerpt(350, '...'); ?></div>
                 </div>
                 <div class="post-footer">
                     <div class="more-link">
@@ -46,28 +42,27 @@ $this->need('header.php');
                             rel="bookmark"><?php _e("查看全文"); ?></a>
                     </div>
                     <ul class="post-meta">
-                        <li class="meta-date"><i class="icon-calendar"></i><?php $this->date(); ?></li>
+                        <li class="meta-date"><i class="icon-calendar"></i><span class="has-tooltip" title="<?php _e("发布时间：%s", date(Helper::options()->postDateFormat, $this->created)) ?>"><?php $this->date(); ?></span></li>
                         <li class="meta-cat"><i class="icon-list"></i><?php $this->category(','); ?></li>
                         <li class="meta-comments"><i class="icon-comment"></i><a
+                                class="has-tooltip"
                                 href="<?php $this->permalink() ?>#comments"
-                                title="Comment on <?php $this->title() ?>"><?php $this->commentsNum(_t('暂无评论'), _t('1 条评论'), _t('%d 条评论')); ?></a>
+                                title="<?php _e("评论《%s》", $this->title); ?>"><?php $this->commentsNum(_t('暂无评论'), _t('1 条评论'), _t('%d 条评论')); ?></a>
                         </li>
                     </ul>
                     <div class="clear"></div>
                 </div>
             </div>
         <?php endwhile; ?>
-        <!-- pagenavi START -->
-        <div class="pagenavi">
-            <ol class="pages clearfix">
-                <?php $this->pageNav(); ?>
-            </ol>
-            <div class="clear"></div>
-        </div>
-        <!-- pagenavi END -->
     </div>
-    <!-- content end -->
-    <div class="clear"></div>
+    <!-- pagenavi START -->
+    <div class="pagenavi">
+        <ol class="pages clearfix">
+            <?php $this->pageNav(); ?>
+        </ol>
+        <div class="clear"></div>
+    </div>
+    <!-- pagenavi END -->
 </div>
-<!-- container end -->
+<!-- content end -->
 <?php $this->need('footer.php'); ?>

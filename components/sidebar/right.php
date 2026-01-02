@@ -68,7 +68,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         <?php endif; ?>
     <?php endif; ?>
     <?php if (empty($this->options->rightSidebarModules) || in_array('ShowTagCloud', $this->options->rightSidebarModules)): ?>
-        <div class="widget" id="tagCloud">
+        <div class="widget widget-tags">
 
             <h3 class="widget-title"><i class="icon-tag"></i>Tag Cloud</h3>
             <div class="widget-body">
