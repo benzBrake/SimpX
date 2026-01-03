@@ -1288,14 +1288,18 @@ a.badge-dark:hover {
 
 .post-navi {
     display: flex;
-    display: table-cell \9;
+    display: table \9;
     *zoom: 1;
+    width: 628px \9;
+    font-size: 13px;
 }
 
 .post-navi-prev,
 .post-navi-next {
     width: calc(50% - 10px);
+    width: 50% \9;
     padding: 10px;
+    display: table-cell \9;
 }
 
 .post-navi-next {
@@ -1386,7 +1390,7 @@ a.badge-dark:hover {
     display: inline-block;
     background-position: -9px 0;
     *position: absolute;
-    _top: 6px;
+    *top: 6px;
     *left: 0;
     _left: -12px;
 }
