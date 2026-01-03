@@ -158,6 +158,18 @@ function themeConfig($form)
     $topNotice = new Typecho_Widget_Helper_Form_Element_Text('topNotice', NULL, NULL, _t('顶部公告'), _t('这里可以输入一段文字显示顶部公告。（留空为不显示）'));
     $form->addInput($topNotice);
 
+    $weibo = new Typecho_Widget_Helper_Form_Element_Text('weibo', NULL, NULL, _t('微博链接'), _t('这里可以输入微博链接。（留空为不显示）'));
+    $form->addInput($weibo);
+
+    $renren = new Typecho_Widget_Helper_Form_Element_Text('renren', NULL, NULL, _t('人人链接'), _t('这里可以输入人人链接。（留空为不显示）'));
+    $form->addInput($renren);
+
+    $qq = new Typecho_Widget_Helper_Form_Element_Text('qq', NULL, NULL, _t('QQ链接'), _t('这里可以输入QQ链接。（留空为不显示）'));
+    $form->addInput($qq);
+
+    $pinterest = new Typecho_Widget_Helper_Form_Element_Text('pinterest', NULL, NULL, _t('Pinterest链接'), _t('这里可以输入Pinterest链接。（留空为不显示）'));
+    $form->addInput($pinterest);
+
     $leftSidebarModules = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'leftSidebarModules',
         array(

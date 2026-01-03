@@ -97,11 +97,22 @@
                 <div class="welcome inline-block float-left"> <?php if ($this->user->hasLogin()): ?><?php _e("Welcome back, %s, , how about you today.", sprintf('<a href="%s">%s</a>', $this->options->adminUrl, $this->user->screenName)) ?><?php else: ?><?php _e("Hi, new friend, nice to meet you, welcome to my blog"); ?>.<?php endif; ?>
                 </div>
                 <ul class="connections float-right">
-                    <li class="rss-feed"><a class="has-tooltip" href="<?php $this->options->feedUrl(); ?>" title="<?php _e("订阅 RSS Feed"); ?>"><i
-                                class="icon-rss"></i></a></li>
+                    <li class="rss-feed"><a class="has-tooltip" href="<?php $this->options->feedUrl(); ?>" title="<?php _e("订阅 RSS Feed"); ?>"><i class="icon-rss"></i></a></li>
                     <?php if ($this->options->weibo): ?>
-                        <li><span><a class="has-tooltip" href="<?php $this->options->weibo() ?>" target="_blank" class="weibo"
-                                    data-toggle="tooltip" data-placement="auto" title="<?php _e("关注我的微博"); ?>"></a></li></span>
+                        <li><a class="has-tooltip" href="<?php $this->options->weibo() ?>" target="_blank" class="weibo"
+                                data-toggle="tooltip" data-placement="auto" title="<?php _e("关注我的微博"); ?>"><i class="icon-sina-weibo"></i></a></li>
+                    <?php endif; ?>
+                    <?php if ($this->options->qq): ?>
+                        <li><a class="has-tooltip" href="<?php $this->options->qq() ?>" target="_blank" class="qq"
+                                data-toggle="tooltip" data-placement="auto" title="<?php _e("关注我的 QQ"); ?>"><i class="icon-qq"></i></a></li>
+                    <?php endif; ?>
+                    <?php if ($this->options->renren): ?>
+                        <li><a class="has-tooltip" href="<?php $this->options->renren() ?>" target="_blank" class="renren"
+                                data-toggle="tooltip" data-placement="auto" title="<?php _e("关注我的人人"); ?>"><i class="icon-renren"></i></a></li>
+                    <?php endif; ?>
+                    <?php if ($this->options->pinterest): ?>
+                        <li><a class="has-tooltip" href="<?php $this->options->pinterest() ?>" target="_blank" class="pinterest"
+                                data-toggle="tooltip" data-placement="auto" title="<?php _e("关注我的 pinterest"); ?>"><i class="icon-pinterest"></i></a></li>
                     <?php endif; ?>
                 </ul>
                 <div class="clear"></div>

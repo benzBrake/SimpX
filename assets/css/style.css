@@ -887,6 +887,11 @@ a.badge-dark:hover {
     font-size: 13px;
 }
 
+.connections li {
+    float: right;
+    margin-left: 5px;
+}
+
 /* -------- sidebar -------- */
 .widget {
     background: #f9f9f9;
