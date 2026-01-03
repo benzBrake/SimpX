@@ -669,9 +669,13 @@
                             this.restoreWysiwygSelection();
                             var sel = window.getSelection();
 
-                            // 没有选区 → 直接追加
+                            // ✅ 没有选区
                             if (!sel.rangeCount) {
-                                editor.insertAdjacentHTML('beforeend', html);
+                                if (typeof html === 'string') {
+                                    editor.insertAdjacentHTML('beforeend', html);
+                                } else if (html && html.nodeType) {
+                                    editor.appendChild(html); // ← 关键修复
+                                }
                                 this.syncWysiwygToSource();
                                 return;
                             }
@@ -679,7 +683,11 @@
                             var range = sel.getRangeAt(0);
 
                             if (!editor.contains(range.commonAncestorContainer)) {
-                                editor.insertAdjacentHTML('beforeend', html);
+                                if (typeof html === 'string') {
+                                    editor.insertAdjacentHTML('beforeend', html);
+                                } else if (html && html.nodeType) {
+                                    editor.appendChild(html);
+                                }
                                 this.syncWysiwygToSource();
                                 return;
                             }
@@ -690,13 +698,12 @@
                             if (typeof html === 'string') {
                                 var temp = document.createElement('div');
                                 temp.innerHTML = html;
-
                                 var frag = document.createDocumentFragment();
                                 while (temp.firstChild) {
                                     frag.appendChild(temp.firstChild);
                                 }
                                 range.insertNode(frag);
-                            } else if (html.nodeType) {
+                            } else if (html && html.nodeType) {
                                 range.insertNode(html);
                             }
 
@@ -706,8 +713,6 @@
 
                             this.syncWysiwygToSource();
                         },
-
-
 
                         // WYSIWYG 同步到 textarea
                         syncWysiwygToSource: function() {
@@ -1130,10 +1135,14 @@
                     display: flex;
                 }
 
+
                 .respond .respond-footer #editor-mode,
                 .respond .respond-footer #respond-similies,
                 .respond .respond-footer #respond-image {
                     *float: left;
+                    /* IE 6/7 */
+                    float: left \9;
+                    /* IE 8/9 */
                 }
 
                 .respond .btn-primary {
