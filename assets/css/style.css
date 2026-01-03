@@ -794,6 +794,7 @@ a.badge-dark:hover {
 .nav-menu li {
     display: inline;
     *float: left;
+    float: left \9;
 }
 
 .nav-menu a {
