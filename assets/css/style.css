@@ -1288,6 +1288,7 @@ a.badge-dark:hover {
 
 .post-navi {
     display: flex;
+    display: table-cell \9;
     *zoom: 1;
 }
 
