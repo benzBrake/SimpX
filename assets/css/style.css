@@ -226,6 +226,8 @@ pre code {
     overflow-x: auto;
     border: 0px;
     background-color: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -1382,15 +1384,6 @@ a.badge-dark:hover {
     *vertical-align: 4px;
 }
 
-/* -------- comments -------- */
-
-
-
-
-
-
-
-
 /* -------- footer -------- */
 #footer {
     background: #2990d1;
@@ -1435,9 +1428,11 @@ a.badge-dark:hover {
 #footer .container .go-top a:hover {
     color: #111;
 }
+
 #error-msg #content {
     padding-left: 140px;
 }
+
 #error-msg #content {
     background: #f9f9f9 url(../img/404img.png) no-repeat scroll 0 0;
 }
