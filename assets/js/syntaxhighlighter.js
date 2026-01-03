@@ -775,7 +775,7 @@ var SyntaxHighligher = (function () {
 				// space to appear at the beginning of every line but the first.
 				// Emitting an old Mac OS 9 line separator makes everything spiffy.
 				if (isIE) {
-					styledText = styledText.replace(newlineRe, '\r');
+					styledText = styledText.replace(newlineRe, '\r\n');
 				}
 				textNode.nodeValue = styledText;
 				var document = textNode.ownerDocument;
