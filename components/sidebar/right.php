@@ -11,11 +11,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <!-- searchform start -->
     <?php if (empty($this->options->rightSidebarModules) || in_array('ShowSearchBox', $this->options->rightSidebarModules)): ?>
         <div class="widget">
-            <form action="" id="search-box" class="input-group" method="get">
-                <label for="s" class="screen-reader-text"><?php _e("搜索内容") ?></label><input type="text" class="search-field" name="s"
-                    value="" /><button type="submit" name="button" id="search-submit" class="search-button"><?php _e("搜索") ?></button>
+            <form action="" id="search-box" method="get">
+                <div class="input-group">
+                    <label for="s" class="screen-reader-text"><?php _e("搜索内容") ?></label><input type="text" class="search-field" name="s"
+                        value="" /><button type="submit" name="button" id="search-submit" class="search-button"><?php _e("搜索") ?></button>
+                </div>
+            </form>
         </div>
-        </form>
     <?php endif; ?>
     <!-- searchform end -->
     <!--[if IE 6]>

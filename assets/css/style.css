@@ -570,7 +570,9 @@ input[type="password"] {
 .input-group {
     display: flex;
     align-items: center;
+    width: 100%;
     max-width: 100%;
+    display: table \9;
     *display: inline-block;
     *zoom: 1;
     *white-space: nowrap;
@@ -579,7 +581,9 @@ input[type="password"] {
 .input-group input {
     flex: 1;
     min-width: 0;
+    width: 140px \9;
     height: 28px;
+    height: 30px \9;
     line-height: 28px;
     padding: 0 10px;
     border: 1px solid #1E90FF;
@@ -597,6 +601,7 @@ input[type="password"] {
 .input-group button {
     flex-shrink: 0;
     height: 28px;
+    *height: 30px;
     line-height: 28px;
     padding: 0 5px;
     border: 1px solid #1E90FF;
@@ -604,7 +609,7 @@ input[type="password"] {
     background: #1E90FF;
     color: #fff;
     cursor: pointer;
-    *height: 30px;
+    white-space: nowrap \9;
     *border: 0;
     *background: #1E90FF;
     *color: #fff;
@@ -613,12 +618,13 @@ input[type="password"] {
 
 .input-group input,
 .input-group button {
-    *height: 28px;
-    *line-height: 28px;
     *padding: 0 10px;
+    display: table-cell \9;
     *display: inline-block;
     *vertical-align: middle;
     *zoom: 1;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 .input-group button:hover {
@@ -901,6 +907,7 @@ a.badge-dark:hover {
 #search-box .input-group {
     *width: 180px;
     *overflow: hidden;
+    zoom: 1;
 }
 
 #search-box .input-group input {
@@ -1381,10 +1388,12 @@ a.badge-dark:hover {
     font-size: 13px;
     background: #fff;
 }
+
 .related-posts-list li {
     position: relative;
     *padding-left: 12px;
 }
+
 .related-posts-list li .icon {
     background-image: url(../img/tip-twitter_arrows.gif);
     width: 9px;
