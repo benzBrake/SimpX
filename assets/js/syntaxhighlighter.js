@@ -736,7 +736,7 @@ var SyntaxHighligher = (function () {
 	 * @private
 	 */
 	function recombineTagsAndDecorations (sourceAndSpans, decorations) {
-		//var isIE = /\bMSIE\b/.test(navigator.userAgent);
+		var isIE = /\bMSIE\b/.test(navigator.userAgent);
 		var newlineRe = /\n/g;
 
 		var source = sourceAndSpans.sourceCode;
@@ -774,9 +774,9 @@ var SyntaxHighligher = (function () {
 				// Emitting Windows standard issue linebreaks (CRLF) causes a blank
 				// space to appear at the beginning of every line but the first.
 				// Emitting an old Mac OS 9 line separator makes everything spiffy.
-				// if (isIE) {
-				// styledText = styledText.replace(newlineRe, '\r');
-				// }
+				if (isIE) {
+					styledText = styledText.replace(newlineRe, '\r');
+				}
 				textNode.nodeValue = styledText;
 				var document = textNode.ownerDocument;
 				var span = document.createElement('SPAN');
