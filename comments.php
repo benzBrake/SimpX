@@ -1109,6 +1109,7 @@
                 .comment-editor-group .comment-editor {
                     min-height: 100px;
                     *height: 100px;
+                    width: 100%;
                     font-size: 14px;
                     padding: 5px;
                     box-sizing: border-box;
