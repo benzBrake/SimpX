@@ -27,8 +27,30 @@
             "assets": {
                 "js": "<?php $this->options->themeUrl('assets/js/'); ?>",
                 "css": "<?php $this->options->themeUrl('assets/css/'); ?>"
-            }
+            },
+            smiliesMap: {}
         }
+        <?php
+        $smilies = [
+            ':?:' => 'icon_question.gif',
+            ':razz:' => 'icon_razz.gif',
+            ':sad:' => 'icon_sad.gif',
+            ':evil:' => 'icon_evil.gif',
+            ':!:' => 'icon_exclaim.gif',
+            ':smile:' => 'icon_smile.gif',
+            ':oops:' => 'icon_redface.gif',
+            ':grin:' => 'icon_biggrin.gif',
+            ':eek:' => 'icon_surprised.gif',
+            ':shock:' => 'icon_eek.gif',
+            ':cool:' => 'icon_cool.gif',
+            ':lol:' => 'icon_lol.gif',
+            ':mad:' => 'icon_mad.gif',
+            ':wink:' => 'icon_wink.gif',
+            ':cry:' => 'icon_cry.gif',
+        ];
+        foreach ($smilies as $tag => $img): ?>
+            SimpX.smiliesMap[<?php echo json_encode($tag); ?>] = "<?php $this->options->themeUrl('assets/img/Smilies/' . $img); ?>";
+        <?php endforeach; ?>
     </script>
     <link rel='index' title='<?php $this->options->title() ?>' href='<?php $this->options->siteUrl(); ?>' />
 </head>

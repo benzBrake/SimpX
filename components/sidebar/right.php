@@ -60,7 +60,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                                             <?php $comments->author(false); ?>
                                         </div>
                                         <div class="widget-comments-item-excerpt">
-                                            <?php $comments->excerpt(20, '...'); ?>
+                                            <?php $comments->excerpt(50, '...'); ?>
                                         </div>
                                     </div>
                                 </a>

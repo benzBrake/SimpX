@@ -966,6 +966,14 @@ a.badge-dark:hover {
     text-overflow: ellipsis;
 }
 
+.widget-comments .widget-comments-item-author {
+    font-weight: bold;
+}
+
+.widget-comments .widget-comments-item-excerpt img.smiley {
+    vertical-align: -4px;
+}
+
 .widget-tags .widget-body {
     padding: 10px;
 }

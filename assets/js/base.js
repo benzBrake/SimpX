@@ -222,6 +222,39 @@ jQuery.fx.ScrollTo = function (e, o) {
 			});
 		});
 
+		// 确保 SimpX.smiliesMap 已经定义
+		if (typeof SimpX !== 'undefined' && SimpX.smiliesMap) {
+
+			// 1. 预处理：构建一个高效的正则表达式和一个映射对象
+			var smileyKeys = [];
+			var smileyMapForReplace = {};
+
+			for (var key in SimpX.smiliesMap) {
+				// 对每个键进行转义，然后存入数组
+				smileyKeys.push(key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+				// 建立键到图片URL的直接映射，用于替换函数
+				smileyMapForReplace[key] = SimpX.smiliesMap[key];
+			}
+
+			// 2. 创建一个能匹配所有表情的大正则，例如 /(?:\:\?:|\:razz\:|\:sad\:|...)/g
+			var allSmiliesRegex = new RegExp(smileyKeys.join('|'), 'g');
+
+			// 3. 执行替换
+			$('.widget-comments-item-excerpt').each(function () {
+				var el = $(this);
+				var originalHtml = el.html();
+
+				// 使用一个函数作为 replace 的第二个参数
+				// 每次匹配到表情时，这个函数就会被调用，参数是匹配到的文本（如 ":smile:"）
+				var newHtml = originalHtml.replace(allSmiliesRegex, function (matchedSmiley) {
+					// 从映射对象中找到对应的URL，并返回 img 标签
+					return '<img class="smiley" src="' + smileyMapForReplace[matchedSmiley] + '" alt="' + matchedSmiley + '" />';
+				});
+
+				el.html(newHtml);
+			});
+		}
+
 
 		$('.go-top').click(function () { try { $('#header').ScrollTo(800); } catch (e) { } return false; });
 
