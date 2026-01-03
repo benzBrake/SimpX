@@ -221,6 +221,78 @@
                         }
                     }
 
+                    /**
+                     * 获取一个元素的当前渲染宽度（内容区宽度）
+                     * 兼容 IE6-8, IE9+ 以及其他现代浏览器
+                     *
+                     * @param {HTMLElement} el 需要获取宽度的DOM元素
+                     * @returns {number} 元素的宽度，单位为像素。如果元素不可见或参数无效，返回 0。
+                     */
+                    function getWidth(el) {
+                        // 1. 基本的参数检查和元素可见性判断
+                        if (!el || el.nodeType !== 1) {
+                            return 0;
+                        }
+
+                        // 如果元素或者其祖先元素 display 为 'none'，则 offsetWidth 为 0
+                        // 这种情况下无法获取精确尺寸
+                        if (el.offsetWidth === 0) {
+                            // 注意：这里简单返回0，更复杂的库（如jQuery）会临时显示元素来测量
+                            // 对于绝大多数场景，返回0是合理的
+                            return 0;
+                        }
+
+                        // 2. 优先使用 getComputedStyle（现代浏览器和 IE9）
+                        // 这是最准确、最标准的方式
+                        if (window.getComputedStyle) {
+                            var styles = window.getComputedStyle(el, null);
+                            // parseFloat 用于去掉 'px' 等单位
+                            var width = parseFloat(styles.width);
+                            // 如果获取到的是有效数字，则返回
+                            if (!isNaN(width)) {
+                                return width;
+                            }
+                        }
+
+                        // 3. 回退到 IE6-8 的 currentStyle（代码能执行到这里，说明是 IE8 或更早版本）
+                        if (el.currentStyle) {
+                            var currentWidth = el.currentStyle.width;
+
+                            // 如果 currentStyle.width 已经是一个带单位的字符串 (如 '100px')
+                            if (currentWidth.indexOf('px') > -1) {
+                                return parseFloat(currentWidth);
+                            }
+
+                            // 如果 width 是 'auto' 或百分比，currentStyle 可能无法给出准确值
+                            // 此时，需要使用 offsetWidth 进行计算，并减去 padding 和 border
+                            // 这是处理 IE6-8 兼容性的核心步骤
+
+                            // 获取 padding 和 border 值
+                            // 在 currentStyle 中，如果值为 'medium'（border的默认值），需要手动转换为像素
+                            var getBorderWidth = function(side) {
+                                var borderWidth = el.currentStyle['border' + side + 'Width'];
+                                if (borderWidth === 'medium') {
+                                    return 2; // 在 IE 中，'medium' 通常被视为 2px
+                                }
+                                return parseFloat(borderWidth) || 0;
+                            };
+
+                            var paddingLeft = parseFloat(el.currentStyle.paddingLeft) || 0;
+                            var paddingRight = parseFloat(el.currentStyle.paddingRight) || 0;
+                            var borderLeft = getBorderWidth('Left');
+                            var borderRight = getBorderWidth('Right');
+
+                            // offsetWidth = content width + padding + border
+                            // 所以 content width = offsetWidth - padding - border
+                            return el.offsetWidth - paddingLeft - paddingRight - borderLeft - borderRight;
+                        }
+
+                        // 4. 最后的兜底方案（虽然不太可能走到这里）
+                        // 直接使用 offsetWidth，但要注意它包含了 padding 和 border
+                        // 在没有其他办法时，这是一个近似值
+                        return el.offsetWidth;
+                    }
+
                     // 兼容 IE6 的 replaceAll
                     function replaceAll(str, find, replace) {
                         return str.split(find).join(replace);
@@ -339,7 +411,7 @@
                                 if (isIE(7, '>=')) {
                                     var t = self.se;
                                     var newHeight = Math.max(100, t.scrollHeight);
-                                    t.style.height = newHeight + 'px';
+                                    setStyle(t, 'height', newHeight + 'px');
                                 }
                                 self.pe.style.height = self.se.style.height;
                             }
@@ -1020,23 +1092,21 @@
                     margin-top: -10px;
                 }
 
-                .respond .comment-editor-group {
+                .comment-editor-group {
                     padding: 10px;
                     *padding-top: 5px;
                     *zoom: 1;
                 }
 
-                .respond .comment-editor-group.split-mode #comment-wysiwyg,
-                .respond .comment-editor-group.normal-mode #comment-source,
-                .respond .comment-editor-group.normal-mode #comment-preview,
-                .respond .comment-editor-group.source-mode #comment-wysiwyg,
-                .respond .comment-editor-group.source-mode #comment-preview {
+                .comment-editor-group.split-mode #comment-wysiwyg,
+                .comment-editor-group.normal-mode #comment-source,
+                .comment-editor-group.normal-mode #comment-preview,
+                .comment-editor-group.source-mode #comment-wysiwyg,
+                .comment-editor-group.source-mode #comment-preview {
                     display: none;
                 }
 
-                .respond .comment-editor-group .comment-editor {
-                    width: 100%;
-                    *width: 608px;
+                .comment-editor-group .comment-editor {
                     min-height: 100px;
                     *height: 100px;
                     font-size: 14px;
@@ -1080,42 +1150,47 @@
                 }
 
 
-                .respond .comment-editor-group.split-mode .comment-editor,
-                .respond .comment-editor-group.split-mode #comment-preview {
+                .comment-editor-group.split-mode .comment-editor,
+                .comment-editor-group.split-mode #comment-preview {
                     *float: left;
-                    *width: 292px !important;
+                    *width: 292px;
                     *display: inline;
                 }
 
-                *:first-child+html .respond .comment-editor-group.split-mode .comment-editor,
-                *:first-child+html .respond .comment-editor-group.split-mode #comment-preview {
-                    width: 292px !important;
+                .comment-parent .comment-editor-group.split-mode .comment-editor,
+                .comment-parent .comment-editor-group.split-mode #comment-preview {
+                    _width: 262px;
                 }
+
+                .comment-child .comment-editor-group.split-mode .comment-editor,
+                .comment-child .comment-editor-group.split-mode #comment-preview {
+                    _width: 232px;
+                }
+
 
                 @media \0screen {
 
-                    .respond .comment-editor-group.split-mode .comment-editor {
+                    .comment-editor-group.split-mode .comment-editor {
                         float: left;
                         width: 304px;
                     }
 
-                    .respond .comment-editor-group.split-mode #comment-preview {
+                    .comment-editor-group.split-mode #comment-preview {
                         float: left;
                         width: 304px;
                         padding: 0;
                     }
 
-                    .respond .comment-editor-group.split-mode #comment-preview .preview-container {
+                    .comment-editor-group.split-mode #comment-preview .preview-container {
                         padding: 4px;
                     }
-
                 }
 
-                .respond #comment-wysiwyg img::after {
+                #comment-wysiwyg img::after {
                     content: '\u200B';
                 }
 
-                .respond #comment-wysiwyg img.image,
+                #comment-wysiwyg img.image,
                 .respond #comment-preview img.image {
                     max-height: 100px;
                     max-width: 200px;
