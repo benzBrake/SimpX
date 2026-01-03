@@ -532,6 +532,16 @@ address {
     text-align: right;
 }
 
+.text-break {
+    word-break: break-all;
+}
+
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .clear {
     clear: both;
 }

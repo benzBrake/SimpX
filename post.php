@@ -46,13 +46,32 @@
             <!-- article-page end -->
         </div>
         <div class="post-copyright box">
-            <?php $reprinted = $this->fields->reprinted;
-            if (empty($reprinted)) { ?>
-                <p>文章出自：<a href="<?php $this->options->siteUrl(); ?>" title="32MB.CN"><?php $this->options->title(); ?></a>版权所有。
+            <?php $copyright = $this->fields->copyright;
+            if (empty($copyright)) { ?>
+                <p><?php echo sprintf(_t("文章出自：%s&nbsp;版权所有，本文链接：%s。", "%s", sprintf('<a href="%s" title="%s">%s</a>', $this->permalink, $this->title, $this->title)), sprintf('<a href="%s" title="%s">%s</a>', $this->options->siteUrl, $this->options->title, $this->options->title)); ?></p>
+            <?php } else {
+                $decoded = json_decode($copyright, true);
+                if (is_array($decoded) && count($decoded) > 0) { ?>
+                    <p><?php _e("文章参考自，可能有所删改："); ?><span>
+                    <?php
+                    $links = array();
+                    foreach ($decoded as $item) {
+                        $url = isset($item['url']) ? $item['url'] : '';
+                        $title = isset($item['title']) && $item['title'] !== '' ? $item['title'] : $url;
+                        $author = isset($item['author']) && $item['author'] !== '' ? $item['author'] : _t('佚名');
+                        if ($url) {
+                            $links[] = '<a class="text-break" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '" target="_blank" rel="noopener noreferrer">' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</a>' . '（' . htmlspecialchars($author, ENT_QUOTES, 'UTF-8') . '）';
+                        } else {
+                            $links[] = htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '（' . htmlspecialchars($author, ENT_QUOTES, 'UTF-8') . '）';
+                        }
+                    }
+                    echo implode('；', $links);
+                    ?>
                 <?php } else { ?>
-                <p>via：<a href="<?php echo $reprinted; ?>"><?php echo $reprinted; ?></a>
+                    <p>via：<a href="<?php echo htmlspecialchars($copyright, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($copyright, ENT_QUOTES, 'UTF-8'); ?></a>
                 <?php } ?>
-                。本站文章除注明出处外，皆为作者原创文章，可自由引用，但请注明来源。</p>
+            <?php } ?>
+            <?php _e("本站文章除注明出处外，皆为作者原创文章，可自由引用，但请注明来源。"); ?></p>
         </div>
 
         <!-- related-posts start -->
