@@ -159,17 +159,6 @@
                             } else if (ua.indexOf('trident') !== -1) {
                                 // IE11的版本号在rv:后面
                                 ieVersion = parseInt(ua.match(/rv:(\d+)/)[1], 10);
-                            } else {
-                                // 对于IE6-7，我们可以通过条件注释来检测
-                                /*@cc_on
-                                  ieVersion = @_jscript_version;
-                                  if (ieVersion == 5.1) ieVersion = 6; // JScript 5.1对应IE6
-                                  else if (ieVersion == 5.6) ieVersion = 7; // JScript 5.6对应IE7
-                                  else if (ieVersion == 5.7) ieVersion = 8; // JScript 5.7对应IE8
-                                  else if (ieVersion == 5.8) ieVersion = 9; // JScript 5.8对应IE9
-                                  else if (ieVersion == 9) ieVersion = 10; // JScript 9对应IE10
-                                  else if (ieVersion == 11) ieVersion = 11; // JScript 11对应IE11
-                                @*/
                             }
 
                             // 如果没有提供参数，直接返回是否是IE
@@ -333,7 +322,6 @@
                                     var change_profile = $('#change-profile');
                                     if (change_profile) {
                                         addEvent(change_profile, 'click', function() {
-                                            console.log(111);
                                             addClass(welcome_back, 'hidden');
                                             removeClass(login_meta, 'hidden');
                                         });
@@ -345,6 +333,19 @@
                             addClass(this.egl, 'split-mode');
                             addClass(this.rf, 'split-mode');
                             addClass($('#editor-mode'), 'hidden');
+                            var self = this;
+
+                            function adjustHeight() {
+                                if (isIE(7, '>=')) {
+                                    var t = self.se;
+                                    var newHeight = Math.max(100, t.scrollHeight);
+                                    t.style.height = newHeight + 'px';
+                                }
+                                self.pe.style.height = self.se.style.height;
+                            }
+                            addEvent(this.se, 'input', adjustHeight, false);
+                            addEvent(this.se, 'keyup', adjustHeight, false);
+                            addEvent(this.se, 'propertychange', adjustHeight, false);
                             this.bindPreviewSync();
                         },
                         initNormalMode: function() {
@@ -815,12 +816,11 @@
                             addEvent(this.se, 'keyup', function() {
                                 self.updatePreview();
                             });
-
                             addEvent(this.se, 'blur', function() {
                                 self.updatePreview();
                             });
-                        },
 
+                        },
                         updatePreview: function() {
                             var content = this.se.value;
 
@@ -835,7 +835,7 @@
 
                             // 2. 替换 Markdown 图片语法 ![alt](url) → <img>
                             content = content.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function(_, alt, url) {
-                                return '<img src="' + url + '" alt="' + alt + '">';
+                                return '<img class="image" src="' + url + '" alt="' + alt + '">';
                             });
 
                             // 3. 替换多行代码块 ```...``` → <pre><code>...</code></pre>
@@ -862,7 +862,16 @@
                             content = content.replace(/\u0000/g, '\n');
 
                             // 8. 输出到预览
-                            this.pe.innerHTML = content;
+                            this.pe.innerHTML = '<div class="preview-container">' + content + '</div>';
+
+                            if (isIE(6)) {
+                                var images = $('.image', this.pe);
+                                for (var i = 0; i < images.length; i++) {
+                                    var img = images[i];
+                                    if (img.height > 100) img.height = 100;
+                                    if (img.width > 200) img.width = 200;
+                                }
+                            }
                         },
 
                         renderCommentList: function(list) {
@@ -1009,6 +1018,7 @@
                 .respond .comment-editor-group {
                     padding: 10px;
                     *padding-top: 5px;
+                    *zoom: 1;
                 }
 
                 .respond .comment-editor-group.split-mode #comment-wysiwyg,
@@ -1032,23 +1042,76 @@
                     *display: inline;
                 }
 
-                .respond .comment-editor-group .comment-preview {
-                    min-height: 100px;
-                    *height: expression(this.scrollHeight > 100 ? "100px" : "100px");
-                    border: 1px solid #222;
+                #comment-source {
+                    overflow: hidden;
+                    resize: none;
+                    line-height: 18px;
+                    height: auto;
                 }
+
+                #comment-preview {
+                    overflow: hidden;
+                    min-height: 100px;
+                    *height: 100px;
+                    border: 1px solid #ccc;
+                }
+
+                #comment-source,
+                #comment-preview {
+                    font: 13px/1.5 "Lucida Grande", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+                    padding: 5px;
+                    box-sizing: border-box;
+                }
+
+                #comment-preview .preview-container {
+                    line-height: 21px;
+
+                }
+
+                * html #comment-source {
+                    /* IE6不支持min-height，使用expression模拟 */
+                    height: expression(this.scrollHeight > 100 ? this.scrollHeight + "px" : "100px"
+                        );
+                }
+
 
                 .respond .comment-editor-group.split-mode .comment-editor,
                 .respond .comment-editor-group.split-mode #comment-preview {
                     *float: left;
-                    *width: 301px;
+                    *width: 292px !important;
+                    *display: inline;
+                }
+
+                *:first-child+html .respond .comment-editor-group.split-mode .comment-editor,
+                *:first-child+html .respond .comment-editor-group.split-mode #comment-preview {
+                    width: 292px !important;
+                }
+
+                @media \0screen {
+
+                    .respond .comment-editor-group.split-mode .comment-editor {
+                        float: left;
+                        width: 304px;
+                    }
+
+                    .respond .comment-editor-group.split-mode #comment-preview {
+                        float: left;
+                        width: 304px;
+                        padding: 0;
+                    }
+
+                    .respond .comment-editor-group.split-mode #comment-preview .preview-container {
+                        padding: 4px;
+                    }
+
                 }
 
                 .respond #comment-wysiwyg img::after {
                     content: '\u200B';
                 }
 
-                .respond #comment-wysiwyg img.image {
+                .respond #comment-wysiwyg img.image,
+                .respond #comment-preview img.image {
                     max-height: 100px;
                     max-width: 200px;
                 }
@@ -1065,6 +1128,12 @@
                     border-top: 1px dotted #ddd;
                     height: 32px;
                     display: flex;
+                }
+
+                .respond .respond-footer #editor-mode,
+                .respond .respond-footer #respond-similies,
+                .respond .respond-footer #respond-image {
+                    *float: left;
                 }
 
                 .respond .btn-primary {
