@@ -1,9 +1,9 @@
-﻿
+
 /**
  * 代码高亮模块。
  */
 var SyntaxHighligher = (function () {
-	
+
 	/**
 	 * @namespace SyntaxHighligher
 	 */
@@ -55,7 +55,7 @@ var SyntaxHighligher = (function () {
 				tokenizer = combinePrefixPatterns(allRegexs);
 			})();
 
-			function decorate(sourceCode, position) {
+			function decorate (sourceCode, position) {
 				/** Even entries are positions in source in ascending order.  Odd enties
 				 * are style markers (e.g., COMMENT) that run from that position until
 				 * the end.
@@ -115,7 +115,7 @@ var SyntaxHighligher = (function () {
 					if (isEmbedded) {
 						// Treat group 1 as an embedded block of source code.
 						var embeddedSource = match[1];
-						var embeddedSourceStart = token.indexOf(embeddedSource);
+						var embeddedSourceStart = stringIndexOf(token, embeddedSource);
 						var embeddedSourceEnd = embeddedSourceStart + embeddedSource.length;
 						if (match[2]) {
 							// If embeddedSource can be blank, then it would match at the
@@ -195,7 +195,7 @@ var SyntaxHighligher = (function () {
 	 * @param {Array.<RegExp>} regexs non multiline, non-global regexs.
 	 * @return {RegExp} a global regex.
 	 */
-	function combinePrefixPatterns(regexs) {
+	function combinePrefixPatterns (regexs) {
 		var capturedGroupIndex = 0;
 
 		var needToFoldCase = false;
@@ -211,28 +211,28 @@ var SyntaxHighligher = (function () {
 			}
 		}
 
-		function allowAnywhereFoldCaseAndRenumberGroups(regex) {
+		function allowAnywhereFoldCaseAndRenumberGroups (regex) {
 			// Split into character sets, escape sequences, punctuation strings
 			// like ('(', '(?:', ')', '^'), and runs of characters that do not
 			// include any of the above.
 			var parts = regex.source.match(
-			new RegExp('(?:' + '\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]' // a character set
-			+
-			'|\\\\u[A-Fa-f0-9]{4}' // a unicode escape
-			+
-			'|\\\\x[A-Fa-f0-9]{2}' // a hex escape
-			+
-			'|\\\\[0-9]+' // a back-reference or octal escape
-			+
-			'|\\\\[^ux0-9]' // other escape sequence
-			+
-			'|\\(\\?[:!=]' // start of a non-capturing group
-			+
-			'|[\\(\\)\\^]' // start/emd of a group, or line start
-			+
-			'|[^\\x5B\\x5C\\(\\)\\^]+' // run of other characters
-			+
-			')', 'g'));
+				new RegExp('(?:' + '\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]' // a character set
+					+
+					'|\\\\u[A-Fa-f0-9]{4}' // a unicode escape
+					+
+					'|\\\\x[A-Fa-f0-9]{2}' // a hex escape
+					+
+					'|\\\\[0-9]+' // a back-reference or octal escape
+					+
+					'|\\\\[^ux0-9]' // other escape sequence
+					+
+					'|\\(\\?[:!=]' // start of a non-capturing group
+					+
+					'|[\\(\\)\\^]' // start/emd of a group, or line start
+					+
+					'|[^\\x5B\\x5C\\(\\)\\^]+' // run of other characters
+					+
+					')', 'g'));
 			var n = parts.length;
 
 			// Maps captured group numbers to the number they will occupy in
@@ -318,7 +318,7 @@ var SyntaxHighligher = (function () {
 		return new RegExp(rewritten.join('|'), ignoreCase ? 'gi' : 'g');
 	}
 
-	function encodeEscape(charCode) {
+	function encodeEscape (charCode) {
 		if (charCode < 0x20) {
 			return (charCode < 0x10 ? '\\x0' : '\\x') + charCode.toString(16);
 		}
@@ -338,7 +338,7 @@ var SyntaxHighligher = (function () {
 		'r': 0xd
 	};
 
-	function decodeEscape(charsetPart) {
+	function decodeEscape (charsetPart) {
 		var cc0 = charsetPart.charCodeAt(0);
 		if (cc0 !== 92 /* \\ */) {
 			return cc0;
@@ -356,9 +356,9 @@ var SyntaxHighligher = (function () {
 		}
 	}
 
-	function caseFoldCharset(charSet) {
+	function caseFoldCharset (charSet) {
 		var charsetParts = charSet.substring(1, charSet.length - 1).match(
-		new RegExp('\\\\u[0-9A-Fa-f]{4}' + '|\\\\x[0-9A-Fa-f]{2}' + '|\\\\[0-3][0-7]{0,2}' + '|\\\\[0-7]{1,2}' + '|\\\\[\\s\\S]' + '|-' + '|[^-\\\\]', 'g'));
+			new RegExp('\\\\u[0-9A-Fa-f]{4}' + '|\\\\x[0-9A-Fa-f]{2}' + '|\\\\[0-3][0-7]{0,2}' + '|\\\\[0-7]{1,2}' + '|\\\\[\\s\\S]' + '|-' + '|[^-\\\\]', 'g'));
 		var groups = [];
 		var ranges = [];
 		var inverse = charsetParts[0] === '^';
@@ -432,7 +432,7 @@ var SyntaxHighligher = (function () {
 	 * @param {number} basePos the index of sourceCode within the chunk of source
 	 *    whose decorations are already present on out.
 	 */
-	function appendDecorations(basePos, sourceCode, brush, out) {
+	function appendDecorations (basePos, sourceCode, brush, out) {
 		if (sourceCode) {
 			out.push.apply(out, brush(sourceCode, basePos));
 		}
@@ -441,7 +441,7 @@ var SyntaxHighligher = (function () {
 	/**
 	 * 删除空的位置和相邻的位置。
 	 */
-	function removeEmptyAndNestedDecorations(decorations) {
+	function removeEmptyAndNestedDecorations (decorations) {
 		for (var srcIndex = 0, destIndex = 0, length = decorations.length, lastPos, lastStyle; srcIndex < length;) {
 
 			// 如果上一个长度和当前长度相同，或者上一个样式和现在的相同，则跳过。
@@ -458,6 +458,48 @@ var SyntaxHighligher = (function () {
 
 		decorations.length = destIndex;
 
+	}
+
+	function addStyle (cssText, id) {
+		var head = document.getElementsByTagName('head')[0];
+		if (!head) {
+			// 如果连head都找不到，说明文档还没准备好，可以考虑用setTimeout稍后重试，或者直接报错
+			return;
+		}
+		// 专门为IE (包括IE6/7/8) 的处理方式
+		if (document.createStyleSheet) {
+			// 这是IE的专有方法，最安全
+			var styleSheet = document.createStyleSheet();
+			styleSheet.cssText = cssText;
+			if (id) {
+				// IE6中styleSheet不支持直接设置id，可以通过其他方式标识
+				// 例如：通过title属性或者自定义属性
+				styleSheet.title = id; // 使用title作为标识
+				// 或者可以尝试将样式表添加到一个具有id的容器中
+				// 但是createStyleSheet直接添加到head，无法指定容器
+				// 所以只能通过styleSheet的属性来标识
+			}
+		} else {
+			// 现代浏览器的标准处理方式 (IE9+, Firefox, Chrome, etc.)
+			var style = document.createElement('style');
+			style.type = 'text/css';
+			// 为了兼容一些老版本的Firefox，最好也appendChild一个文本节点
+			style.appendChild(document.createTextNode(cssText));
+			if (id) {
+				style.id = id;
+			}
+			head.appendChild(style);
+		}
+	}
+
+	function stringIndexOf (str, search) {
+		var i, len = str.length - search.length;
+		for (i = 0; i <= len; i++) {
+			if (str.substr(i, search.length) === search) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
@@ -490,7 +532,7 @@ var SyntaxHighligher = (function () {
 		'javascript': 'js',
 		'python': 'py',
 		'ruby': 'rb',
-		'csharp': 'cs',
+		'csharp': 'cs'
 	};
 
 	/**
@@ -538,7 +580,7 @@ var SyntaxHighligher = (function () {
 
 		nodes = null;
 
-		function doWork() {
+		function doWork () {
 			if (elements.length) {
 				SH.one(elements.shift());
 				setTimeout(doWork, 50);
@@ -570,13 +612,9 @@ var SyntaxHighligher = (function () {
 
 	SH.init = function () {
 
-		var style = document.createElement('style');
-		style.id = "syntaxHighligherStyle";
-		style.innerHTML = '.sh{padding:3px 5px;border:1px solid #e1e1e8;display:block;margin:9px 0;white-space:pre;background-color:#f5f5f5;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;word-break:break-all;overflow:auto}.sh,.sh-code,.sh-textarea,.sh-linenumbers li{line-height:18px;font-size:12px;font-family:"Courier New",Menlo,Monaco,monospace}.sh-code,.sh-textarea{display:inline-block;padding:5px;margin:0;background-color:#f5f5f5}.sh-textarea{resize:none;overflow:hidden;border:0}.sh-linenumbers{float:left;margin:0;width:0;*width:auto;border-radius:3px 0 0 3px;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-right:1px solid #ececf0;padding:5px 0 5px 50px;background-color:#fbfbfc}.sh-linenumbers li{list-style-type:decimal;color:#bebec5;text-shadow:0 1px 0 #fff}.sh-comment{color:#93a1a1}.sh-literal{color:#195f91}.sh-punctuation,.sh-leftbracket,.sh-rightbracket{color:#93a1a1}.sh-function{color:#dc322f}.sh-string,.sh-attrvalue{color:#D14}.sh-keyword,.sh-tag{color:#1e347b}.sh-type,.sh-attrname,.sh-declaration,.sh-var{color:teal}.sh-plain{color:#48484c}';
+		addStyle('.sh{padding:3px 5px;border:1px solid #e1e1e8;display:block;margin:9px 0;white-space:pre;background-color:#f5f5f5;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;word-break:break-all;overflow:auto}.sh,.sh-code,.sh-textarea,.sh-linenumbers li{line-height:18px;font-size:12px;font-family:"Courier New",Menlo,Monaco,monospace}.sh-code,.sh-textarea{display:inline-block;padding:5px;margin:0;background-color:#f5f5f5}.sh-textarea{resize:none;overflow:hidden;border:0}.sh-linenumbers{float:left;margin:0;width:0;*width:auto;border-radius:3px 0 0 3px;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-right:1px solid #ececf0;padding:5px 0 5px 50px;background-color:#fbfbfc}.sh-linenumbers li{list-style-type:decimal;color:#bebec5;text-shadow:0 1px 0 #fff}.sh-comment{color:#93a1a1}.sh-literal{color:#195f91}.sh-punctuation,.sh-leftbracket,.sh-rightbracket{color:#93a1a1}.sh-function{color:#dc322f}.sh-string,.sh-attrvalue{color:#D14}.sh-keyword,.sh-tag{color:#1e347b}.sh-type,.sh-attrname,.sh-declaration,.sh-var{color:teal}.sh-plain{color:#48484c}', 'syntaxHighligherStyle');
 
-		(document.getElementsByTagName('head')[0] || document.documentElement).appendChild(style);
-
-		function check() {
+		function check () {
 			/in/.test(document.readyState) ? setTimeout(check, 1) : SH.all();
 		}
 
@@ -626,7 +664,7 @@ var SyntaxHighligher = (function () {
 	 * @param {Node} node an HTML DOM subtree containing source-code.
 	 * @return {Object} source code and the text nodes in which they occur.
 	 */
-	function extractSourceSpans(node) {
+	function extractSourceSpans (node) {
 
 		var chunks = [];
 		var length = 0;
@@ -641,7 +679,7 @@ var SyntaxHighligher = (function () {
 		}
 		var isPreformatted = whitespace && 'pre' === whitespace.substring(0, 3);
 
-		function walk(node) {
+		function walk (node) {
 			switch (node.nodeType) {
 				case 1:
 					// Element
@@ -697,7 +735,7 @@ var SyntaxHighligher = (function () {
 	 * }</pre>
 	 * @private
 	 */
-	function recombineTagsAndDecorations(sourceAndSpans, decorations) {
+	function recombineTagsAndDecorations (sourceAndSpans, decorations) {
 		//var isIE = /\bMSIE\b/.test(navigator.userAgent);
 		var newlineRe = /\n/g;
 
@@ -729,8 +767,8 @@ var SyntaxHighligher = (function () {
 			var styledText;
 			if (textNode.nodeType !== 1 // Don't muck with <BR>s or <LI>s
 				// Don't introduce spans around empty text nodes.
-			&&
-			(styledText = source.substring(sourceIndex, end))) {
+				&&
+				(styledText = source.substring(sourceIndex, end))) {
 				// This may seem bizarre, and it is.  Emitting LF on IE causes the
 				// code to display with spaces instead of line breaks.
 				// Emitting Windows standard issue linebreaks (CRLF) causes a blank
@@ -748,9 +786,9 @@ var SyntaxHighligher = (function () {
 				span.appendChild(textNode);
 				if (sourceIndex < spanEnd) { // Split off a text node.
 					spans[spanIndex + 1] = textNode
-					// TODO: Possibly optimize by using '' if there's no flicker.
-					=
-					document.createTextNode(source.substring(end, spanEnd));
+						// TODO: Possibly optimize by using '' if there's no flicker.
+						=
+						document.createTextNode(source.substring(end, spanEnd));
 					parentNode.insertBefore(textNode, span.nextSibling);
 				}
 			}
@@ -903,21 +941,21 @@ var SyntaxHighligher = (function () {
 		}
 		if (options.regexLiterals) {
 			fallthroughStylePatterns.push(['regex', new RegExp('^' + REGEXP_PRECEDER_PATTERN + '(' + // A regular expression literal starts with a slash that is
-			// not followed by * or / so that it is not confused with
-			// comments.
-			'/(?=[^/*])'
-			// and then contains any number of raw characters,
-			+
-			'(?:[^/\\x5B\\x5C]'
-			// escape sequences (\x5C),
-			+
-			'|\\x5C[\\s\\S]'
-			// or non-nesting character sets (\x5B\x5D);
-			+
-			'|\\x5B(?:[^\\x5C\\x5D]|\\x5C[\\s\\S])*(?:\\x5D|$))+'
-			// finally closed by a /.
-			+
-			'/' + ')')]);
+				// not followed by * or / so that it is not confused with
+				// comments.
+				'/(?=[^/*])'
+				// and then contains any number of raw characters,
+				+
+				'(?:[^/\\x5B\\x5C]'
+				// escape sequences (\x5C),
+				+
+				'|\\x5C[\\s\\S]'
+				// or non-nesting character sets (\x5B\x5D);
+				+
+				'|\\x5B(?:[^\\x5C\\x5D]|\\x5C[\\s\\S])*(?:\\x5D|$))+'
+				// finally closed by a /.
+				+
+				'/' + ')')]);
 		}
 
 		var types = options.types;
@@ -932,24 +970,24 @@ var SyntaxHighligher = (function () {
 
 		shortcutStylePatterns.push(['plain', /^\s+/, ' \r\n\t\xA0']);
 		fallthroughStylePatterns.push(
-		// TODO(mikesamuel): recognize non-latin letters and numerals in idents
-		['literal', /^@[a-z_$][a-z_$@0-9]*/i],
-		['type', /^(?:[@_]?[A-Z]+[a-z][A-Za-z_$@0-9]*|\w+_t\b)/],
-		['plain', /^[a-z_$][a-z_$@0-9]*/i],
-		['literal', new RegExp(
-			 '^(?:'
-			 // A hex number
-			 + '0x[a-f0-9]+'
-			 // or an octal or decimal number,
-			 + '|(?:\\d(?:_\\d+)*\\d*(?:\\.\\d*)?|\\.\\d\\+)'
-			 // possibly in scientific notation
-			 + '(?:e[+\\-]?\\d+)?'
-			 + ')'
-			 // with an optional modifier like UL for unsigned long
-			 + '[a-z]*', 'i'), '0123456789'],
-		// Don't treat escaped quotes in bash as starting strings.  See issue 144.
-		['plain', /^\\[\s\S]?/],
-		['punctuation', /^.[^\s\w\.$@\'\"\`\/\#\\]*/]);
+			// TODO(mikesamuel): recognize non-latin letters and numerals in idents
+			['literal', /^@[a-z_$][a-z_$@0-9]*/i],
+			['type', /^(?:[@_]?[A-Z]+[a-z][A-Za-z_$@0-9]*|\w+_t\b)/],
+			['plain', /^[a-z_$][a-z_$@0-9]*/i],
+			['literal', new RegExp(
+				'^(?:'
+				// A hex number
+				+ '0x[a-f0-9]+'
+				// or an octal or decimal number,
+				+ '|(?:\\d(?:_\\d+)*\\d*(?:\\.\\d*)?|\\.\\d\\+)'
+				// possibly in scientific notation
+				+ '(?:e[+\\-]?\\d+)?'
+				+ ')'
+				// with an optional modifier like UL for unsigned long
+				+ '[a-z]*', 'i'), '0123456789'],
+			// Don't treat escaped quotes in bash as starting strings.  See issue 144.
+			['plain', /^\\[\s\S]?/],
+			['punctuation', /^.[^\s\w\.$@\'\"\`\/\#\\]*/]);
 
 		return shortcutStylePatterns.concat(fallthroughStylePatterns);
 	};
@@ -987,20 +1025,20 @@ var SyntaxHighligher = (function () {
 		'regexLiterals': true
 	}));
 	register('in.tag',
-	[
-		[PLAIN, /^[\s]+/, ' \t\r\n'],
-		[ATTRIB_VALUE, /^(?:\"[^\"]*\"?|\'[^\']*\'?)/, '\"\''],
-		[TAG, /^^<\/?[a-z](?:[\w.:-]*\w)?|\/?>$/i],
-		[ATTRIB_NAME, /^(?!style[\s=]|on)[a-z](?:[\w:-]*\w)?/i],
-		['uq.val', /^=\s*([^>\'\"\s]*(?:[^>\'\"\s\/]|\/(?=\s)))/],
-		[PUNCTUATION, /^[=<>\/]+/],
-		['js', /^on\w+\s*=\s*\"([^\"]+)\"/i],
-		['js', /^on\w+\s*=\s*\'([^\']+)\'/i],
-		['js', /^on\w+\s*=\s*([^\"\'>\s]+)/i],
-		['css', /^style\s*=\s*\"([^\"]+)\"/i],
-		['css', /^style\s*=\s*\'([^\']+)\'/i],
-		['css', /^style\s*=\s*([^\"\'>\s]+)/i]
-	]);
+		[
+			[PLAIN, /^[\s]+/, ' \t\r\n'],
+			[ATTRIB_VALUE, /^(?:\"[^\"]*\"?|\'[^\']*\'?)/, '\"\''],
+			[TAG, /^^<\/?[a-z](?:[\w.:-]*\w)?|\/?>$/i],
+			[ATTRIB_NAME, /^(?!style[\s=]|on)[a-z](?:[\w:-]*\w)?/i],
+			['uq.val', /^=\s*([^>\'\"\s]*(?:[^>\'\"\s\/]|\/(?=\s)))/],
+			[PUNCTUATION, /^[=<>\/]+/],
+			['js', /^on\w+\s*=\s*\"([^\"]+)\"/i],
+			['js', /^on\w+\s*=\s*\'([^\']+)\'/i],
+			['js', /^on\w+\s*=\s*([^\"\'>\s]+)/i],
+			['css', /^style\s*=\s*\"([^\"]+)\"/i],
+			['css', /^style\s*=\s*\'([^\']+)\'/i],
+			['css', /^style\s*=\s*([^\"\'>\s]+)/i]
+		]);
 
 	register('htm html mxml xhtml xml xsl', [
 		['plain', /^[^<?]+/],
@@ -1066,22 +1104,22 @@ var SyntaxHighligher = (function () {
 	}));
 
 	register('sql', [
-// Whitespace
-['plain', /^[\t\n\r \xA0]+/, '\t\n\r \xA0'],
-// A double or single quoted, possibly multi-line, string.
-['string', /^(?:"(?:[^\"\\]|\\.)*"|'(?:[^\'\\]|\\.)*')/, '"\''],
-// A comment is either a line comment that starts with two dashes, or
-// two dashes preceding a long bracketed block.
-['comment', /^(?:--[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$))/],
-['keyword', /^(?:ADD|ALL|ALTER|AND|ANY|AS|ASC|AUTHORIZATION|BACKUP|BEGIN|BETWEEN|BREAK|BROWSE|BULK|BY|CASCADE|CASE|CHECK|CHECKPOINT|CLOSE|CLUSTERED|COALESCE|COLLATE|COLUMN|COMMIT|COMPUTE|CONSTRAINT|CONTAINS|CONTAINSTABLE|CONTINUE|CONVERT|CREATE|CROSS|CURRENT|CURRENT_DATE|CURRENT_TIME|CURRENT_TIMESTAMP|CURRENT_USER|CURSOR|DATABASE|DBCC|DEALLOCATE|DECLARE|DEFAULT|DELETE|DENY|DESC|DISK|DISTINCT|DISTRIBUTED|DOUBLE|DROP|DUMMY|DUMP|ELSE|END|ERRLVL|ESCAPE|EXCEPT|EXEC|EXECUTE|EXISTS|EXIT|FETCH|FILE|FILLFACTOR|FOR|FOREIGN|FREETEXT|FREETEXTTABLE|FROM|FULL|FUNCTION|GOTO|GRANT|GROUP|HAVING|HOLDLOCK|IDENTITY|IDENTITYCOL|IDENTITY_INSERT|IF|IN|INDEX|INNER|INSERT|INTERSECT|INTO|IS|JOIN|KEY|KILL|LEFT|LIKE|LINENO|LOAD|MATCH|MERGE|NATIONAL|NOCHECK|NONCLUSTERED|NOT|NULL|NULLIF|OF|OFF|OFFSETS|ON|OPEN|OPENDATASOURCE|OPENQUERY|OPENROWSET|OPENXML|OPTION|OR|ORDER|OUTER|OVER|PERCENT|PLAN|PRECISION|PRIMARY|PRINT|PROC|PROCEDURE|PUBLIC|RAISERROR|READ|READTEXT|RECONFIGURE|REFERENCES|REPLICATION|RESTORE|RESTRICT|RETURN|REVOKE|RIGHT|ROLLBACK|ROWCOUNT|ROWGUIDCOL|RULE|SAVE|SCHEMA|SELECT|SESSION_USER|SET|SETUSER|SHUTDOWN|SOME|STATISTICS|JPlus_USER|TABLE|TEXTSIZE|THEN|TO|TOP|TRAN|TRANSACTION|TRIGGER|TRUNCATE|TSEQUAL|UNION|UNIQUE|UPDATE|UPDATETEXT|USE|USER|USING|VALUES|VARYING|VIEW|WAITFOR|WHEN|WHERE|WHILE|WITH|WRITETEXT)(?=[^\w-]|$)/i],
-// A number is a hex integer literal, a decimal real literal, or in
-// scientific notation.
-['literal', /^[+-]?(?:0x[\da-f]+|(?:(?:\.\d+|\d+(?:\.\d*)?)(?:e[+\-]?\d+)?))/i],
-// An identifier
-['plain', /^[a-z_][\w-]*/i],
-// A run of punctuation
-['punctuation', /^[^\w\t\n\r \xA0\"\'][^\w\t\n\r \xA0+\-\"\']*/]
-]);
+		// Whitespace
+		['plain', /^[\t\n\r \xA0]+/, '\t\n\r \xA0'],
+		// A double or single quoted, possibly multi-line, string.
+		['string', /^(?:"(?:[^\"\\]|\\.)*"|'(?:[^\'\\]|\\.)*')/, '"\''],
+		// A comment is either a line comment that starts with two dashes, or
+		// two dashes preceding a long bracketed block.
+		['comment', /^(?:--[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$))/],
+		['keyword', /^(?:ADD|ALL|ALTER|AND|ANY|AS|ASC|AUTHORIZATION|BACKUP|BEGIN|BETWEEN|BREAK|BROWSE|BULK|BY|CASCADE|CASE|CHECK|CHECKPOINT|CLOSE|CLUSTERED|COALESCE|COLLATE|COLUMN|COMMIT|COMPUTE|CONSTRAINT|CONTAINS|CONTAINSTABLE|CONTINUE|CONVERT|CREATE|CROSS|CURRENT|CURRENT_DATE|CURRENT_TIME|CURRENT_TIMESTAMP|CURRENT_USER|CURSOR|DATABASE|DBCC|DEALLOCATE|DECLARE|DEFAULT|DELETE|DENY|DESC|DISK|DISTINCT|DISTRIBUTED|DOUBLE|DROP|DUMMY|DUMP|ELSE|END|ERRLVL|ESCAPE|EXCEPT|EXEC|EXECUTE|EXISTS|EXIT|FETCH|FILE|FILLFACTOR|FOR|FOREIGN|FREETEXT|FREETEXTTABLE|FROM|FULL|FUNCTION|GOTO|GRANT|GROUP|HAVING|HOLDLOCK|IDENTITY|IDENTITYCOL|IDENTITY_INSERT|IF|IN|INDEX|INNER|INSERT|INTERSECT|INTO|IS|JOIN|KEY|KILL|LEFT|LIKE|LINENO|LOAD|MATCH|MERGE|NATIONAL|NOCHECK|NONCLUSTERED|NOT|NULL|NULLIF|OF|OFF|OFFSETS|ON|OPEN|OPENDATASOURCE|OPENQUERY|OPENROWSET|OPENXML|OPTION|OR|ORDER|OUTER|OVER|PERCENT|PLAN|PRECISION|PRIMARY|PRINT|PROC|PROCEDURE|PUBLIC|RAISERROR|READ|READTEXT|RECONFIGURE|REFERENCES|REPLICATION|RESTORE|RESTRICT|RETURN|REVOKE|RIGHT|ROLLBACK|ROWCOUNT|ROWGUIDCOL|RULE|SAVE|SCHEMA|SELECT|SESSION_USER|SET|SETUSER|SHUTDOWN|SOME|STATISTICS|JPlus_USER|TABLE|TEXTSIZE|THEN|TO|TOP|TRAN|TRANSACTION|TRIGGER|TRUNCATE|TSEQUAL|UNION|UNIQUE|UPDATE|UPDATETEXT|USE|USER|USING|VALUES|VARYING|VIEW|WAITFOR|WHEN|WHERE|WHILE|WITH|WRITETEXT)(?=[^\w-]|$)/i],
+		// A number is a hex integer literal, a decimal real literal, or in
+		// scientific notation.
+		['literal', /^[+-]?(?:0x[\da-f]+|(?:(?:\.\d+|\d+(?:\.\d*)?)(?:e[+\-]?\d+)?))/i],
+		// An identifier
+		['plain', /^[a-z_][\w-]*/i],
+		// A run of punctuation
+		['punctuation', /^[^\w\t\n\r \xA0\"\'][^\w\t\n\r \xA0+\-\"\']*/]
+	]);
 
 	return SH;
 })();
