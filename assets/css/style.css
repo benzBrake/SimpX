@@ -1373,7 +1373,10 @@ a.badge-dark:hover {
     font-size: 13px;
     background: #fff;
 }
-
+.related-posts-list li {
+    position: relative;
+    *padding-left: 12px;
+}
 .related-posts-list li .icon {
     background-image: url(../img/tip-twitter_arrows.gif);
     width: 9px;
@@ -1381,7 +1384,10 @@ a.badge-dark:hover {
     background-repeat: no-repeat;
     display: inline-block;
     background-position: -9px 0;
-    *vertical-align: 4px;
+    *position: absolute;
+    _top: 6px;
+    *left: 0;
+    _left: -12px;
 }
 
 /* -------- footer -------- */
